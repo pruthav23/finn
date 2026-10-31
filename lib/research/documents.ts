@@ -77,7 +77,7 @@ export async function extractAnnualReport(url: string, year: number, company: st
   const all = await pdfPages(await fetchPdf(url), 160);
   const { text, pages } = selectPages(
     all,
-    [/segment/, /revenue/, /business overview/, /management discussion/, /our (business|products|brands|customers)/, /capacity/, /market share/, /geograph/, /risk/],
+    [/segment/, /segment(al)? (revenue|results|information)/, /revenue from operations/, /business overview/, /management discussion/, /our (business|products|brands|customers)/, /capacity/, /market share/, /geograph/, /risk/],
     22_000,
   );
   if (!text) throw new Error("annual report has no extractable text");
@@ -91,6 +91,7 @@ export async function extractAnnualReport(url: string, year: number, company: st
         what_it_does: { type: "string", description: "2 sentences, plain English" },
         segments: {
           type: "array",
+          description: "main reporting / revenue segments, LARGEST FIRST (e.g. the core business before adjacencies)",
           items: { type: "object", properties: { name: { type: "string" }, revenue_share_pct: { type: "number", nullable: true }, comment: { type: "string", description: "max 14 words" } }, required: ["name", "comment"] },
         },
         geography: { type: "string", nullable: true, description: "domestic vs export mix if stated" },

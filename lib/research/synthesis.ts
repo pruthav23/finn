@@ -67,6 +67,7 @@ Rules:
 - Use ONLY the data provided. Do not use outside knowledge of this company, its peers, news, or broker views. If something is not in the data, leave it out.
 - Every claim cites source ids from the provided list (FIN = reported financials, AR = annual report, C1..Cn = earnings calls, C1 = most recent).
 - Judge promises against reported numbers. A promise for a period not yet reported is "pending".
+- A full-year (or multi-year) target judged before the period ends is "pending" unless year-to-date numbers already make it unreachable; say "on track" or "at risk" with the YTD figure in "delivered". One weak quarter inside a full-year band is "partial", not "missed".
 - Indian fiscal year: FY27 = Apr 2026–Mar 2027; Q1 = Apr–Jun, Q2 = Jul–Sep, Q3 = Oct–Dec, Q4 = Jan–Mar. Screener column "Sep 2026" = Q2 FY27.
 - Short, specific, numeric. No adjectives like "robust", "strong", "impressive".`;
 
