@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* FINN — "an analyst's highlighter on ledger paper".
+   One bold device: the marigold marker swipe, used only on what matters. */
+
+:root {
+  --paper: #eef2f0;
+  --card: #ffffff;
+  --ink: #142019;
+  --ink-2: #3b4a42;
+  --muted: #6b7a72;
+  --rule: #d6deda;
+  --rule-2: #e6ece9;
+  --mark: #ffd65e;
+  --mark-soft: #fff1c2;
+  --up: #12754a;
+  --down: #c1361d;
+  --accent: #1f4e8c;
+  --shadow: 0 1px 0 rgba(20, 32, 25, 0.06), 0 8px 24px -12px rgba(20, 32, 25, 0.18);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1311;
+    --card: #151d1a;
+    --ink: #e4eae7;
+    --ink-2: #b8c3be;
+    --muted: #82908a;
+    --rule: #26312c;
+    --rule-2: #1d2622;
+    --mark: #e2ad2b;
+    --mark-soft: #3a3017;
+    --up: #45c486;
+    --down: #f2735b;
+    --accent: #8fb5f0;
+    --shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d1311; --card: #151d1a; --ink: #e4eae7; --ink-2: #b8c3be; --muted: #82908a; --rule: #26312c; --rule-2: #1d2622;
+  --mark: #e2ad2b; --mark-soft: #3a3017; --up: #45c486; --down: #f2735b; --accent: #8fb5f0; color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-mark: var(--mark);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-accent: var(--accent);
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+}
+
+html { background: var(--paper); }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  -webkit-tap-highlight-color: transparent;
+}
+::selection { background: var(--mark); color: #142019; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+button { cursor: pointer; }
+
+/* the marker swipe */
+.mark {
+  background: linear-gradient(104deg, transparent 0.4em, var(--mark) 0.5em, var(--mark) calc(100% - 0.3em), transparent calc(100% - 0.2em));
+  background-size: 100% 0.62em;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.prose-finn { font-family: var(--font-serif); font-size: 17px; line-height: 1.55; color: var(--ink); }
+.num { font-variant-numeric: tabular-nums; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+.hair { border-color: var(--rule); }
+.sheet { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--card); color: var(--ink-2); font-size: 14px; font-weight: 500; white-space: nowrap;
+}
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.ticker {
+  font-weight: 700; font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink);
+  padding: 1px 6px; border-radius: 5px; background: var(--rule-2); border: 1px solid var(--rule);
+}
+.scroll-x { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.scroll-x::-webkit-scrollbar { display: none; }
+
+@keyframes sieve-in { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+.dot { animation: sieve-in 420ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes pulse-soft { 0%,100% { opacity: 1 } 50% { opacity: .45 } }
+.pulse { animation: pulse-soft 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .dot, .pulse { animation: none; }
+}
