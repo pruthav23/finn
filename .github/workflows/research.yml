@@ -27,7 +27,7 @@ jobs:
       - name: Build dossiers
         run: |
           SYMS="${{ github.event.inputs.symbols }}"
-          [ -z "$SYMS" ] && [ -f .github/research-request ] && SYMS="$(cat .github/research-request)"
+          [ -z "$SYMS" ] && [ -f .github/research-request ] && SYMS="$(grep -v "^#" .github/research-request)"
           npx tsx scripts/research.ts $SYMS 2>&1 | tee data/last-research.log
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
