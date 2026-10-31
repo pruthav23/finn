@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { LABEL } from "@/lib/push/taxonomy";
 import type { DigestItem, PersonCard, ResultsCard } from "@/lib/types";
-import { ago, cr, pct, tone } from "@/lib/client/format";
+import { ago, pct, tone } from "@/lib/client/format";
 
 function Head({ i }: { i: DigestItem }) {
   return (
@@ -46,7 +46,7 @@ function Results({ c }: { c: ResultsCard }) {
         <thead>
           <tr className="text-[12px] text-muted">
             <th className="pb-1 text-left font-normal">{c.periods.cur} · {c.basis}</th>
-            <th className="pb-1 text-right font-normal">₹</th>
+            <th className="pb-1 text-right font-normal">₹ cr</th>
             <th className="pb-1 text-right font-normal">QoQ</th>
             <th className="pb-1 text-right font-normal">YoY</th>
           </tr>
@@ -55,7 +55,7 @@ function Results({ c }: { c: ResultsCard }) {
           {c.rows.map((r) => (
             <tr key={r.label} className="border-t hair">
               <td className="py-1.5 font-medium">{r.label}{r.derived && <span className="text-muted" title="Derived: PBT + finance costs + depreciation − other income">*</span>}</td>
-              <td className="py-1.5 text-right">{cr(r.cur)}</td>
+              <td className="py-1.5 text-right">{r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}</td>
               <td className={`py-1.5 text-right ${tone(r.qoq)}`}>{pct(r.qoq)}</td>
               <td className={`py-1.5 text-right font-semibold ${tone(r.yoy)}`}>{pct(r.yoy)}</td>
             </tr>
