@@ -224,7 +224,7 @@ function Promises({ s, src }: { s: Synthesis; src: Src }) {
     <section>
       <H id="promises" sub="What management guided on its calls, checked against the numbers it later reported.">Promised vs delivered</H>
       {judged.length > 0 && (
-        <p className="mt-3 text-[15px]"><span className="mark text-[22px] font-bold num">{kept} of {judged.length}</span> checkable promises kept{judged.length - kept > 0 && <>, {judged.filter((p) => p.verdict === "partial").length} partly</>}.</p>
+        <p className="mt-3 text-[15px]"><span className="mark text-[22px] font-bold num">{kept} of {judged.length}</span> checkable promises kept{(() => { const pa = judged.filter((p) => p.verdict === "partial").length, mi = judged.filter((p) => p.verdict === "missed").length; return [pa && `${pa} partly`, mi && `${mi} missed`].filter(Boolean).map((t) => `, ${t}`).join(""); })()}.</p>
       )}
       <ul className="sheet mt-3 px-4">
         {s.promises.map((p, k) => (
