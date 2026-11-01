@@ -29,7 +29,7 @@ One corporate event often arrives as 3–5 filings (outcome, results, press rele
 GitHub Actions (cron, every 2h on weekdays)        Vercel (bom1, Mumbai)
 ┌──────────────────────────────────────────┐        ┌──────────────────────────────┐
 │ scripts/ingest.ts                        │ commit │ Next.js PWA                  │
-│  Yahoo EOD ─┐                            │ ─────▶ │  /           Brief           │
+│  BSE EOD ───┐                            │ ─────▶ │  /           Brief           │
 │  BSE API ───┼─▶ classify → fold → triage │  JSON  │  /watch      thresholds      │
 │             │   → enrich → digest.json   │        │  /research   any ticker      │
 │ scripts/research.ts (demo dossiers)      │        │  /api/research (staged, live)│
@@ -52,7 +52,9 @@ GitHub Actions (cron, every 2h on weekdays)        Vercel (bom1, Mumbai)
 | Transcript → commitments | Flash-Lite (map) | Long context, schema-constrained |
 | Promise vs delivery, bull/bear | Flash (reduce) | The one place reasoning matters; it never sees raw transcripts |
 
-Every model call is cached by content hash (PDF URL plus prompt) and the cache is committed, so a re-run pays only for new filings. The footer of the Brief shows each run's calls, cache hits and tokens. It runs comfortably on Gemini's free tier. If a default model is retired, FINN discovers the newest model of the same class. If the smart model's daily quota runs out, it degrades to the lite model instead of failing.
+Every model call is cached by content hash (PDF URL plus prompt) and the cache is committed, so a re-run pays only for new filings. The footer of the Brief shows each run's calls, cache hits and tokens. It runs comfortably on Gemini's free tier. If a default model is retired, FINN discovers the newest model of the same class (this happened on the first real run: Gemini 2.5 had been retired and FINN switched itself to the current Flash and Flash-Lite). If the smart model is rate-limited, the run degrades to the lite model instead of stalling.
+
+**Results numbers are verified, not trusted.** The extracted revenue is compared with screener's independently compiled quarterly figure. A mismatch by a clean factor of 10, 100 or 1,000 (₹ million or lakh read as crore, the commonest slip) is corrected automatically, and a match within 3% earns the card a "cross-checked" tick.
 
 ### Grounding discipline (pull side)
 - Numbers come from code, not the model.
@@ -60,6 +62,7 @@ Every model call is cached by content hash (PDF URL plus prompt) and the cache i
 - Transcript quotes must be verbatim, and the UI shows them next to the extracted target.
 
 ## Decisions and trade-offs
+- **BSE for prices on the server.** Yahoo rate-limits cloud runners (429s on the first real run), so the job reads BSE's daily close and volume series and falls back to Yahoo (`yfinance`'s endpoint) when run locally. Volume spikes are ratios to each stock's own 20-day average, so the exchange's volume base doesn't matter.
 - **BSE over NSE for filings.** NSE's API needs a cookie dance and blocks most datacenter IPs. BSE carries the same Reg-30 filings for dual-listed companies and answers server-side.
 - **Rules first, model second.** Tuned on a real month of portfolio filings (292 of them): BSE subcategory → text rules → model only for re-labelling text-rule guesses and opaque titles.
 - **EBITDA is derived.** Indian results statements don't print EBITDA. FINN computes PBT + finance costs + depreciation − other income and marks it as derived. Banks and NBFCs get NII and pre-provision operating profit instead.
