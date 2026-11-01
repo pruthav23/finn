@@ -3,34 +3,10 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: Required "glyf" table is not found -- trying to recover.
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
-ASIANPAINT: 4/4 transcripts
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+ASIANPAINT: 3/4 transcripts
 ASIANPAINT: annual report ok
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-ASIANPAINT: done · 4 calls · synthesis missing · errors: synthesis: Error: Gemini: retries exhausted
-PAYTM: fundamentals ok (12 quarters)
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-PAYTM: 4/4 transcripts
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-PAYTM: annual report ok
-[gemini] smart tier rate-limited → using lite
-PAYTM: done · 4 calls · synthesis ok
-KAYNES: fundamentals ok (12 quarters)
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-KAYNES: 4/4 transcripts
-Warning: TT: undefined function: 21
-KAYNES: annual report ok
-KAYNES: done · 4 calls · synthesis ok
-IDEAFORGE: fundamentals ok (12 quarters)
-IDEAFORGE: 4/4 transcripts
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-IDEAFORGE: annual report ok
-IDEAFORGE: done · 4 calls · synthesis ok
+[gemini] smart tier 503 → using lite
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+ASIANPAINT: done · 3 calls · synthesis ok · errors: call Jun 2026: Error: Not a PDF: https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2a71cf39-800d-4765-8131-5d78e54925ce.pdf
