@@ -18,6 +18,10 @@ FINN treats the investor's problem as filtering, not aggregating. The front page
 3. **Model routing.** Flash-Lite does bulk extraction in batches (60 headlines per call); Flash does reasoning (results tables, promise-vs-delivery). The expensive model never sees a raw transcript, only extracts. Every call is cached by content hash and the cache is committed, so daily re-runs pay only for new filings. It runs at ₹0 on the free tier, and each run's cost is printed in the app footer.
 4. **Git as the database.** A GitHub Actions cron builds the digest every two hours on weekdays and commits it; the app reads static JSON. It is instant, free to serve, and an audit trail of what FINN told me and when.
 5. **Primary-source discipline on pull.** The synthesis prompt forbids outside knowledge, every point must cite FIN / AR / C1–C4, and unverifiable promises are marked "pending" rather than judged.
+6. **Verify, don't trust.** Extracted results revenue is checked against screener's independently compiled figure. A clean 10× / 100× mismatch (₹ million read as crore) is auto-corrected; on the real October data this fixed Maruti, and the non-bank results cards match.
+
+## What real data taught me (all in the commit history)
+The first live run broke in useful ways. Yahoo rate-limits GitHub's runners, so prices moved to BSE's daily series. Gemini 2.5 had been retired, and FINN's model discovery switched itself to the current Flash and Flash-Lite. The smart model's free tier is tight, so the pipeline now degrades to lite instead of stalling. The first triage rated Polycab's NCLT insolvency admission as "worth a glance", so I recalibrated the scale, and it now leads the Brief with "Removes the insolvency overhang". A typical refresh now makes about 4–17 model calls, with the rest answered from cache.
 
 ## Left out, on purpose
 OS-level push notifications (needs a push service; the thresholds and data are ready), intraday prices (the brief says EOD), accounts and sync, and investor decks as a source (management's framing; transcripts are where commitments go on record).
