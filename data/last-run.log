@@ -8,7 +8,7 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -28,19 +28,16 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 triage: 113 headlines
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 enrich: 15 results
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-[gemini] smart tier rate-limited → using lite
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-enrich: 10 management changes
+enrich: 9 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -49,16 +46,9 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted
-enrich: 37 one-liners
-Warning: TT: undefined function: 32
+enrich: 33 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -72,22 +62,14 @@ Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -108,6 +90,4 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 
-digest: 237 items {"act":21,"glance":52,"routine":164} · 20 quotes · 17 LLM calls (82 cached) · 137846 tokens · 636s
-errors (1):
-  results KPITTECH: Error: Not a PDF: https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c0d52f59-f997-494d-918e-7e0d4d3eda65.pdf
+digest: 237 items {"act":21,"glance":41,"routine":175} · 20 quotes · 4 LLM calls (87 cached) · 28107 tokens · 700s
