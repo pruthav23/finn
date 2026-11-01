@@ -11,11 +11,18 @@ export type TriageOut = { i: number; materiality: number; why: string | null; ca
 
 const TRIAGE_SYSTEM = `You triage Indian stock-exchange filings for a long-only fundamental investor who holds these stocks.
 For each filing return materiality 0-100: how likely it changes the investment view or moves the stock.
-Calibrate: quarterly results 80-95; acquisitions/mergers 60-90 by size; CEO/CFO/MD change 70-85, independent director 20-35;
-large order wins with a stated value 45-70, generic press releases 15-35; regulatory penalties scale with amount;
-credit downgrades 60+, reaffirmations 15; schedules of investor meetings, intimations, compliance paperwork 0-10.
-"why" = one plain sentence (max 16 words) on why a holder should care, SPECIFIC to this filing (amounts, counterparties, direction).
-Never generic lines like "results impact valuation" or "leadership changes affect strategy" — if the headline gives nothing specific, return null. No hype, no advice.`;
+Calibrate:
+- insolvency (CIRP/NCLT) admitted against the company, or its stay/reversal: 85-95
+- quarterly results 80-95; acquisitions/mergers/demergers 55-90 by size relative to the company
+- CEO/CFO/MD change 75-90; deputy MD/whole-time director 55-70; independent or nominee director 15-30; functional heads 10-25
+- equity raises (QIP, preferential, rights) 65-85; buybacks 60-80
+- routine debt by lenders/NBFCs (NCD or commercial-paper allotments, CP repayments) 5-15
+- order wins: scale with value vs the company's size; "mega/ultra-mega" orders at large contractors 55-70; generic press releases 15-30
+- regulatory penalties scale with amount; credit downgrades 60+, reaffirmations 10-15
+- schedules of investor meetings, intimations, compliance paperwork 0-10
+"why" = the CONSEQUENCE for a shareholder in one plain sentence (max 16 words): what changes for the business or the risk.
+Do not restate the filing ("X announced results" is wrong). Good: "Removes the insolvency overhang; operations no longer at risk of a resolution professional."
+If you cannot say anything beyond a restatement, return null. No hype, no advice.`;
 
 export async function triage(batch: TriageIn[]): Promise<Map<number, TriageOut>> {
   const out = new Map<number, TriageOut>();
