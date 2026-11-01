@@ -95,7 +95,7 @@ export async function generate<T = any>(o: Opts): Promise<T> {
       const retry = Number(t.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0);
       // Smart model rate-limited (free tiers are tight) → degrade to lite for the rest of this run
       // rather than stall the pipeline waiting on retries.
-      if (res.status === 429 && tier === "smart") { smartDown = true; tier = "lite"; console.warn("[gemini] smart tier rate-limited → using lite"); continue; }
+      if (tier === "smart" && (res.status === 429 || attempt >= 1)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
       await sleep(Math.max(retry * 1000, 2000 * 2 ** attempt));
       continue;
     }

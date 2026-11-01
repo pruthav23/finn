@@ -10,7 +10,11 @@ const index: string[] = [];
 for (const s of symbols) {
   try {
     const d = await buildDossier(s);
-    await fs.writeFile(`public/data/research/${d.symbol}.json`, JSON.stringify(d));
+    const file = `public/data/research/${d.symbol}.json`;
+    // never replace a complete dossier with a degraded one (e.g. model overloaded mid-run)
+    const prev = await fs.readFile(file, "utf8").then(JSON.parse).catch(() => null);
+    if (!d.synthesis && prev?.synthesis) { console.log(`${s}: synthesis failed, keeping previous dossier`); index.push(d.symbol); continue; }
+    await fs.writeFile(file, JSON.stringify(d));
     index.push(d.symbol);
     console.log(`${s}: done · ${d.calls.length} calls · synthesis ${d.synthesis ? "ok" : "missing"}${d.errors.length ? ` · errors: ${d.errors.join("; ")}` : ""}`);
   } catch (e) {
