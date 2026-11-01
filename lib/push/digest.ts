@@ -1,7 +1,8 @@
 import { PORTFOLIO, yahooSymbol, type Holding } from "../portfolio";
 import { pool } from "../http";
 import { dailyBars } from "../sources/yahoo";
-import { filings, type RawFiling } from "../sources/bse";
+import { bseDaily, filings, type RawFiling } from "../sources/bse";
+import type { Bar } from "../sources/yahoo";
 import { company as screenerCompany } from "../sources/screener";
 import { usage } from "../llm/gemini";
 import { CATEGORIES, classify, opaque, KMP, PRIOR, type Category } from "./taxonomy";
@@ -11,7 +12,8 @@ import type { Digest, DigestItem, Quote, Tier } from "../types";
 
 const tierOf = (s: number): Tier => (s >= 68 ? "act" : s >= 35 ? "glance" : "routine");
 const SKIP_TRIAGE = new Set<Category>(["unclassified", "investor_meetings", "agm_egm", "postal_ballot"]);
-const CLUSTER = new Set<Category>(["results", "earnings_call", "dividend", "management_change", "M&A"]);
+const CLUSTER = new Set<Category>(["results", "earnings_call", "dividend", "management_change", "M&A", "fund_raise", "litigation", "credit_rating"]);
+const SCHEDULED = /intimation|to consider|prior notice|will be held|is scheduled|scheduled to|will announce|to announce|date of (the )?board meeting/i;
 
 type Work = DigestItem & { raw: RawFiling; text: string; scheduled: boolean; bySubcat: boolean };
 
@@ -25,7 +27,14 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
   const quotes = (
     await pool(holdings, 4, async (h): Promise<Quote | null> => {
       try {
-        const { bars } = await dailyBars(yahooSymbol(h.symbol), "1y");
+        // BSE answers from cloud runners; Yahoo (NSE prices, OHLC) is the fallback when run locally.
+        let bars: Bar[];
+        try {
+          bars = (await bseDaily(h.bse)).map((r) => ({ t: 0, date: r.date, o: r.c, h: r.c, l: r.c, c: r.c, v: r.v }));
+          if (bars.length < 30) throw new Error("short BSE series");
+        } catch (e) {
+          bars = (await dailyBars(yahooSymbol(h.symbol), "1y")).bars;
+        }
         const last = bars.at(-1)!, days = dayStats(bars);
         return {
           symbol: h.symbol, name: h.name, sector: h.sector,
@@ -46,7 +55,7 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
       for (const f of await filings(h.bse, from, to)) {
         const text = `${f.bseSubcategory} | ${f.headline} | ${f.subject}`;
         const { category, bySubcat } = classify(f.bseSubcategory, `${f.headline} | ${f.subject}`);
-        const scheduled = category === "results" && (/^board meeting$/i.test(f.bseSubcategory) || (/intimation|to consider|prior notice|will be held|is scheduled|scheduled to/i.test(text) && !/outcome/i.test(text)));
+        const scheduled = category === "results" && (/^board meeting$/i.test(f.bseSubcategory) || (SCHEDULED.test(text) && !/outcome/i.test(text)));
         work.push({
           id: f.id, symbol: h.symbol, name: h.name, sector: h.sector, at: f.at, category, headline: f.headline,
           summary: null, why: null, score: PRIOR[category] + (f.critical ? 4 : 0), tier: "routine", pdf: f.pdf, related: [],
@@ -56,6 +65,18 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
     } catch (e) { errors.push(`filings ${h.symbol}: ${String(e).slice(0, 140)}`); }
   });
   log(`filings: ${work.length} raw`);
+
+  // ---- opaque filings ("Enclosed"): let the cheap model read page 1 and say what it is ----
+  if (hasLLM) {
+    const op = work.filter((l) => opaque(l.headline) && l.pdf && l.category !== "unclassified" || (opaque(l.headline) && /^(general|null|)$/i.test(l.raw.bseSubcategory) && l.pdf));
+    log(`opaque: ${op.length} filings with uninformative titles`);
+    await pool(op, 4, async (l) => {
+      try {
+        const r = await readOpaque(l.pdf!, l.name);
+        if (r) { l.headline = r.title; l.category = r.category; l.bySubcat = true; l.summary = r.line; l.text = `${l.raw.bseSubcategory} | ${r.title}`; l.score = PRIOR[r.category]; l.scheduled = r.category === "results" && SCHEDULED.test(r.title); }
+      } catch (e) { errors.push(`opaque ${l.symbol}: ${String(e).slice(0, 120)}`); }
+    });
+  }
 
   // ---- collapse duplicates: one event often arrives as 3-5 filings ----
   work.sort((a, b) => b.at.localeCompare(a.at));
@@ -79,18 +100,6 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
     } else near.related.push({ id: w.id, headline: w.headline, pdf: w.pdf, at: w.at });
   }
 
-  // ---- opaque filings ("Enclosed"): let the cheap model read page 1 and say what it is ----
-  if (hasLLM) {
-    const op = leads.filter((l) => opaque(l.headline) && l.pdf && l.category !== "unclassified" || (opaque(l.headline) && /^(general|null|)$/i.test(l.raw.bseSubcategory) && l.pdf));
-    log(`opaque: ${op.length} filings with uninformative titles`);
-    await pool(op, 4, async (l) => {
-      try {
-        const r = await readOpaque(l.pdf!, l.name);
-        if (r) { l.headline = r.title; l.category = r.category; l.bySubcat = true; l.summary = r.line; l.text = `${l.raw.bseSubcategory} | ${r.title}`; l.score = PRIOR[r.category]; }
-      } catch (e) { errors.push(`opaque ${l.symbol}: ${String(e).slice(0, 120)}`); }
-    });
-  }
-
   // ---- score: rules prior + one batched LLM pass over the non-routine headlines ----
   for (const l of leads) if (l.scheduled) { l.score = 22; l.why = "Results date set"; }
   if (hasLLM) {
@@ -112,8 +121,9 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
     } catch (e) { errors.push(`triage: ${String(e).slice(0, 160)}`); }
   }
   for (const l of leads) {
-    if (l.category === "management_change" && !KMP.test(l.text)) l.score = Math.min(l.score, 45);
-    if (l.category === "results" && !l.scheduled) l.score = Math.max(l.score, 80);
+    if (l.category === "management_change" && (!KMP.test(l.text) || /re-?appoint/i.test(l.text) && !/managing director|chief executive|ceo/i.test(l.text))) l.score = Math.min(l.score, 45);
+    const statement = /^financial results$/i.test(l.raw.bseSubcategory) || (/financial results|results for the quarter/i.test(l.headline) && !/newspaper|auditor|transcript|presentation/i.test(l.text));
+    if (l.category === "results" && !l.scheduled && statement) l.score = Math.max(l.score, 80);
     l.score = Math.max(0, Math.min(100, l.score));
     l.tier = tierOf(l.score);
   }
@@ -124,20 +134,17 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
     log(`enrich: ${res.length} results`);
     await pool(res, 2, async (l) => {
       try {
-        const card = await results(l.pdf!);
+        // screener's independently compiled quarterly revenue: used to verify and to fix unit slips
+        let ref: number | null = null, basis: string | null = null;
+        try {
+          const c = await screenerCompany(l.symbol);
+          ref = (c.quarters.rows["Sales"] ?? c.quarters.rows["Revenue"])?.at(-1) ?? null;
+          basis = c.consolidated ? "consolidated" : "standalone";
+        } catch {}
+        const h = holdings.find((x) => x.symbol === l.symbol);
+        const card = await results(l.pdf!, { financial: !!h?.isBank, refRevenue: ref, refBasis: basis });
         if (card) l.enrichment = card;
       } catch (e) { errors.push(`results ${l.symbol}: ${String(e).slice(0, 160)}`); }
-    });
-    // cross-check extracted revenue against screener's independently compiled quarterly number
-    await pool(res.filter((l) => l.enrichment), 3, async (l) => {
-      try {
-        const c = await screenerCompany(l.symbol);
-        const card = l.enrichment as any;
-        const sales = c.quarters.rows["Sales"] ?? c.quarters.rows["Revenue"];
-        const latest = sales?.at(-1);
-        const ours = card.rows[0]?.cur;
-        if (latest && ours && card.basis === (c.consolidated ? "consolidated" : "standalone")) card.verified = Math.abs(latest - ours) / latest < 0.02;
-      } catch {}
     });
 
     const mg = leads.filter((l) => l.category === "management_change" && l.tier !== "routine" && l.pdf);
@@ -147,7 +154,9 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
         const card = await management(l.pdf!, l.name, l.headline);
         if (card) {
           l.enrichment = card;
-          if (card.changes.some((c) => c.kmp)) { l.score = Math.max(l.score, 72); l.tier = tierOf(l.score); }
+          const material = card.changes.some((c) => c.kmp && c.action !== "re-appointed");
+          l.score = material ? Math.max(l.score, 74) : Math.min(l.score, 50);
+          l.tier = tierOf(l.score);
         }
       } catch (e) { errors.push(`mgmt ${l.symbol}: ${String(e).slice(0, 160)}`); }
     });

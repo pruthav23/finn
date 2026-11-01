@@ -14,7 +14,8 @@ For each filing return materiality 0-100: how likely it changes the investment v
 Calibrate: quarterly results 80-95; acquisitions/mergers 60-90 by size; CEO/CFO/MD change 70-85, independent director 20-35;
 large order wins with a stated value 45-70, generic press releases 15-35; regulatory penalties scale with amount;
 credit downgrades 60+, reaffirmations 15; schedules of investor meetings, intimations, compliance paperwork 0-10.
-"why" = one plain sentence (max 16 words) on why a holder should care, or null if routine. No hype, no advice.`;
+"why" = one plain sentence (max 16 words) on why a holder should care, SPECIFIC to this filing (amounts, counterparties, direction).
+Never generic lines like "results impact valuation" or "leadership changes affect strategy" — if the headline gives nothing specific, return null. No hype, no advice.`;
 
 export async function triage(batch: TriageIn[]): Promise<Map<number, TriageOut>> {
   const out = new Map<number, TriageOut>();
@@ -101,11 +102,28 @@ function toCrore(unit: string): number {
 
 const pct = (a: number | null, b: number | null) => (a == null || b == null || b === 0 ? null : Math.round(((a - b) / Math.abs(b)) * 1000) / 10);
 
-export async function results(pdfUrl: string): Promise<ResultsCard | null> {
+/** "30.09.2026" / "September 30, 2026" / "30 Sep 26" → "Q2 FY27" (Indian fiscal year). */
+export function quarterLabel(s: string): string {
+  const M: Record<string, number> = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+  let m: number | undefined, y: number | undefined;
+  const num = s.match(/(\d{1,2})[.\/-](\d{1,2})[.\/-](\d{2,4})/);
+  if (num) { m = +num[2]; y = +num[3]; }
+  else {
+    const w = s.toLowerCase().match(/(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*[^0-9]*(?:\d{1,2}(?:st|nd|rd|th)?,?\s*)?(\d{2,4})/);
+    if (w) { m = M[w[1]]; y = +w[2]; }
+  }
+  if (!m || !y) return s;
+  if (y < 100) y += 2000;
+  const q = m <= 3 ? 4 : m <= 6 ? 1 : m <= 9 ? 2 : 3;
+  const fy = (m <= 3 ? y : y + 1) % 100;
+  return `Q${q} FY${String(fy).padStart(2, "0")}`;
+}
+
+export async function results(pdfUrl: string, opts: { financial?: boolean; refRevenue?: number | null; refBasis?: string | null } = {}): Promise<ResultsCard | null> {
   const bytes = await fetchPdf(pdfUrl);
   let parts;
   if (bytes.length < 15_000_000) {
-    parts = [pdfPart(bytes), { text: "Extract the quarterly results table. Prefer CONSOLIDATED if present." }];
+    parts = [pdfPart(bytes), { text: `Extract the quarterly results table. Prefer CONSOLIDATED if present.${opts.financial ? " This is a bank/NBFC: fill net_interest_income and operating_profit_before_provisions; revenue_from_operations = total income / interest earned." : ""}` }];
   } else {
     const pages = await pdfPages(bytes, 25);
     parts = [{ text: `Results filing text:\n${pages.join("\n\n").slice(0, 120_000)}\n\nExtract the quarterly results table. Prefer CONSOLIDATED.` }];
@@ -115,12 +133,24 @@ export async function results(pdfUrl: string): Promise<ResultsCard | null> {
     system: "You read Indian listed-company quarterly results filings and copy numbers exactly as printed. Never compute or estimate; use null when a figure is absent. Negative numbers (losses) must be negative.",
     parts,
     schema: RESULTS_SCHEMA,
-    cacheKey: `results:${pdfUrl}`,
+    cacheKey: `results:${pdfUrl}${opts.financial ? ":fin" : ""}`,
     temperature: 0,
   });
   if (!r.found || !r.revenue_from_operations?.length) return null;
 
-  const k = toCrore(r.unit);
+  let k = toCrore(r.unit);
+  // Unit slips (₹ million read as crore, lakh as crore…) are the commonest extraction error.
+  // screener's independently compiled quarterly revenue tells us the true scale.
+  let verified: boolean | undefined;
+  const raw0 = r.revenue_from_operations?.[0];
+  if (opts.refRevenue && raw0) {
+    const basisOk = !opts.refBasis || opts.refBasis === r.basis;
+    for (const kk of [k, 1, 0.1, 0.01, 1e-4, 1e-5, 10, 100]) {
+      const ratio = (raw0 * kk) / opts.refRevenue;
+      if (Math.abs(ratio - 1) < 0.03) { k = kk; verified = basisOk; break; }
+    }
+  }
+  const financial = opts.financial || r.financial_company;
   const v = (a?: (number | null)[]) => [0, 1, 2].map((i) => (a?.[i] == null ? null : Math.round((a[i] as number) * k * 100) / 100));
   const row = (label: string, a: (number | null)[], derived = false) => ({
     label, cur: a[0], prevQ: a[1], yoyQ: a[2], qoq: pct(a[0], a[1]), yoy: pct(a[0], a[2]), derived,
@@ -128,8 +158,10 @@ export async function results(pdfUrl: string): Promise<ResultsCard | null> {
 
   const rev = v(r.revenue_from_operations), pbt = v(r.profit_before_tax), pat = v(r.profit_after_tax);
   const rows: ResultsCard["rows"] = [];
-  if (r.financial_company && r.net_interest_income?.some((x) => x != null)) {
-    rows.push(row("Net interest income", v(r.net_interest_income)));
+  if (financial) {
+    // Banks don't have EBITDA; the comparable lines are NII and pre-provision operating profit.
+    if (r.net_interest_income?.some((x) => x != null)) rows.push(row("Net interest income", v(r.net_interest_income)));
+    else rows.push(row("Total income", rev));
     if (r.operating_profit_before_provisions?.some((x) => x != null)) rows.push(row("Pre-provision op. profit", v(r.operating_profit_before_provisions)));
     rows.push(row("PBT", pbt), row("PAT", pat));
   } else {
@@ -149,8 +181,9 @@ export async function results(pdfUrl: string): Promise<ResultsCard | null> {
   return {
     kind: "results",
     basis: r.basis,
-    periods: { cur: r.period_labels.current, prevQ: r.period_labels.previous_quarter, yoyQ: r.period_labels.year_ago_quarter },
-    financial: r.financial_company,
+    periods: { cur: quarterLabel(r.period_labels.current), prevQ: quarterLabel(r.period_labels.previous_quarter), yoyQ: quarterLabel(r.period_labels.year_ago_quarter) },
+    financial,
+    verified,
     rows,
     marginNote,
     notes: r.exceptional_items_note ? [r.exceptional_items_note] : [],
@@ -198,14 +231,15 @@ export async function management(pdfUrl: string, company: string, headline: stri
 
   const changes: PersonCard["changes"] = [];
   for (const c of r.changes.slice(0, 4)) {
-    const kmp = KMP.test(c.role);
+    // company-level top roles only: not subsidiary heads, SVPs or functional officers
+    const kmp = KMP.test(c.role) && !/vice president|\bhead\b|\bic\b|subsidiary|security|information|compliance|nominee|independent/i.test(c.role);
     let bio = c.profile_in_filing;
     let bioSources: { title: string; url: string }[] = [];
     // Push-side enrichment may use the web: look up incoming senior people.
     if ((c.action === "appointed" || c.action === "redesignated") && kmp) {
       try {
         const g = await generate<{ text: string; sources: { title: string; url: string }[] }>({
-          tier: "smart",
+          tier: "lite",
           search: true,
           parts: [{ text: `In at most 45 words, give the professional background of ${c.person}, newly ${c.action} as ${c.role} of ${company} (India): previous employers and roles, years of experience, education. Facts only, no praise. If you cannot find reliable information, reply exactly UNKNOWN.` }],
           cacheKey: `bio:${c.person}:${company}`,

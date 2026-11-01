@@ -65,9 +65,25 @@ export function attachmentUrl(name: string, old?: number) {
 }
 
 export async function fetchPdf(url: string): Promise<Uint8Array> {
-  const res = await get(url, { headers: { Referer: "https://www.bseindia.com/", Accept: "application/pdf,*/*" }, timeoutMs: 45000 });
+  const res = await get(url, { headers: { Referer: "https://www.bseindia.com/", Accept: "application/pdf,*/*" }, timeoutMs: 90000, retries: 2 });
   if (!res.ok) throw new Error(`PDF ${res.status} ${url}`);
   const buf = new Uint8Array(await res.arrayBuffer());
   if (buf[0] !== 0x25 || buf[1] !== 0x50) throw new Error(`Not a PDF: ${url}`); // "%P"
   return buf;
+}
+
+/** A year of daily closes + volume from BSE (works from cloud IPs where Yahoo rate-limits). */
+export async function bseDaily(bseCode: string): Promise<{ date: string; c: number; v: number }[]> {
+  const url = `https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scripcode=${bseCode}&flag=12M&fromdate=&todate=&seriesid=`;
+  const res = await get(url, { headers: HDRS });
+  if (!res.ok) throw new Error(`BSE price ${res.status} for ${bseCode}`);
+  const j = await res.json();
+  const rows: { dttm: string; vale1: string; vole: string }[] = JSON.parse(j.Data ?? "[]");
+  const M: Record<string, string> = { Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06", Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12" };
+  return rows
+    .map((r) => {
+      const [, mon, dd, yyyy] = r.dttm.split(" "); // "Fri Oct 30 2026 00:00:00"
+      return { date: `${yyyy}-${M[mon]}-${dd}`, c: Number(r.vale1), v: Number(r.vole) };
+    })
+    .filter((r) => r.c > 0 && /^\d{4}-\d\d-\d\d$/.test(r.date));
 }

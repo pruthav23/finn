@@ -16,6 +16,7 @@ const DEFAULTS: Record<Tier, string> = {
   smart: process.env.GEMINI_MODEL_SMART || "gemini-2.5-flash",
 };
 const resolved: Partial<Record<Tier, string>> = {};
+let smartDown = false;
 
 export const usage = { calls: 0, cached: 0, inTokens: 0, outTokens: 0, byTier: { lite: 0, smart: 0 } as Record<Tier, number> };
 
@@ -76,8 +77,8 @@ export async function generate<T = any>(o: Opts): Promise<T> {
     body.generationConfig.responseSchema = o.schema;
   }
 
-  let tier = o.tier;
-  for (let attempt = 0; attempt < 6; attempt++) {
+  let tier: Tier = o.tier === "smart" && smartDown ? "lite" : o.tier;
+  for (let attempt = 0; attempt < 8; attempt++) {
     const model = resolved[tier] ?? DEFAULTS[tier];
     const res = await fetch(`${API}/models/${model}:generateContent?key=${key()}`, {
       method: "POST",
@@ -92,8 +93,9 @@ export async function generate<T = any>(o: Opts): Promise<T> {
     if (res.status === 429 || res.status >= 500) {
       const t = await res.text();
       const retry = Number(t.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0);
-      // Daily quota on the smart model exhausted → degrade to lite rather than fail.
-      if (res.status === 429 && /PerDay/i.test(t) && tier === "smart") { tier = "lite"; continue; }
+      // Smart model rate-limited (free tiers are tight) → degrade to lite for the rest of this run
+      // rather than stall the pipeline waiting on retries.
+      if (res.status === 429 && tier === "smart") { smartDown = true; tier = "lite"; console.warn("[gemini] smart tier rate-limited → using lite"); continue; }
       await sleep(Math.max(retry * 1000, 2000 * 2 ** attempt));
       continue;
     }
