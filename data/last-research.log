@@ -1,16 +1,15 @@
 ASIANPAINT: fundamentals ok (12 quarters)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-Warning: TT: undefined function: 21
 Warning: Required "glyf" table is not found -- trying to recover.
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 ASIANPAINT: 4/4 transcripts
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 ASIANPAINT: annual report ok
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-ASIANPAINT: done · 4 calls · synthesis ok
+ASIANPAINT: done · 4 calls · synthesis missing · errors: synthesis: Error: Gemini: retries exhausted
 PAYTM: fundamentals ok (12 quarters)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -19,6 +18,7 @@ PAYTM: 4/4 transcripts
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 PAYTM: annual report ok
+[gemini] smart tier rate-limited → using lite
 PAYTM: done · 4 calls · synthesis ok
 KAYNES: fundamentals ok (12 quarters)
 Warning: TT: undefined function: 21
@@ -34,13 +34,3 @@ Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 IDEAFORGE: annual report ok
 IDEAFORGE: done · 4 calls · synthesis ok
-#: FAILED Error: Unknown symbol "#" on screener.in
-Sat: FAILED Error: Unknown symbol "SAT" on screener.in
-Oct: FAILED Error: Unknown symbol "OCT" on screener.in
-31: FAILED Error: Unknown symbol "31" on screener.in
-10:12:30: FAILED Error: Unknown symbol "10:12:30" on screener.in
-UTC: FAILED Error: Unknown symbol "UTC" on screener.in
-2026: fundamentals ok (0 quarters)
-2026: 0/0 transcripts
-2026: annual report skipped
-2026: done · 0 calls · synthesis ok
