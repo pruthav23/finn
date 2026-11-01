@@ -2,7 +2,7 @@
 
 **Prototype:** <VERCEL_URL> (open on a phone; "Add to Home Screen" installs it)
 **Repo:** https://github.com/pruthav23/finn
-**Build history:** <CLAUDE_SHARE_LINK>
+**Build history:** https://claude.ai/share/09689208-ee51-48db-90c0-2a2c668f71bb (Claude: one end-to-end build conversation)
 
 ## What I built
 FINN treats the investor's problem as filtering, not aggregating. The front page shows how many filings landed in my portfolio over a window I choose and how many matter, as a field of dots where only the few that matter are highlighted. Underneath, three tiers: rich cards for what matters, one line each for what's worth a glance, and routine paperwork folded away as counts.
