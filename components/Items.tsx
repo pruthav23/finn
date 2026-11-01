@@ -55,9 +55,9 @@ function Results({ c }: { c: ResultsCard }) {
           {c.rows.map((r) => (
             <tr key={r.label} className="border-t hair">
               <td className="py-1.5 font-medium">{r.label}{r.derived && <span className="text-muted" title="Derived: PBT + finance costs + depreciation − other income">*</span>}</td>
-              <td className="py-1.5 text-right">{r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}</td>
-              <td className={`py-1.5 text-right ${tone(r.qoq)}`}>{pct(r.qoq)}</td>
-              <td className={`py-1.5 text-right font-semibold ${tone(r.yoy)}`}>{pct(r.yoy)}</td>
+              <td className="py-1.5 pl-3 text-right">{r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}</td>
+              <td className={`py-1.5 pl-3 text-right ${tone(r.qoq)}`}>{pct(r.qoq)}</td>
+              <td className={`py-1.5 pl-3 text-right font-semibold ${tone(r.yoy)}`}>{pct(r.yoy)}</td>
             </tr>
           ))}
         </tbody>

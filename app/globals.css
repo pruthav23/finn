@@ -65,7 +65,7 @@ body {
   font-size: 15px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
-  font-feature-settings: "tnum" 1, "ss01" 1;
+  font-feature-settings: "kern" 1;
   -webkit-tap-highlight-color: transparent;
 }
 ::selection { background: var(--mark); color: #142019; }
@@ -84,7 +84,7 @@ button { cursor: pointer; }
   -webkit-box-decoration-break: clone;
 }
 .prose-finn { font-family: var(--font-serif); font-size: 17px; line-height: 1.55; color: var(--ink); }
-.num { font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 .up { color: var(--up); }
 .down { color: var(--down); }
 .hair { border-color: var(--rule); }

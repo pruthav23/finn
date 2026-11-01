@@ -1,6 +1,6 @@
 # ENAM - IIT screening - 2027: FINN
 
-**Prototype:** <VERCEL_URL> (open on a phone; "Add to Home Screen" installs it)
+**Prototype:** https://finn-rosy.vercel.app (open on a phone; "Add to Home Screen" installs it)
 **Repo:** https://github.com/pruthav23/finn
 **Build history:** https://claude.ai/share/09689208-ee51-48db-90c0-2a2c668f71bb (Claude: one end-to-end build conversation)
 
