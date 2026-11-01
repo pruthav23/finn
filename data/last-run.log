@@ -1,17 +1,14 @@
 prices: 20 stocks
-filings: 2026-10-01 → 2026-10-31
-filings: 292 raw
-opaque: 39 filings with uninformative titles
+filings: 2026-10-02 → 2026-11-01
+filings: 276 raw
+opaque: 37 filings with uninformative titles
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -33,9 +30,14 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-triage: 133 headlines
-enrich: 18 results
+triage: 113 headlines
+enrich: 15 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
+[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
+[gemini] smart tier rate-limited → using lite
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 enrich: 10 management changes
@@ -47,45 +49,8 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted
-bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted
-enrich: 46 one-liners
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+enrich: 37 one-liners
+Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -101,31 +66,48 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
 
-digest: 264 items {"act":30,"glance":57,"routine":177} · 0 quotes · 107 LLM calls (0 cached) · 313721 tokens · 1103s
-errors (25):
-  price BAJFINANCE: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/BAJFINANCE.NS?range=1y&interval=1d
-  price RELIANCE: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/RELIANCE.NS?range=1y&interval=1d
-  price HDFCBANK: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/HDFCBANK.NS?range=1y&interval=1d
-  price ICICIBANK: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/ICICIBANK.NS?range=1y&interval=1d
-  price INFY: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/INFY.NS?range=1y&interval=1d
-  price TCS: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/TCS.NS?range=1y&interval=1d
-  price KPITTECH: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/KPITTECH.NS?range=1y&interval=1d
-  price BHARTIARTL: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/BHARTIARTL.NS?range=1y&interval=1d
-  price DMART: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/DMART.NS?range=1y&interval=1d
-  price ITC: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/ITC.NS?range=1y&interval=1d
-  price TITAN: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/TITAN.NS?range=1y&interval=1d
-  price MARUTI: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/MARUTI.NS?range=1y&interval=1d
-  price SUNPHARMA: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/SUNPHARMA.NS?range=1y&interval=1d
-  price M&M: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/M%26M.NS?range=1y&interval=1d
-  price LT: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/LT.NS?range=1y&interval=1d
-  price HAL: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/HAL.NS?range=1y&interval=1d
-  price DIXON: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/DIXON.NS?range=1y&interval=1d
-  price ETERNAL: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/ETERNAL.NS?range=1y&interval=1d
-  price COALINDIA: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/COALINDIA.NS?range=1y&interval=1d
-  price POLYCAB: Error: HTTP 429 https://query1.finance.yahoo.com/v8/finance/chart/POLYCAB.NS?range=1y&interval=1d
-  results RELIANCE: Error: Gemini: retries exhausted
-  results DIXON: Error: Gemini: retries exhausted
-  results DIXON: Error: Gemini: retries exhausted
-  results KPITTECH: TimeoutError: The operation was aborted due to timeout
-  results INFY: TimeoutError: The operation was aborted due to timeout
+digest: 237 items {"act":21,"glance":52,"routine":164} · 20 quotes · 17 LLM calls (82 cached) · 137846 tokens · 636s
+errors (1):
+  results KPITTECH: Error: Not a PDF: https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c0d52f59-f997-494d-918e-7e0d4d3eda65.pdf
