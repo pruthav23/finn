@@ -1,7 +1,10 @@
 prices: 20 stocks
-filings: 2026-10-02 → 2026-11-01
-filings: 276 raw
-opaque: 37 filings with uninformative titles
+filings: 2026-10-03 → 2026-11-02
+filings: 283 raw
+opaque: 36 filings with uninformative titles
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -26,18 +29,15 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-triage: 113 headlines
+triage: 117 headlines
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 enrich: 15 results
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-enrich: 9 management changes
+enrich: 10 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -46,19 +46,12 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted
-enrich: 33 one-liners
+enrich: 34 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -73,15 +66,23 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
@@ -90,4 +91,4 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 
-digest: 237 items {"act":21,"glance":41,"routine":175} · 20 quotes · 4 LLM calls (87 cached) · 28107 tokens · 700s
+digest: 243 items {"act":22,"glance":41,"routine":180} · 20 quotes · 3 LLM calls (92 cached) · 13943 tokens · 732s
