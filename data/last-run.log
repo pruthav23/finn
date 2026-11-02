@@ -1,10 +1,7 @@
 prices: 20 stocks
 filings: 2026-10-03 → 2026-11-02
-filings: 283 raw
+filings: 291 raw
 opaque: 36 filings with uninformative titles
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -29,9 +26,14 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-triage: 117 headlines
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+triage: 122 headlines
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-enrich: 15 results
+enrich: 17 results
+[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
+[gemini] smart tier 503 → using lite
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -46,7 +48,7 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted
-enrich: 34 one-liners
+enrich: 33 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -56,10 +58,6 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -84,11 +82,10 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
 
-digest: 243 items {"act":22,"glance":41,"routine":180} · 20 quotes · 3 LLM calls (92 cached) · 13943 tokens · 732s
+digest: 249 items {"act":24,"glance":44,"routine":181} · 20 quotes · 7 LLM calls (91 cached) · 28005 tokens · 579s
