@@ -247,7 +247,7 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     const fc = v(r.finance_costs), dep = v(r.depreciation), oi = v(r.other_income);
     const assocIn = r.associates_share_before_pbt !== false;
     const ebitda = [0, 1, 2].map((i) =>
-      pbt[i] == null || fc[i] == null || dep[i] == null
+      pbt[i] == null || fc[i] == null || dep[i] == null || oi[i] == null
         ? null
         : r2(pbt[i]! - (exc[i] ?? 0) - (assocIn ? assoc[i] ?? 0 : 0) + fc[i]! + dep[i]! - (oi[i] ?? 0)),
     );
@@ -267,7 +267,13 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
   // ---- cross-check every column against screener ----
   const ebitdaRow = rows.find((x) => x.label === "EBITDA");
   const checks = t
-    ? crossCheck(t, periods, { revenue: financial ? v(revRaw) : rev, pbt, patOwners, patTotal, nii, ebitda: ebitdaRow ? [ebitdaRow.cur, ebitdaRow.prevQ, ebitdaRow.yoyQ] : undefined })
+    ? crossCheck(t, periods, {
+        revenue: financial ? v(revRaw) : rev, pbt, patOwners, patTotal,
+        // screener's revenue minus interest is NII only when its revenue line is interest earned (banks);
+        // for NBFCs it includes fees
+        nii: financial && revRaw === r.interest_earned ? nii : undefined,
+        ebitda: ebitdaRow ? [ebitdaRow.cur, ebitdaRow.prevQ, ebitdaRow.yoyQ] : undefined,
+      })
     : [];
   const curChecks = checks.filter((c) => c.period === periods.cur && c.ok !== null);
   const verified = anchored && curChecks.length >= 3 && checks.every((c) => c.ok !== false);
@@ -280,7 +286,7 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
   if (!t) notes.push("Screener was unavailable, so these figures are as read from the filing, not cross-checked.");
   else if (!anchored) notes.push("Revenue doesn't match screener's figure for any recent quarter, so these figures are as read from the filing, not cross-checked.");
 
-  const e = rows.find((x) => x.label === "EBITDA");
+  const e = rows.find((x) => x.label === "EBITDA" && !x.mismatch);
   const marginNote =
     e && rev[0] && rev[2] && e.cur != null && e.yoyQ != null
       ? `EBITDA margin ${((e.cur / rev[0]) * 100).toFixed(1)}% vs ${((e.yoyQ / rev[2]) * 100).toFixed(1)}% a year ago`
@@ -289,7 +295,7 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     kind: "results", basis: r.basis, periods, financial, verified, rows, marginNote, notes,
     checked: verified ? [...new Set(curChecks.map((c) => c.metric))] : undefined,
   };
-  return { card, checks, ebitdaVsScreener: e && t ? { card: e.cur, screener: screenerOperatingProfit(t, periods.cur) } : null, modelLabel: modelQ, tier: tierUsed };
+  return { card, checks, ebitdaVsScreener: ebitdaRow && t ? { card: ebitdaRow.cur, screener: screenerOperatingProfit(t, periods.cur) } : null, modelLabel: modelQ, tier: tierUsed };
 }
 
 // ---------- 2b. Read the document before calling something important ----------
@@ -349,9 +355,31 @@ export function guardWhy(w: string | null | undefined): string | null {
   if (!w) return null;
   const s = w.trim();
   if (!s || /^(none|null|n\/a)\.?$/i.test(s)) return null;
-  if (/^(this |the )?(filing |company |bank )?(provides|reports|announces|discloses|informs|intimates|confirms|clarifies|records|notifies|updates)\b/i.test(s)) return null;
+  if (/^(this |the )?(filing |company |bank )?(provides|reports|announces|discloses|informs|intimates|confirms|clarifies|records|notifies|updates|receives|adjourns|addresses|completes|approves|declares)\b/i.test(s)) return null;
+  if (/^(quarterly )?(financial )?results (determine|establish|show|reflect)|^credit rating (updates?|assignment) (confirms?|reaffirms?)|^leadership change brings/i.test(s)) return null;
   if (/establishes (current )?(operational|operating) performance|financial performance metrics determine|reports headline financial numbers|alters (the )?(group )?(corporate )?structure|procedural update/i.test(s)) return null;
   return s;
+}
+
+const RESULTS_WHY = `You write the one line a portfolio manager reads under a holding's quarterly results card.
+You get the card's figures (computed and cross-checked) and its notes. Say what this quarter changes about the earnings trajectory:
+accelerating, steady, slowing, reversing, or distorted by a one-off. Name the line that shows it, with its number. Add the caveat if one matters
+(a one-off charge or gain, a mechanical effect such as excise duty, profit and operating profit moving apart).
+Max 24 words. Plain words. Use only the figures and notes given; never name a cause, segment or product they don't state.
+Don't mention the company's size, market value, valuation, dividends or "shareholders". Don't restate every line. No advice.
+Good shape: "<what changed> <evidence with number>; <caveat or implication>."`;
+
+export async function resultsWhy(company: string, card: ResultsCard): Promise<string | null> {
+  const text = `${company}\n${describeResults(card)}`;
+  const r = await generate<{ why: string | null }>({
+    tier: "lite",
+    system: RESULTS_WHY,
+    parts: [{ text }],
+    schema: { type: "object", properties: { why: { type: "string", nullable: true } }, required: ["why"] },
+    cacheKey: `rwhy:v1:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
+    temperature: 0,
+  });
+  return guardWhy(r.why);
 }
 
 /** The card's numbers as plain lines, for writing the why. */
@@ -360,9 +388,11 @@ export function describeResults(c: ResultsCard): string {
   const p = (n: number | null) => (n == null ? "n/a" : `${n > 0 ? "+" : ""}${n}%`);
   return [
     `${c.periods.cur} vs ${c.periods.prevQ} (QoQ) and ${c.periods.yoyQ} (YoY), ${c.basis}, ₹ crore:`,
-    ...c.rows.map((r) => `${r.label}${r.derived ? " (derived)" : ""}: ${f(r.cur)} (QoQ ${p(r.qoq)}, YoY ${p(r.yoy)})`),
+    // lines that disagree with screener are left out: the why must not rest on a misread
+    ...c.rows.filter((r) => !r.mismatch).map((r) => `${r.label}${r.derived ? " (derived)" : ""}: ${f(r.cur)} (QoQ ${p(r.qoq)}, YoY ${p(r.yoy)})`),
     c.marginNote ?? "",
-    ...c.notes,
+    // only notes that state facts; the cross-check's own doubts are not material for a why
+    ...c.notes.filter((n) => !/^Screener has |^EBITDA as derived here|above PBT this quarter|not cross-checked/.test(n)),
   ].filter(Boolean).join("\n");
 }
 
@@ -418,16 +448,20 @@ export async function management(pdfUrl: string, company: string, headline: stri
     let bioSources: { title: string; url: string }[] = [];
     // Push-side enrichment may use the web: look up incoming senior people.
     if ((c.action === "appointed" || c.action === "redesignated") && rank !== "other") {
-      try {
-        const g = await generate<{ text: string; sources: { title: string; url: string }[] }>({
-          tier: "lite",
-          search: true,
-          parts: [{ text: `In at most 45 words, give the professional background of ${c.person}, newly ${c.action} as ${c.role} of ${company} (India): previous employers and roles, years of experience, education. Facts only, no praise. If you cannot find reliable information, reply exactly UNKNOWN.` }],
-          cacheKey: `bio:${c.person}:${company}`,
-          maxAttempts: 2,
-        });
-        if (g.text && !/^UNKNOWN/i.test(g.text)) { bio = g.text; bioSources = g.sources.slice(0, 3); }
-      } catch (e) { console.warn("bio lookup failed", c.person, String(e).slice(0, 120)); }
+      // Grounded search has its own small quota per model: if the cheap model's is spent, ask the smart one once.
+      for (const tier of ["lite", "smart"] as const) {
+        try {
+          const g = await generate<{ text: string; sources: { title: string; url: string }[] }>({
+            tier,
+            search: true,
+            parts: [{ text: `In at most 45 words, give the professional background of ${c.person}, newly ${c.action} as ${c.role} of ${company} (India): previous employers and roles, years of experience, education. Facts only, no praise. If you cannot find reliable information, reply exactly UNKNOWN.` }],
+            cacheKey: `bio:${c.person}:${company}`,
+            maxAttempts: 2,
+          });
+          if (g.text && !/^UNKNOWN/i.test(g.text)) { bio = g.text; bioSources = g.sources.slice(0, 3); }
+          break;
+        } catch (e) { console.warn(`bio lookup failed (${tier})`, c.person, String(e).slice(0, 120)); }
+      }
     }
     changes.push({
       person: c.person, role: c.role, action: c.action, effective: c.effective, reason: c.reason, kmp, rank, bio, bioSources,

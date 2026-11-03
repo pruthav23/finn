@@ -29,6 +29,7 @@ function key() {
 }
 
 /** If a default model has been retired, pick the newest available one of the same class. */
+const overloaded = new Set<string>();
 async function discover(tier: Tier): Promise<string> {
   const res = await fetch(`${API}/models?pageSize=200&key=${key()}`);
   const j = await res.json();
@@ -36,7 +37,7 @@ async function discover(tier: Tier): Promise<string> {
     .filter((m: any) => m.supportedGenerationMethods?.includes("generateContent"))
     .map((m: any) => m.name.replace("models/", ""))
     .filter((n: string) => /^gemini-[\d.]+-flash/.test(n) && !/(image|tts|live|audio|thinking|exp)/.test(n));
-  const pool = names.filter((n) => (tier === "lite" ? /flash-lite/.test(n) : !/lite/.test(n)));
+  const pool = names.filter((n) => (tier === "lite" ? /flash-lite/.test(n) : !/lite/.test(n)) && !overloaded.has(n));
   const ver = (n: string) => parseFloat(n.match(/gemini-([\d.]+)/)?.[1] ?? "0");
   pool.sort((a, b) => ver(b) - ver(a) || Number(/preview/.test(a)) - Number(/preview/.test(b)));
   if (!pool.length) throw new Error(`No Gemini ${tier} model available`);
@@ -103,7 +104,13 @@ export async function generate<T = any>(o: Opts): Promise<T> {
       const retry = Number(t.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0);
       // Smart model rate-limited (free tiers are tight), or failing repeatedly → degrade to lite for the
       // rest of this run rather than stall. A 503 ("overloaded") gets three tries first: it usually passes.
-      if (tier === "smart" && (res.status === 429 || ++smartFails >= 3)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
+      if (tier === "smart" && res.status !== 429 && ++smartFails >= 3) {
+        // The newest model is often the busiest. Before giving up on the smart tier, try the next one.
+        overloaded.add(model);
+        const next = await discover("smart").catch(() => null);
+        if (next && next !== model) { resolved.smart = next; smartFails = 0; console.warn(`[gemini] ${model} overloaded → ${next}`); continue; }
+      }
+      if (tier === "smart" && (res.status === 429 || smartFails >= 3)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
       if (attempt < attempts - 1) await sleep(Math.min(60_000, Math.max(retry * 1000, 2000 * 2 ** attempt)));
       continue;
     }

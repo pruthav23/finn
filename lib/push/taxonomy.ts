@@ -126,5 +126,17 @@ export function priorFor(category: Category, text: string): number {
   if (category === "fund_raise" && /\bncds?\b|non-convertible|debentures?|commercial paper|\bbonds?\b/.test(t) && !/\bqip\b|preferential|rights issue|warrants|buy-?back/.test(t)) return 12;
   if (category === "M&A" && /incorporat(ion|ed)|letter of comfort|amalgamation of [^|]*(wholly|subsidiar)|wholly[- ]owned subsidiar|step-down subsidiar|business transfer agreement/.test(t) && !/\b(sale|sell|divest|acquire[sd]?|acquisition) of \d|stake (sale|in)|embraer|third party/.test(t)) return 28;
   if (/clarification|sought clarification|news (report|item|article)|media report/.test(t)) return 50;
+  // A penalty or demand of under ₹1 crore is noise for any of these companies.
+  if ((category === "litigation" || /penalt|fine|demand|disincentive/.test(t)) && (rupees(t) ?? Infinity) < 1e7) return 15;
   return PRIOR[category];
+}
+
+/** The first rupee amount in a text, in rupees: "Rs. 1,50,000", "INR 5.41 million", "Rs 6.95 Lakh", "₹2.79 crore". */
+export function rupees(text: string): number | null {
+  const m = text.toLowerCase().match(/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d+)?)\s*(crores?|cr\b|lakhs?|lacs?|million|mn\b|billion|bn\b)?/);
+  if (!m) return null;
+  const n = Number(m[1].replace(/,/g, ""));
+  if (!Number.isFinite(n)) return null;
+  const u = m[2] ?? "";
+  return n * (/^cr/.test(u) ? 1e7 : /^la/.test(u) ? 1e5 : /^(million|mn)/.test(u) ? 1e6 : /^(billion|bn)/.test(u) ? 1e9 : 1);
 }

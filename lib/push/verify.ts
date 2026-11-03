@@ -144,8 +144,12 @@ const fmt = (n: number | null) => (n == null ? "–" : new Intl.NumberFormat("en
 /** One plain sentence per mismatch, for the card's notes. */
 export function mismatchNotes(checks: Check[]): string[] {
   return checks
-    .filter((c) => c.ok === false)
-    .map((c) => `Screener has ${c.metric} for ${c.period} at ₹${fmt(c.screener)} cr; the filing as read gives ₹${fmt(c.card)} cr.`);
+    .filter((c) => c.ok === false && (c.metric !== "EBITDA" || c === checks.find((x) => x.metric === "EBITDA" && x.ok === false)))
+    .map((c) =>
+      c.metric === "EBITDA"
+        ? `EBITDA as derived here (₹${fmt(c.card)} cr for ${c.period}) differs from screener's operating profit (₹${fmt(c.screener)} cr): the two count some costs differently or a line was misread, so no margin is shown.`
+        : `Screener has ${c.metric} for ${c.period} at ₹${fmt(c.screener)} cr; the filing as read gives ₹${fmt(c.card)} cr.`,
+    );
 }
 
 /** A compact line for the run log: "revenue ✓✓✓ PBT ✓✗✓ net profit ✓✓–". */

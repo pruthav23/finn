@@ -17,8 +17,10 @@ export function script(act: DigestItem[], glance: number, routine: number, moves
   act.slice(0, 5).forEach((i) => {
     const e = i.enrichment;
     if (e?.kind === "results") {
-      const top = e.rows[0], pat = e.rows.find((r) => r.label === "PAT");
-      parts.push(`${i.name} results. ${top.label} ${top.yoy != null ? say(top.yoy) : "flat"} year on year${pat?.yoy != null ? `, profit ${say(pat.yoy)}` : ""}.`);
+      // never read out a line that disagrees with screener
+      const top = e.rows.find((r) => !r.mismatch && r.label !== "EBITDA"), pat = e.rows.find((r) => r.label === "PAT" && !r.mismatch);
+      const bits = [top && top !== pat && `${top.label.replace(/, net of excise/, "")} ${top.yoy != null ? say(top.yoy) : "flat"}`, pat?.yoy != null && `profit ${say(pat.yoy)}`].filter(Boolean);
+      parts.push(`${i.name} results${bits.length ? `: ${bits.join(", ")} year on year` : ""}.${i.why ? ` ${i.why}` : ""}`);
     } else if (e?.kind === "management") {
       const c = e.changes[0];
       parts.push(`${i.name}: ${c.person} ${c.action} as ${c.role}.`);

@@ -8,7 +8,7 @@ import { pdfPages } from "../pdf";
 import { usage } from "../llm/gemini";
 import { CATEGORIES, LABEL, classify, opaque, KMP, priorFor, type Category } from "./taxonomy";
 import { dayStats, round } from "./signals";
-import { assess, describeResults, guardWhy, management, oneLiner, readOpaque, results, triage } from "./enrich";
+import { assess, guardWhy, management, oneLiner, readOpaque, results, resultsWhy, triage } from "./enrich";
 import { auditLine } from "./verify";
 import type { Digest, DigestItem, PersonCard, Quote, Tier } from "../types";
 
@@ -19,6 +19,8 @@ const SCHEDULED = /intimation|to consider|prior notice|will be held|is scheduled
 /** One legal matter, told across several filings over weeks: admission, stay, hearing, order. */
 const INSOLVENCY = /\bcirp\b|insolvency|\bibc\b|resolution professional|\bnclt\b|\bnclat\b/i;
 const CLARIFICATION = /clarification|sought clarification|news (report|item|article)|media report/i;
+/** A subsidiary's IPO arrives as prospectus, price band, newspaper ads, issue price, allotment, listing. */
+const IPO = /\bdrhp\b|\brhp\b|red herring|prospectus|initial public offer|\bipo\b|issue price|price band|offer for sale|anchor investors?|basis of allotment/i;
 const DAY = 86400_000;
 
 type Work = DigestItem & { raw: RawFiling; text: string; scheduled: boolean; bySubcat: boolean; prior: number };
@@ -121,7 +123,12 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
     if (host) { absorb(host, l); gone.add(l); }
   }
   // A legal matter or a news clarification is one story: the latest filing leads, the rest are its history.
-  for (const [re, cats, span] of [[INSOLVENCY, ["litigation", "press_release", "unclassified"], windowDays], [CLARIFICATION, ["press_release", "litigation", "unclassified"], 5]] as const) {
+  const ANY = CATEGORIES.filter((c) => c !== "results" && c !== "earnings_call");
+  for (const [re, cats, span] of [
+    [INSOLVENCY, ["litigation", "press_release", "unclassified"], windowDays],
+    [CLARIFICATION, ["press_release", "litigation", "unclassified"], 5],
+    [IPO, ANY, windowDays],
+  ] as const) {
     const bySym = new Map<string, Work[]>();
     for (const l of leads) if (!gone.has(l) && (cats as readonly string[]).includes(l.category) && re.test(l.text)) bySym.set(l.symbol, [...(bySym.get(l.symbol) ?? []), l]);
     for (const group of bySym.values()) {
@@ -130,6 +137,7 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
       // the company's own reply leads a clarification thread, not the exchange's question
       const head = re === CLARIFICATION ? group.find((g) => g.pdf && !/exchange has sought/i.test(g.headline)) ?? group[0] : group[0];
       for (const g of group) if (g !== head && Date.parse(head.at) - Date.parse(g.at) <= span * DAY) { absorb(head, g); gone.add(g); }
+      if (re === IPO) { head.prior = Math.max(...group.map((g) => g.prior), 82); if (head.category === "unclassified") head.category = "M&A"; }
       if (re === INSOLVENCY && group.some((g) => /\bcirp\b|insolvency|resolution professional/i.test(g.text))) { head.category = "litigation"; head.prior = Math.max(head.prior, 80); }
       head.related.sort((a, b) => a.at.localeCompare(b.at));
     }
@@ -193,7 +201,14 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
       try {
         const h = holdings.find((x) => x.symbol === l.symbol);
         const c = await screener(l.symbol);
-        const out = await results(l.pdf!, { financial: !!h?.isBank, filedAt: l.at, screener: c ? { quarters: c.quarters } : null });
+        // If the statement's PDF won't download, the same numbers are usually in a sibling filing.
+        const pdfs = [l.pdf!, ...l.related.filter((r) => r.pdf && /result/i.test(r.headline) && !/newspaper|transcript|audio/i.test(r.headline)).map((r) => r.pdf!)];
+        let out: Awaited<ReturnType<typeof results>> = null, lastErr: unknown = null;
+        for (const pdf of pdfs) {
+          try { out = await results(pdf, { financial: !!h?.isBank, filedAt: l.at, screener: c ? { quarters: c.quarters } : null }); if (out) break; }
+          catch (e) { lastErr = e; }
+        }
+        if (!out && lastErr) throw lastErr;
         if (!out) { audit.push(`${l.symbol.padEnd(10)} no quarterly table found in ${l.pdf}`); return; }
         l.enrichment = out.card;
         const ev = out.ebitdaVsScreener;
@@ -202,12 +217,13 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
           (ev ? `  | EBITDA ${ev.card ?? "–"} vs screener OP ${ev.screener ?? "–"}` : "") +
           (out.card.notes.length ? `\n${" ".repeat(11)}notes: ${out.card.notes.join(" / ")}` : ""),
         );
-        // the why is written from the computed numbers, not from the headline
-        const a = await assess({ company: l.name, sector: l.sector, category: "results", headline: l.headline, body: describeResults(out.card), size: await sizeOf(l.symbol) });
-        l.why = a.why;
+        // the why is written from the computed, cross-checked numbers, not from the headline
+        l.why = await resultsWhy(l.name, out.card);
       } catch (e) { errors.push(`results ${l.symbol}: ${String(e).slice(0, 160)}`); }
     });
     log(`results cross-check against screener:\n  ${audit.sort().join("\n  ")}`);
+    // A results card that couldn't be built has no numbers to say anything about.
+    for (const l of res) if (!l.enrichment) l.why = null;
 
     const mg = leads.filter((l) => l.category === "management_change" && l.tier !== "routine" && l.pdf);
     log(`enrich: ${mg.length} management changes`);
@@ -230,14 +246,15 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
       } catch (e) { errors.push(`mgmt ${l.symbol}: ${String(e).slice(0, 160)}`); }
     });
 
-    // Anything else heading for the top of the Brief is read in full before it gets there.
-    const cand = leads.filter((l) => l.score >= 50 && !l.scheduled && l.category !== "results" && l.category !== "management_change");
+    // Anything else heading for the Brief is read in full before it is ranked.
+    const cand = leads.filter((l) => l.score >= 40 && !l.scheduled && l.category !== "results" && l.category !== "management_change");
     log(`assess: ${cand.length} filings read before ranking`);
     await pool(cand, 3, async (l) => {
       try {
         const body = (await docText(l.pdf)) || l.summary || l.headline;
         const a = await assess({ company: l.name, sector: l.sector, category: LABEL[l.category], headline: l.headline, body, history: history(l), size: await sizeOf(l.symbol) });
-        l.score = Math.max(0, Math.min(100, Math.round(0.45 * l.prior + 0.55 * a.materiality) + (l.raw.critical ? 4 : 0)));
+        // Once the filing itself has been read, that judgment outweighs the category's average.
+        l.score = Math.max(0, Math.min(100, Math.round(0.2 * l.prior + 0.8 * a.materiality) + (l.raw.critical ? 4 : 0)));
         l.tier = tierOf(l.score);
         l.why = a.why;
         if (a.summary) l.summary = a.summary;
