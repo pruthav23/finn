@@ -10,7 +10,8 @@ export type ResultsCard = {
   rows: { label: string; cur: number | null; prevQ: number | null; yoyQ: number | null; qoq: number | null; yoy: number | null; derived?: boolean }[];
   marginNote?: string;
   notes: string[];
-  verified?: boolean; // revenue matched screener's independently-compiled number
+  verified?: boolean; // every line screener publishes matched it, in all three columns
+  checked?: string[]; // which lines were cross-checked, e.g. ["revenue", "PBT", "net profit"]
 };
 
 export type PersonCard = {
@@ -22,6 +23,7 @@ export type PersonCard = {
     effective: string | null;
     reason: string | null;
     kmp: boolean;
+    rank?: "top" | "second" | "other";
     bio: string | null;
     bioSources: { title: string; url: string }[];
     linkedin: string;

@@ -98,3 +98,33 @@ export const opaque = (headline: string) =>
 
 /** Top-of-house roles that make a management change genuinely material. */
 export const KMP = /\b(ceo|cfo|coo|managing director|md\b|chief executive|chief financial|chief operating|whole[- ]time director|chairman|chairperson|president)\b/i;
+
+/**
+ * How senior a role is, for materiality. "top": the people who set strategy and sign the
+ * accounts (CEO, MD, CFO, chair). "second": deputy/joint MDs, whole-time and executive
+ * directors, COOs, PSU functional directors. Everything else (group heads, SVPs,
+ * independent or nominee directors, subsidiary roles) is "other".
+ */
+export function roleRank(role: string): "top" | "second" | "other" {
+  const r = role.toLowerCase();
+  if (/independent|nominee|\bhead\b|vice[- ]president|\bsvp\b|\bevp\b|senior management|subsidiary|security|information|compliance|company secretary|of [a-z][^,]* (limited|ltd)\b/.test(r)) return "other";
+  if (/deputy|joint|additional|alternate/.test(r) && /managing director|\bmd\b|chief/.test(r)) return "second";
+  if (/managing director|\bmd\b|chief executive|\bceo\b|chief financial|\bcfo\b|chair(man|person)|director \(finance\)|director - finance|director-finance/.test(r)) return "top";
+  if (/whole[- ]time director|executive director|chief operating|\bcoo\b|director \((operations|personnel|hr|human resources|technical|marketing|commercial|projects|production|engineering|r&d)\)|director - |director-|president/.test(r)) return "second";
+  return "other";
+}
+
+/**
+ * Category priors are averages; some kinds of filing inside a category sit far from them.
+ * Routine debt is not a fund raise in the sense that matters; a deal with your own wholly owned
+ * subsidiary moves nothing for a shareholder; listing a big subsidiary does.
+ */
+export function priorFor(category: Category, text: string): number {
+  const t = text.toLowerCase();
+  // A listed holding's own filings about an IPO, DRHP or prospectus concern a subsidiary going public.
+  if (/\bdrhp\b|\brhp\b|red herring|prospectus|initial public offer|\bipo\b|issue price|offer for sale/.test(t)) return 82;
+  if (category === "fund_raise" && /\bncds?\b|non-convertible|debentures?|commercial paper|\bbonds?\b/.test(t) && !/\bqip\b|preferential|rights issue|warrants|buy-?back/.test(t)) return 12;
+  if (category === "M&A" && /incorporat(ion|ed)|letter of comfort|amalgamation of [^|]*(wholly|subsidiar)|wholly[- ]owned subsidiar|step-down subsidiar|business transfer agreement/.test(t) && !/\b(sale|sell|divest|acquire[sd]?|acquisition) of \d|stake (sale|in)|embraer|third party/.test(t)) return 28;
+  if (/clarification|sought clarification|news (report|item|article)|media report/.test(t)) return 50;
+  return PRIOR[category];
+}

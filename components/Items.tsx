@@ -54,7 +54,7 @@ function Results({ c }: { c: ResultsCard }) {
         <tbody>
           {c.rows.map((r) => (
             <tr key={r.label} className="border-t hair">
-              <td className="py-1.5 font-medium">{r.label}{r.derived && <span className="text-muted" title="Derived: PBT + finance costs + depreciation − other income">*</span>}</td>
+              <td className="py-1.5 font-medium">{r.label}{r.derived && <span className="text-muted" title={c.financial ? "Computed from the statement's own lines" : "Derived: PBT before exceptional items + finance costs + depreciation − other income"}>*</span>}</td>
               <td className="py-1.5 pl-3 text-right">{r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}</td>
               <td className={`py-1.5 pl-3 text-right ${tone(r.qoq)}`}>{pct(r.qoq)}</td>
               <td className={`py-1.5 pl-3 text-right font-semibold ${tone(r.yoy)}`}>{pct(r.yoy)}</td>
@@ -64,8 +64,8 @@ function Results({ c }: { c: ResultsCard }) {
       </table>
       <p className="mt-2 text-[12.5px] text-muted">
         {c.marginNote && <>{c.marginNote}. </>}
-        {c.rows.some((r) => r.derived) && "*EBITDA derived from the statement. "}
-        {c.verified && <span className="text-up">Revenue cross-checked ✓</span>}
+        {c.rows.some((r) => r.derived) && (c.financial ? "*Computed from the statement's lines. " : "*EBITDA derived from the statement, before exceptional items. ")}
+        {c.verified && <span className="text-up">Cross-checked with screener: {(c.checked ?? ["revenue"]).join(", ")} ✓</span>}
       </p>
       {c.notes.map((n) => <p key={n} className="mt-1 text-[12.5px] text-ink-2">Note: {n}</p>)}
     </div>
@@ -104,6 +104,7 @@ export function ActCard({ i, id }: { i: DigestItem; id?: string }) {
       <h3 className="mt-1.5 text-[17px] font-semibold leading-snug">
         {e?.kind === "results" ? <>{i.name}: <span className="mark">{headlineResults(e)}</span></> : <span className="mark">{i.why ?? i.headline}</span>}
       </h3>
+      {e?.kind === "results" && i.why && <p className="prose-finn mt-1.5 text-[15.5px]">{i.why}</p>}
       {e?.kind !== "results" && i.why && <p className="mt-1 text-[14px] text-ink-2">{i.summary ?? i.headline}</p>}
       {!i.why && i.summary && <p className="mt-1 text-[14px] text-ink-2">{i.summary}</p>}
       {e?.kind === "results" && <Results c={e} />}
