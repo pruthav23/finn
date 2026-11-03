@@ -2,29 +2,45 @@
 
 **Prototype:** https://finn-rosy.vercel.app (open on a phone; "Add to Home Screen" installs it)
 **Repo:** https://github.com/pruthav23/finn
-**Build history:** https://claude.ai/share/09689208-ee51-48db-90c0-2a2c668f71bb (Claude: one end-to-end build conversation)
+**Build history:** https://claude.ai/share/09689208-ee51-48db-90c0-2a2c668f71bb
 
 ## What I built
-FINN treats the investor's problem as filtering, not aggregating. The front page shows how many filings landed in my portfolio over a window I choose and how many matter, as a field of dots where only the few that matter are highlighted. Underneath, three tiers: rich cards for what matters, one line each for what's worth a glance, and routine paperwork folded away as counts.
-
-- **Push, digest:** 20 NSE holdings, BSE filings, any window (24h to a month, or since a date). Results cards read the actual results PDF and show Revenue / EBITDA / PBT / PAT QoQ and YoY, with deltas computed in code and revenue cross-checked against screener. Management cards show who the incoming person is, from the filing's profile plus a grounded web lookup. A results day that produces five filings becomes one card.
-- **Push, alerts:** the investor sets what "unusual" means (±X% move, N× 20-day volume, which filing types), and thresholds re-evaluate live on the device.
-- **Listen:** a one-minute spoken brief, composed on the device and read by the phone's speech engine. No model cost.
-- **Pull:** any NSE ticker, typed or spoken. Fundamentals come from code. A cheap model extracts every commitment from the last four call transcripts with verbatim quotes. One stronger-model call produces **promised vs delivered**, story vs numbers, guidance drift and bull/bear. Every claim carries a source chip that opens the PDF.
+FINN treats an investor's problem as filtering, not aggregating. The front page says how many filings landed in my 20-stock portfolio over a window I pick, and how many matter. It shows them as a field of dots with the few that matter highlighted. Below sit three tiers: a card for what matters, one line each for what's worth a glance, and routine paperwork folded into counts.
+- **Push.** Results cards are read from the results PDF and cross-checked line by line against screener. Management cards say who is coming in. A results day's five filings, or a three-week insolvency fight, become one card.
+- **Alerts and Listen.** Price and volume thresholds that I set, evaluated live on the phone, plus a one-minute spoken brief that costs no model calls.
+- **Pull.** Any NSE ticker, typed or spoken. Fundamentals come from code, commitments from four call transcripts with verbatim quotes, and one reasoning call produces **promised vs delivered**, guidance drift and bull/bear. Every claim cites its PDF.
 
 ## Key decisions
-1. **Rules before models.** I pulled a real month of portfolio filings (292) and tuned the classifier on them. BSE's own subcategory is reliable; headlines often aren't. Infosys titles nearly every filing "Enclosed", so for those, and only those, a cheap model reads page 1.
-2. **Numbers never come from the model.** The LLM copies numbers from statements at temperature 0. QoQ/YoY, margins, CAGRs, cash conversion and leverage are arithmetic in TypeScript. EBITDA (not printed in Indian results) is derived and labelled as such. Banks get NII instead.
-3. **Model routing.** Flash-Lite does bulk extraction in batches (60 headlines per call); Flash does reasoning (results tables, promise-vs-delivery). The expensive model never sees a raw transcript, only extracts. Every call is cached by content hash and the cache is committed, so daily re-runs pay only for new filings. It runs at ₹0 on the free tier, and each run's cost is printed in the app footer.
-4. **Git as the database.** A GitHub Actions cron builds the digest every two hours on weekdays and commits it; the app reads static JSON. It is instant, free to serve, and an audit trail of what FINN told me and when.
-5. **Primary-source discipline on pull.** The synthesis prompt forbids outside knowledge, every point must cite FIN / AR / C1–C4, and unverifiable promises are marked "pending" rather than judged.
-6. **Verify, don't trust.** Extracted results revenue is checked against screener's independently compiled figure. A clean 10× / 100× mismatch (₹ million read as crore) is auto-corrected; on the real October data this fixed Maruti, and the non-bank results cards match.
+1. **Rules before models.** BSE's own subcategory and tuned rules classify for free. A model reads page 1 only when a title says nothing ("Enclosed").
+2. **Rank on headlines, decide on documents.** One cheap call scores 60 headlines at once. Anything that might matter is then read in full against the company's size before it reaches the Brief.
+3. **Numbers never come from the model.** It copies figures at temperature 0; code computes deltas, margins, NII and EBITDA (net of one-offs). Screener acts as the referee: a line that disagrees is re-read once, and if it still disagrees it's shown with a "?" rather than hidden or replaced.
+4. **A "why" must state a consequence.** Restatements are rejected in code, and results whys may only use numbers on the card.
+5. **Git as the database.** A GitHub Actions cron commits the digest, the LLM cache and a readable run log. The result is instant to serve, free to run, and an audit trail.
 
-## What real data taught me (all in the commit history)
-The first live run broke in useful ways. Yahoo rate-limits GitHub's runners, so prices moved to BSE's daily series. Gemini 2.5 had been retired, and FINN's model discovery switched itself to the current Flash and Flash-Lite. The smart model's free tier is tight, so the pipeline now degrades to lite instead of stalling. The first triage rated Polycab's NCLT insolvency admission as "worth a glance", so I recalibrated the scale, and it now leads the Brief with "Removes the insolvency overhang". A typical refresh now makes about 4–17 model calls, with the rest answered from cache.
+## What real data taught me
+I ran the job against a real month of filings, read every act item, and fixed the rule behind each error. Six runs took the Brief from 23 act and 43 glance items to 20 and 15, with 13 of 16 results cards matching screener on every line, in all three quarters.
+- **Headlines lie.** Two whys were wrong:
+  - HAL buying out a small JV got a "why" about a "power segment" HAL doesn't have.
+  - My prompt's example sentence was pasted onto two Polycab filings.
 
-## Left out, on purpose
-OS-level push notifications (needs a push service; the thresholds and data are ready), intraday prices (the brief says EOD), accounts and sync, and investor decks as a source (management's framing; transcripts are where commitments go on record).
+  Reading the filing fixed both.
+- **Some filings were scored at their category's average.** Eternal moving a business into its own subsidiary scored as M&A. Jio Platforms' IPO, the biggest event for Reliance holders, sat in glance. Both needed priors refined in code.
+- **Stories span weeks.** Polycab's insolvency was four cards until folding learned to follow a matter, not a day.
+- **Extraction slips are specific:**
+  - a quarter labelled Q2 FY25;
+  - ITC's "+44% revenue", which was new excise duty;
+  - standalone NII labelled as consolidated;
+  - exceptional items inside EBITDA.
 
-## Next
-Real push notifications with per-user thresholds; promise tracking that persists quarter to quarter (a management credibility score per company); peer-relative alerts (a move that's unusual against the sector, not just the stock); retrieval over full annual reports for questions like "what changed in contingent liabilities?".
+  Only a line-by-line check against an independent source caught them.
+- **Free tiers fail in surprising ways.** The newest Flash model kept returning "overloaded" errors, and one retired model sent the client into a loop. The fallback rotates models, and fallback answers are never cached, so tomorrow's run retries with the better model.
+
+## What I left out
+OS push notifications (the data and thresholds are ready), intraday prices, accounts, investor decks and news as sources, and silently replacing a misread number with screener's.
+
+## What's next
+- Merge the audit branch, and keep reading the run log each week.
+- Promise tracking that persists quarter to quarter: a credibility score for each management team.
+- Peer-relative alerts: a move unusual against the sector, not just against the stock.
+- Retrieval over full annual reports, for questions like "what changed in contingent liabilities?"
+- Real push notifications.
