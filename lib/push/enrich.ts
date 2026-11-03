@@ -71,6 +71,7 @@ type RawResults = {
   period_labels: { current: string; previous_quarter: string; year_ago_quarter: string };
   revenue_from_operations: T3;
   other_income: T3;
+  excise_duty: T3;
   finance_costs: T3;
   depreciation: T3;
   profit_before_exceptional_items_and_tax: T3;
@@ -107,6 +108,7 @@ const RESULTS_SCHEMA = {
     },
     revenue_from_operations: triple("'Revenue from operations' (not total income). Banks: leave null."),
     other_income: triple(),
+    excise_duty: triple("the 'Excise duty' line if printed among expenses or deducted from revenue; null if not printed"),
     finance_costs: triple("NBFCs: the 'Finance costs' line."),
     depreciation: triple("'Depreciation and amortisation expense'"),
     profit_before_exceptional_items_and_tax: triple("the line printed as 'Profit before exceptional items and tax' (or '…share of associates, exceptional items and tax'); null if not printed"),
@@ -160,10 +162,11 @@ export const cleanNote = (s: string) =>
   s.replace(/(^|[\s(])[t`](?=\s?\d)/g, "$1₹").replace(/₹\s+(\d)/g, "₹$1").replace(/\bcrores\b/g, "crore").replace(/\s+/g, " ").trim();
 
 export type ResultsOpts = { financial?: boolean; filedAt: string; screener?: Screener | null };
-export type ResultsOut = { card: ResultsCard; checks: Check[]; ebitdaVsScreener: { card: number | null; screener: number | null } | null };
+export type ResultsOut = { card: ResultsCard; checks: Check[]; ebitdaVsScreener: { card: number | null; screener: number | null } | null; modelLabel: string; tier: string };
 
 export async function results(pdfUrl: string, opts: ResultsOpts): Promise<ResultsOut | null> {
   const bytes = await fetchPdf(pdfUrl);
+  let tierUsed: string = "cache";
   const ask = `Extract the quarterly results table. Prefer CONSOLIDATED if present. Copy each line from the three quarterly columns (current quarter, previous quarter, same quarter last year), not the half-year or full-year columns.${
     opts.financial ? " This is a bank/NBFC: fill interest_earned, interest_expended and provisions, and operating_profit_before_provisions if printed." : ""
   }`;
@@ -177,10 +180,15 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     schema: RESULTS_SCHEMA,
     cacheKey: `results:v2:${pdfUrl}${opts.financial ? ":fin" : ""}`,
     temperature: 0,
+    onTier: (x) => (tierUsed = x),
   });
   const financial = !!(opts.financial || r.financial_company);
   // Screener's "Revenue" for a bank is interest earned; for an NBFC it can be either line.
-  const revCands = (financial ? [r.interest_earned, r.revenue_from_operations] : [r.revenue_from_operations]).filter((a): a is T3 => !!a?.some((x) => x != null));
+  // Tobacco and liquor makers book excise duty inside revenue; screener (and the economics) net it out.
+  const netOfExcise = r.excise_duty?.some((x) => x != null)
+    ? [0, 1, 2].map((i) => (r.revenue_from_operations?.[i] != null && r.excise_duty[i] != null ? (r.revenue_from_operations[i] as number) - Math.abs(r.excise_duty[i] as number) : null))
+    : null;
+  const revCands = (financial ? [r.interest_earned, r.revenue_from_operations] : [netOfExcise, r.revenue_from_operations]).filter((a): a is T3 => !!a?.some((x) => x != null));
   let revRaw = revCands[0];
   if (!r.found || !revRaw) return null;
 
@@ -188,13 +196,14 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
   const filedQ = quarterBefore(opts.filedAt);
   const modelQ = quarterLabel(r.period_labels.current);
   let k = toCrore(r.unit);
-  let cur = /^Q[1-4] FY\d\d$/.test(modelQ) && modelQ === filedQ ? modelQ : filedQ;
+  // A results filing reports the quarter that ended before it was filed; the model's own label is only logged.
+  let cur = filedQ;
   const t = opts.screener?.quarters;
   const notes: string[] = [];
   let anchored = false;
   if (t) {
     for (const cand of revCands) {
-      const a = anchor(t, cand[0], [filedQ, modelQ], [k, 1, 0.1, 0.01, 1e-4, 1e-5, 10, 100]);
+      const a = anchor(t, cand[0], [filedQ], [k, 1, 0.1, 0.01, 1e-4, 1e-5, 10, 100]);
       if (a) { k = a.factor; cur = a.quarter; anchored = true; revRaw = cand; break; }
     }
   }
@@ -205,7 +214,8 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     label, cur: a[0], prevQ: a[1], yoyQ: a[2], qoq: pct(a[0], a[1]), yoy: pct(a[0], a[2]), derived,
   });
 
-  const rev = v(r.revenue_from_operations), pbt = v(r.profit_before_tax);
+  const excised = !financial && netOfExcise != null && revRaw === netOfExcise;
+  const rev = v(excised ? netOfExcise! : r.revenue_from_operations), pbt = v(r.profit_before_tax);
   const patTotal = v(r.profit_for_the_period), patOwners = v(r.profit_attributable_to_owners);
   const pat = [0, 1, 2].map((i) => patOwners[i] ?? patTotal[i]);
   const pbei = v(r.profit_before_exceptional_items_and_tax);
@@ -241,7 +251,8 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
         ? null
         : r2(pbt[i]! - (exc[i] ?? 0) - (assocIn ? assoc[i] ?? 0 : 0) + fc[i]! + dep[i]! - (oi[i] ?? 0)),
     );
-    rows.push(row("Revenue", rev), row("EBITDA", ebitda, true), row("PBT", pbt), row("PAT", pat));
+    rows.push(row(excised ? "Revenue, net of excise" : "Revenue", rev), row("EBITDA", ebitda, true), row("PBT", pbt), row("PAT", pat));
+    if (excised) notes.push(`Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ${crore(v(r.revenue_from_operations)[0] ?? 0)} this quarter.`);
   }
 
   // ---- one-offs, stated in code from the lines themselves ----
@@ -254,10 +265,18 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     notes.push(`Net profit (${crore(pat[0])}) is above PBT (${crore(pbt[0])}) this quarter: a tax credit or a line read wrongly.`);
 
   // ---- cross-check every column against screener ----
-  const checks = t ? crossCheck(t, periods, { revenue: financial ? v(revRaw) : rev, pbt, patOwners, patTotal, nii }) : [];
+  const ebitdaRow = rows.find((x) => x.label === "EBITDA");
+  const checks = t
+    ? crossCheck(t, periods, { revenue: financial ? v(revRaw) : rev, pbt, patOwners, patTotal, nii, ebitda: ebitdaRow ? [ebitdaRow.cur, ebitdaRow.prevQ, ebitdaRow.yoyQ] : undefined })
+    : [];
   const curChecks = checks.filter((c) => c.period === periods.cur && c.ok !== null);
   const verified = anchored && curChecks.length >= 3 && checks.every((c) => c.ok !== false);
   notes.push(...mismatchNotes(checks));
+  if (checks.some((c) => c.minority)) notes.push("Screener's net profit includes minority interests; the card shows profit attributable to owners.");
+  // A line that disagrees with screener is marked on the card and kept out of the headline.
+  const ROW: Record<string, string[]> = { revenue: ["Revenue", "Revenue, net of excise", "Total income"], PBT: ["PBT"], "net profit": ["PAT"], NII: ["Net interest income"], EBITDA: ["EBITDA"] };
+  for (const c of checks) if (c.ok === false) for (const rw of rows) if (ROW[c.metric]?.includes(rw.label)) rw.mismatch = true;
+  if (rows.find((x) => x.label === "PBT")?.mismatch && ebitdaRow) ebitdaRow.mismatch = true;
   if (!t) notes.push("Screener was unavailable, so these figures are as read from the filing, not cross-checked.");
   else if (!anchored) notes.push("Revenue doesn't match screener's figure for any recent quarter, so these figures are as read from the filing, not cross-checked.");
 
@@ -270,7 +289,7 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
     kind: "results", basis: r.basis, periods, financial, verified, rows, marginNote, notes,
     checked: verified ? [...new Set(curChecks.map((c) => c.metric))] : undefined,
   };
-  return { card, checks, ebitdaVsScreener: e && t ? { card: e.cur, screener: screenerOperatingProfit(t, periods.cur) } : null };
+  return { card, checks, ebitdaVsScreener: e && t ? { card: e.cur, screener: screenerOperatingProfit(t, periods.cur) } : null, modelLabel: modelQ, tier: tierUsed };
 }
 
 // ---------- 2b. Read the document before calling something important ----------
@@ -405,6 +424,7 @@ export async function management(pdfUrl: string, company: string, headline: stri
           search: true,
           parts: [{ text: `In at most 45 words, give the professional background of ${c.person}, newly ${c.action} as ${c.role} of ${company} (India): previous employers and roles, years of experience, education. Facts only, no praise. If you cannot find reliable information, reply exactly UNKNOWN.` }],
           cacheKey: `bio:${c.person}:${company}`,
+          maxAttempts: 2,
         });
         if (g.text && !/^UNKNOWN/i.test(g.text)) { bio = g.text; bioSources = g.sources.slice(0, 3); }
       } catch (e) { console.warn("bio lookup failed", c.person, String(e).slice(0, 120)); }

@@ -55,9 +55,11 @@ function Results({ c }: { c: ResultsCard }) {
           {c.rows.map((r) => (
             <tr key={r.label} className="border-t hair">
               <td className="py-1.5 font-medium">{r.label}{r.derived && <span className="text-muted" title={c.financial ? "Computed from the statement's own lines" : "Derived: PBT before exceptional items + finance costs + depreciation − other income"}>*</span>}</td>
-              <td className="py-1.5 pl-3 text-right">{r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}</td>
-              <td className={`py-1.5 pl-3 text-right ${tone(r.qoq)}`}>{pct(r.qoq)}</td>
-              <td className={`py-1.5 pl-3 text-right font-semibold ${tone(r.yoy)}`}>{pct(r.yoy)}</td>
+              <td className={`py-1.5 pl-3 text-right ${r.mismatch ? "text-muted" : ""}`} title={r.mismatch ? "Doesn't match screener; see the note below" : undefined}>
+                {r.cur == null ? "—" : new Intl.NumberFormat("en-IN", { maximumFractionDigits: r.cur >= 1000 ? 0 : 1 }).format(r.cur)}{r.mismatch && "?"}
+              </td>
+              <td className={`py-1.5 pl-3 text-right ${r.mismatch ? "text-muted" : tone(r.qoq)}`}>{r.mismatch ? "—" : pct(r.qoq)}</td>
+              <td className={`py-1.5 pl-3 text-right font-semibold ${r.mismatch ? "text-muted" : tone(r.yoy)}`}>{r.mismatch ? "—" : pct(r.yoy)}</td>
             </tr>
           ))}
         </tbody>
@@ -115,9 +117,10 @@ export function ActCard({ i, id }: { i: DigestItem; id?: string }) {
 }
 
 function headlineResults(c: ResultsCard) {
-  const pat = c.rows.find((r) => r.label === "PAT"), top = c.rows[0];
+  // Lines that disagree with screener don't make the headline.
+  const pat = c.rows.find((r) => r.label === "PAT" && !r.mismatch), top = c.rows.find((r) => !r.mismatch && r.label !== "EBITDA");
   const bits = [];
-  if (top?.yoy != null) bits.push(`${top.label.toLowerCase()} ${pct(top.yoy)}`);
+  if (top?.yoy != null && top !== pat) bits.push(`${top.label.replace(/, net of excise/, "").toLowerCase()} ${pct(top.yoy)}`);
   if (pat?.yoy != null) bits.push(`profit ${pct(pat.yoy)}`);
   return bits.length ? `${bits.join(", ")} YoY` : `${c.periods.cur} results`;
 }

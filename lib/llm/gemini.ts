@@ -53,6 +53,10 @@ type Opts = {
   search?: boolean; // Google Search grounding (push-side enrichment only)
   cacheKey?: string; // stable id for the content (e.g. a PDF URL) instead of hashing bytes
   temperature?: number;
+  /** cap on attempts; grounded lookups that keep failing shouldn't hold up the run for minutes */
+  maxAttempts?: number;
+  /** told which tier actually answered (smart can degrade to lite mid-run) */
+  onTier?: (t: Tier) => void;
 };
 
 export async function generate<T = any>(o: Opts): Promise<T> {
@@ -78,7 +82,10 @@ export async function generate<T = any>(o: Opts): Promise<T> {
   }
 
   let tier: Tier = o.tier === "smart" && smartDown ? "lite" : o.tier;
-  for (let attempt = 0; attempt < 8; attempt++) {
+  let last = 0;
+  const attempts = o.maxAttempts ?? 8;
+  let smartFails = 0;
+  for (let attempt = 0; attempt < attempts; attempt++) {
     const model = resolved[tier] ?? DEFAULTS[tier];
     const res = await fetch(`${API}/models/${model}:generateContent?key=${key()}`, {
       method: "POST",
@@ -91,12 +98,13 @@ export async function generate<T = any>(o: Opts): Promise<T> {
       continue;
     }
     if (res.status === 429 || res.status >= 500) {
+      last = res.status;
       const t = await res.text();
       const retry = Number(t.match(/"retryDelay":\s*"(\d+)s"/)?.[1] ?? 0);
-      // Smart model rate-limited (free tiers are tight) → degrade to lite for the rest of this run
-      // rather than stall the pipeline waiting on retries.
-      if (tier === "smart" && (res.status === 429 || attempt >= 1)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
-      await sleep(Math.max(retry * 1000, 2000 * 2 ** attempt));
+      // Smart model rate-limited (free tiers are tight), or failing repeatedly → degrade to lite for the
+      // rest of this run rather than stall. A 503 ("overloaded") gets three tries first: it usually passes.
+      if (tier === "smart" && (res.status === 429 || ++smartFails >= 3)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
+      if (attempt < attempts - 1) await sleep(Math.min(60_000, Math.max(retry * 1000, 2000 * 2 ** attempt)));
       continue;
     }
     if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
@@ -117,11 +125,16 @@ export async function generate<T = any>(o: Opts): Promise<T> {
         .filter(Boolean);
       out = { text: text.trim(), sources };
     }
-    await fs.mkdir(CACHE_DIR, { recursive: true }).catch(() => {});
-    await fs.writeFile(file, JSON.stringify(out)).catch(() => {});
+    o.onTier?.(tier);
+    // An answer from the fallback model is used, but not cached under the smart model's key:
+    // the next run asks the smart model again instead of keeping the weaker answer for good.
+    if (tier === o.tier) {
+      await fs.mkdir(CACHE_DIR, { recursive: true }).catch(() => {});
+      await fs.writeFile(file, JSON.stringify(out)).catch(() => {});
+    }
     return out as T;
   }
-  throw new Error("Gemini: retries exhausted");
+  throw new Error(`Gemini: retries exhausted${last ? ` (last status ${last})` : ""}`);
 }
 
 export const pdfPart = (bytes: Uint8Array): Part => ({

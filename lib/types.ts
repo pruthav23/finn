@@ -7,7 +7,7 @@ export type ResultsCard = {
   basis: "consolidated" | "standalone";
   periods: { cur: string; prevQ: string; yoyQ: string };
   financial: boolean; // bank / NBFC layout
-  rows: { label: string; cur: number | null; prevQ: number | null; yoyQ: number | null; qoq: number | null; yoy: number | null; derived?: boolean }[];
+  rows: { label: string; cur: number | null; prevQ: number | null; yoyQ: number | null; qoq: number | null; yoy: number | null; derived?: boolean; mismatch?: boolean }[];
   marginNote?: string;
   notes: string[];
   verified?: boolean; // every line screener publishes matched it, in all three columns

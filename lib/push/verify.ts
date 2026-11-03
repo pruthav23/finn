@@ -64,8 +64,7 @@ const near = (a: number | null | undefined, b: number | null, tol: number) =>
 
 /**
  * Find the quarter and unit factor at which the extracted revenue matches screener.
- * Tries the quarter the filing date implies first, then the model's own label,
- * then screener's last four columns.
+ * `candidates` is the quarter the filing date implies.
  */
 export function anchor(
   t: Table,
@@ -74,9 +73,9 @@ export function anchor(
   factors: number[],
 ): { quarter: string; factor: number } | null {
   if (revenue == null) return null;
-  const tail = t.cols.slice(-4).map(quarterOfCol).filter(Boolean) as string[];
-  const qs = [...new Set([...candidates, ...tail.reverse()])];
-  for (const q of qs)
+  // Only the quarter the filing reports. Searching other columns finds coincidental 2% matches
+  // (a growing lender's revenue lands near some earlier quarter's).
+  for (const q of [...new Set(candidates)])
     for (const f of factors) {
       const ref = line(t, ["Sales", "Revenue"], q);
       if (near(revenue * f, ref, 0.02)) return { quarter: q, factor: f };
@@ -84,7 +83,7 @@ export function anchor(
   return null;
 }
 
-export type Check = { metric: string; period: string; card: number | null; screener: number | null; ok: boolean | null };
+export type Check = { metric: string; period: string; card: number | null; screener: number | null; ok: boolean | null; minority?: boolean };
 
 /**
  * Compare a card's figures with screener, line by line and column by column.
@@ -100,6 +99,7 @@ export function crossCheck(
     patOwners: (number | null)[];
     patTotal: (number | null)[];
     nii?: (number | null)[];
+    ebitda?: (number | null)[];
   },
 ): Check[] {
   const out: Check[] = [];
@@ -115,12 +115,24 @@ export function crossCheck(
       metric: "net profit", period: q, card: mine, screener: np,
       ok: np == null || mine == null ? null : near(v.patTotal[k], np, 0.03) || near(v.patOwners[k], np, 0.03),
     });
+    if (v.ebitda) {
+      // screener's operating profit = sales − operating expenses: the same thing as EBITDA before other income and one-offs
+      const op = line(t, ["Operating Profit"], q);
+      out.push({ metric: "EBITDA", period: q, card: v.ebitda[k], screener: op, ok: op == null || v.ebitda[k] == null ? null : near(v.ebitda[k], op, 0.04) });
+    }
     if (v.nii) {
       const rv = line(t, ["Revenue"], q), int = line(t, ["Interest"], q);
       const ref = rv != null && int != null ? Math.round((rv - int) * 100) / 100 : null;
       out.push({ metric: "NII", period: q, card: v.nii[k], screener: ref, ok: ref == null || v.nii[k] == null ? null : near(v.nii[k], ref, 0.03) });
     }
   });
+  // Screener's consolidated net profit includes minority interests; the card shows profit to owners.
+  // When owners' profit sits a steady few per cent below screener's in every column, that is the
+  // minority share, not a misread.
+  const np = out.filter((c) => c.metric === "net profit" && c.card != null && c.screener != null && c.screener > 0);
+  const ratios = np.map((c) => c.card! / c.screener!);
+  if (np.length >= 2 && np.some((c) => c.ok === false) && ratios.every((r) => r > 0.8 && r < 1) && Math.max(...ratios) - Math.min(...ratios) < 0.025)
+    for (const c of np) { c.ok = true; c.minority = true; }
   return out;
 }
 

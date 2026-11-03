@@ -198,7 +198,7 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
         l.enrichment = out.card;
         const ev = out.ebitdaVsScreener;
         audit.push(
-          `${l.symbol.padEnd(10)} ${out.card.periods.cur} ${out.card.basis.padEnd(12)} ${out.card.verified ? "VERIFIED " : "UNCHECKED"} ${auditLine(out.checks)}` +
+          `${l.symbol.padEnd(10)} ${out.card.periods.cur} ${out.card.basis.padEnd(12)} ${out.card.verified ? "VERIFIED " : "UNCHECKED"} [${out.tier}${out.modelLabel !== out.card.periods.cur ? `, model said ${out.modelLabel}` : ""}] ${auditLine(out.checks)}` +
           (ev ? `  | EBITDA ${ev.card ?? "–"} vs screener OP ${ev.screener ?? "–"}` : "") +
           (out.card.notes.length ? `\n${" ".repeat(11)}notes: ${out.card.notes.join(" / ")}` : ""),
         );
