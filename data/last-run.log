@@ -1,7 +1,8 @@
 prices: 20 stocks
 filings: 2026-10-04 → 2026-11-03
-filings: 298 raw
+filings: 299 raw
 opaque: 38 filings with uninformative titles
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -29,32 +30,32 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 triage: 98 headlines
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 enrich: 16 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
+[gemini] smart tier 429 → using lite
 Warning: TT: undefined function: 21
 [gemini] smart tier 429 → using lite
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-[gemini] smart tier 429 → using lite
 results cross-check against screener:
   BAJFINANCE Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
-  COALINDIA  Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✗(4,724 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(4,418 vs 8,499)✓✓  | EBITDA 4417.95 vs screener OP 8499
-           notes: Net profit (₹6,516 cr) is above PBT (₹4,724 cr) this quarter: a tax credit or a line read wrongly. / Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹4,724 cr. / EBITDA as derived here (₹4,418 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
+  COALINDIA  Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✗(4,724 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(4,757 vs 8,499)✗(10,353 vs 12,069)✓  | EBITDA 4756.77 vs screener OP 8499
+           notes: Net profit (₹6,516 cr) is above PBT (₹4,724 cr) this quarter: a tax credit or a line read wrongly. / Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹4,724 cr. / EBITDA as derived here (₹4,757 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
   DIXON      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
   DMART      Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1392.96 vs screener OP 1393
   ETERNAL    Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
   HDFCBANK   Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
+           notes: Screener's net profit includes minority interests; the card shows profit attributable to owners.
   ICICIBANK  Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
            notes: Screener's net profit includes minority interests; the card shows profit attributable to owners.
   INFY       Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(8,144 vs 11,689)✗(8,212 vs 11,409)✗(7,638 vs 10,535)  | EBITDA 8144 vs screener OP 11689
            notes: EBITDA as derived here (₹8,144 cr for Q2 FY27) differs from screener's operating profit (₹11,689 cr): the two count some costs differently or a line was misread, so no margin is shown.
   ITC        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
-           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items for the quarter ended 30th September, 2026 represent expenses incurred in relation to the acquisition of the pulp and paper business of Aditya Birla Real Estate Limited, operated under the name of 'Century Pulp and Paper'.
+           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses incurred in relation to the acquisition of the pulp and paper business of Aditya Birla Real Estate Limited and gain on remeasurement of existing interest in Sproutlife at fair value.
   KPITTECH   Q2 FY27 consolidated VERIFIED  [lite, re-read] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 267.27 vs screener OP 267
   LT         Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
            notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
@@ -65,14 +66,14 @@ results cross-check against screener:
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TCS        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
-           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹73,188 cr this quarter. / PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Settlement of legal claim relating to litigation with Computer Sciences Corporation and re-structuring expenses.
-enrich: 9 management changes
+           notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Settlement of legal claim relating to litigation with Computer Sciences Corporation and re-structuring expenses.
+enrich: 10 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -93,26 +94,24 @@ Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
-enrich: 5 one-liners
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
+enrich: 2 one-liners
 Warning: TT: undefined function: 21
 
 ACT
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
-         why: EBITDA fell 15.7% YoY while revenue rose 3.9%, driving EBITDA margin down 6.5 pp to 27.9%, hurting earnings power.
+         why: EBITDA margin fell 6.5 percentage points YoY to 27.9%, dragging PAT down 18.7% YoY to ₹4,168 cr and hurting underlying earnings power.
   [90] RELIANCE   Results       2026-10-30 +5  Please find attached Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year e
          why: Revenue rose 29.8% YoY to ₹3,30,601 cr while PAT jumped 40.6% YoY to ₹25,548 cr, reflecting strong earnings power despite a minor margin dip.
+  [90] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
+         why: Revenue rose 46.7% YoY to ₹21,794 cr, but PAT fell 48.7% YoY to ₹344 cr, showing growth is not reaching profit.
   [90] SUNPHARMA  Results       2026-10-30 +1  Unaudited Financial Results for the quarter and half year ended 30 September 2026
          why: PAT fell 36.2% YoY to ₹1,989 cr due to a ₹1,269 cr exceptional charge, suppressing earnings power despite an 11.9% revenue rise.
+  [90] KPITTECH   Results       2026-10-28 +3  Financial Results for September 30, 2026
+         why: EBITDA margin fell by 3.0 percentage points YoY to 15.8%, dragging PAT down 28.7% to ₹121 cr despite a 6.5% rise in revenue.
+  [90] LT         Results       2026-10-27 +2  Outcome of Board Meeting of Larsen & Toubro Limited held on October 27,2026
+         why: PAT jumped 32.5% YoY to ₹5,202 cr, outpacing the 15.8% revenue growth and lifting earnings power.
+  [90] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
+         why: EBITDA margin fell by 3.1 pp to 8.8% as YoY revenue grew 26% while EBITDA dropped 7%, showing earnings power is constrained by margin compression.
   [90] INFY       Results       2026-10-23 +4  Results for the quarter and half year ended September 30, 2026 and declaration of interim dividend
          why: Revenue rose 10.7% YoY to ₹49,244 cr while PAT grew 6.2% YoY to ₹7,823 cr, showing profit lagging top-line expansion.
   [90] ETERNAL    Results       2026-10-21 +1  Eternal Limited has filed with exchange un-audited financial results (standalone & consolidated) for the quart
@@ -120,27 +119,19 @@ ACT
   [90] BAJFINANCE Results       2026-10-19 +4  Unaudited standalone and consolidated financial results for the quarter and half year ended 30 September 2026
          why: PAT rose 28.5% YoY to ₹6,266 cr, keeping pace with PBT growth as earnings power strengthens.
   [90] ICICIBANK  Results       2026-10-17 +3  Unaudited financial results (standalone and consolidated) for the quarter and six months ended September 30, 2
-         why: PAT rose 22.3% YoY to ₹16,333 cr, outpacing net interest income growth of 15.9%, signaling expanding underlying earnings power.
+         why: PAT grew 22.3% YoY to ₹16,333 cr, outpacing net interest income growth of 15.9%, signaling expanding earnings power.
   [90] HDFCBANK   Results       2026-10-17 +1  Approval of unaudited standalone and consolidated financial results of the Bank for the quarter and half-year 
-         why: PAT rose 7.6% QoQ to ₹20,700 cr with net interest income up 3.5%, showing earnings power improved over the previous quarter.
+         why: Net interest income rose 10.5% YoY to ₹44,464 cr while PAT grew 5.6% YoY to ₹20,700 cr, showing earnings power tracking steady.
   [90] POLYCAB    Results       2026-10-15 +5  Unaudited Financial Results for the quarter and half year ended 30th September 2026
          why: Revenue rose 52.8% YoY to ₹9,899 cr with PAT up 42.6% YoY to ₹977 cr, though EBITDA margin eased by 1.4 pp YoY to 14.4%.
   [90] DMART      Results       2026-10-10 +2  Financial Results for the quarter ended 30th September, 2026
          why: Revenue grew 17.8% YoY to ₹19,644 cr, while PAT rose 8.5% YoY to ₹744 cr, indicating profit growth lagged behind revenue expansion.
   [90] TCS        Results       2026-10-08 +5  Financial Results for the quarter and six-month period ended September 30, 2026 and declaration of second inte
-         why: YoY revenue grew 11.2% to ₹73,188 cr while EBITDA rose just 4.7% to ₹18,815 cr, reflecting weaker earnings conversion due to margin contraction.
+         why: PAT rose 15% YoY to ₹13,884 cr, outpacing EBITDA growth of 4.7% due to lower exceptional charges, lifting underlying earnings power.
   [88] POLYCAB    Litigation    2026-10-30 +8  NCLAT set aside the NCLT Ahmedabad bench insolvency order dated October 07, 2026, allowing the company's appea
          why: Removes the insolvency threat and operational disruption risk, restoring business continuity and legal stability.
-  [87] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
-         why: Revenue rose 46.7% YoY to ₹21,794 cr, but PAT fell 48.7% YoY to ₹344 cr, showing growth is not reaching profit.
   [87] COALINDIA  Results       2026-10-29 +4  Declared second interim dividend of Rs 10.25 per share with November 4, 2026 as the record date.
          why: PAT rose 53% YoY to ₹6,516 cr, outpacing revenue growth of 20.9% to ₹44,179 cr, boosting near-term earnings power despite QoQ compression.
-  [87] KPITTECH   Results       2026-10-28 +3  Financial Results for September 30, 2026
-         why: EBITDA margin fell by 3.0 percentage points YoY to 15.8%, dragging PAT down 28.7% to ₹121 cr despite a 6.5% rise in revenue.
-  [87] LT         Results       2026-10-27 +2  Outcome of Board Meeting of Larsen & Toubro Limited held on October 27,2026
-         why: PAT jumped 32.5% YoY to ₹5,202 cr, outpacing the 15.8% revenue growth and lifting earnings power.
-  [87] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
-         why: EBITDA margin fell by 3.1 pp to 8.8% as YoY revenue grew 26% while EBITDA dropped 7%, showing earnings power is constrained by margin compression.
   [80] COALINDIA  M&A           2026-11-02  Wholly owned subsidiary South Eastern Coalfields Limited filed a DRHP on 01.11.2026 for an IPO via an offer fo
          why: Unlocks subsidiary value and generates cash proceeds through the share sale.
   [80] RELIANCE   M&A           2026-10-24 +4  JPL finalized the IPO issue price at ₹1,119 per share and filed the prospectus on October 24, 2026.
@@ -163,27 +154,21 @@ GLANCE
          why: Uncertainty regarding regulatory action at the manufacturing facility introduces potential operational risks for future earnings.
   [39] LT         Press release 2026-10-19  L&T commenced initial activities for the ultra-mega New Tashkent International Airport project in Uzbekistan a
          why: International infrastructure contract execution expands the order book, supporting future revenue growth and geographic diversification.
-  [39] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
-         why: Hearing adjournment delays resolution of the regulatory penalty matter.
   [39] LT         Press release 2026-10-07  L&T Energy CarbonLite Solutions secured a limited notice to proceed for a 1,600 MW thermal power plant main pl
          why: This contract addition supports future revenue growth and expands the order book in the energy sector.
   [39] LT         Press release 2026-10-05  The power transmission and distribution business won multiple EPC orders worth ₹10,000 to ₹15,000 crore in Ind
          why: New orders expand the backlog for power infrastructure projects, supporting future revenue growth and segment execution.
   [37] ITC        Insider trade 2026-10-07  The Exchange has received the disclosure under Regulation 29(2) of SEBI (Substantial Acquisition of Shares & T
-         why: Significant shareholder alters stake through equity acquisition.
+         why: —
   [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
-         why: Facility expansion increases operational capacity in the region.
+         why: Expands development center in Hyderabad.
   [36] COALINDIA  Capex         2026-10-27  Coal India reported a capex of ₹7,966 crore for H1 FY27 on October 26, 2026, achieving 27% growth over H1 FY26
-         why: Accelerated capital expenditure reflects progress on planned infrastructure investments.
+         why: —
   [36] TCS        M&A           2026-10-15  Tata Consultancy Services completed the acquisition of a 100% partnership interest in BBY Services India LLP o
          why: The transaction involves an internal group entity and does not alter financial earnings or growth.
-  [35] SUNPHARMA  Press release 2026-10-30  ILUMYA (tildrakizumab-asmm) approved in the U.S. for the treatment of adults with active Psoriatic Arthritis
-         why: New product approval in a key market expands addressable revenue opportunities.
+  [36] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
+         why: Delays regulatory legal proceedings to a future date.
   [35] LT         Press release 2026-10-27  L&T secured major design and build orders valued between ₹5,000 crore and ₹10,000 crore for Dhaka Metro Line 1
          why: The contract additions support revenue growth within the transportation infrastructure segment.
-  [35] ICICIBANK  Credit rating 2026-10-24  ICRA and CARE Ratings reaffirmed ICICI Bank's credit ratings on October 23, 2026, withdrawing ₹945 crore, ₹6,5
-         why: —
-  [35] DMART      Credit rating 2026-10-09  On October 9, 2026, ICRA Limited reaffirmed the ICRA A1+ rating for Avenue Supermarts' enhanced commercial pap
-         why: Credit rating affirmation impacts debt borrowing costs.
 
-digest: 228 items {"act":20,"glance":18,"routine":190} · 20 quotes · 32 LLM calls (78 cached) · 256915 tokens · 282s
+digest: 229 items {"act":20,"glance":15,"routine":194} · 20 quotes · 22 LLM calls (86 cached) · 260537 tokens · 134s
