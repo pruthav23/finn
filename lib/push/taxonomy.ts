@@ -126,6 +126,8 @@ export function priorFor(category: Category, text: string): number {
   if (category === "fund_raise" && /\bncds?\b|non-convertible|debentures?|commercial paper|\bbonds?\b/.test(t) && !/\bqip\b|preferential|rights issue|warrants|buy-?back/.test(t)) return 12;
   if (category === "M&A" && /incorporat(ion|ed)|letter of comfort|amalgamation of [^|]*(wholly|subsidiar)|wholly[- ]owned subsidiar|step-down subsidiar|business transfer agreement/.test(t) && !/\b(sale|sell|divest|acquire[sd]?|acquisition) of \d|stake (sale|in)|embraer|third party/.test(t)) return 28;
   if (/clarification|sought clarification|news (report|item|article)|media report/.test(t)) return 50;
+  // A rating reaffirmed or assigned at the same level changes nothing; a downgrade or outlook change does.
+  if (category === "credit_rating" && /reaffirm|affirm|assign|intimation of credit rating|update on credit rating/.test(t) && !/downgrad|upgrad|outlook (revised|changed)|negative|watch/.test(t)) return 12;
   // A penalty or demand of under ₹1 crore is noise for any of these companies.
   if ((category === "litigation" || /penalt|fine|demand|disincentive/.test(t)) && (rupees(t) ?? Infinity) < 1e7) return 15;
   return PRIOR[category];

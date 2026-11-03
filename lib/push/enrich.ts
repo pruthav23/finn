@@ -162,7 +162,7 @@ export const cleanNote = (s: string) =>
   s.replace(/(^|[\s(])[t`](?=\s?\d)/g, "$1₹").replace(/₹\s+(\d)/g, "₹$1").replace(/\bcrores\b/g, "crore").replace(/\s+/g, " ").trim();
 
 export type ResultsOpts = { financial?: boolean; filedAt: string; screener?: Screener | null };
-export type ResultsOut = { card: ResultsCard; checks: Check[]; ebitdaVsScreener: { card: number | null; screener: number | null } | null; modelLabel: string; tier: string };
+export type ResultsOut = { card: ResultsCard; checks: Check[]; ebitdaVsScreener: { card: number | null; screener: number | null } | null; modelLabel: string; tier: string; repaired?: boolean };
 
 export async function results(pdfUrl: string, opts: ResultsOpts): Promise<ResultsOut | null> {
   const bytes = await fetchPdf(pdfUrl);
@@ -170,18 +170,34 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
   const ask = `Extract the quarterly results table. Prefer CONSOLIDATED if present. Copy each line from the three quarterly columns (current quarter, previous quarter, same quarter last year), not the half-year or full-year columns.${
     opts.financial ? " This is a bank/NBFC: fill interest_earned, interest_expended and provisions, and operating_profit_before_provisions if printed." : ""
   }`;
-  let parts;
-  if (bytes.length < 15_000_000) parts = [pdfPart(bytes), { text: ask }];
-  else parts = [{ text: `Results filing text:\n${(await pdfPages(bytes, 25)).join("\n\n").slice(0, 120_000)}\n\n${ask}` }];
-  const r = await generate<RawResults>({
-    tier: "smart",
-    system: "You read Indian listed-company quarterly results filings and copy numbers exactly as printed. Never compute or estimate; use null when a figure is absent. Negative numbers (losses, figures in brackets) must be negative.",
-    parts,
-    schema: RESULTS_SCHEMA,
-    cacheKey: `results:v2:${pdfUrl}${opts.financial ? ":fin" : ""}`,
-    temperature: 0,
-    onTier: (x) => (tierUsed = x),
-  });
+  const pagesText = bytes.length < 15_000_000 ? null : (await pdfPages(bytes, 25)).join("\n\n").slice(0, 120_000);
+  const read = (hint = "", key = "") =>
+    generate<RawResults>({
+      tier: "smart",
+      system: "You read Indian listed-company quarterly results filings and copy numbers exactly as printed. Never compute or estimate; use null when a figure is absent. Negative numbers (losses, figures in brackets) must be negative.",
+      parts: pagesText ? [{ text: `Results filing text:\n${pagesText}\n\n${ask}${hint}` }] : [pdfPart(bytes), { text: ask + hint }],
+      schema: RESULTS_SCHEMA,
+      cacheKey: `results:v2:${key}${pdfUrl}${opts.financial ? ":fin" : ""}`,
+      temperature: 0,
+      onTier: (x) => (tierUsed = x),
+    });
+  const first = build(await read(), opts, tierUsed);
+  const failing = first ? [...new Set(first.checks.filter((c) => c.ok === false && c.period === first.card.periods.cur).map((c) => c.metric))] : [];
+  if (!first || !failing.length) return first;
+  // One more careful reading when a line disagrees with screener. It is kept only if it then agrees
+  // on more lines: screener decides, the model never sees screener's figures.
+  const LINES: Record<string, string> = { revenue: "revenue from operations (and excise duty)", PBT: "profit before tax, exceptional items and profit before exceptional items", "net profit": "profit for the period and profit attributable to owners", EBITDA: "other income, finance costs, depreciation and amortisation, exceptional items and profit before tax", NII: "interest earned and interest expended" };
+  const hint = ` Re-read carefully: an earlier reading of ${failing.map((m) => LINES[m] ?? m).join("; ")} did not agree with an independent source. Take each figure from the current-quarter column and from the line with exactly that name; check the table's unit.`;
+  try {
+    const second = build(await read(hint, "repair:"), opts, tierUsed);
+    const bad = (o: ResultsOut | null) => (o ? o.checks.filter((c) => c.ok === false).length : Infinity);
+    if (second && bad(second) < bad(first)) return { ...second, repaired: true };
+  } catch {}
+  return first;
+}
+
+function build(r: RawResults, opts: ResultsOpts, tierUsed: string): ResultsOut | null {
+  const modelQ = quarterLabel(r.period_labels.current);
   const financial = !!(opts.financial || r.financial_company);
   // Screener's "Revenue" for a bank is interest earned; for an NBFC it can be either line.
   // Tobacco and liquor makers book excise duty inside revenue; screener (and the economics) net it out.
@@ -194,7 +210,6 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
 
   // ---- unit and period: anchored on screener, never on the model's labels ----
   const filedQ = quarterBefore(opts.filedAt);
-  const modelQ = quarterLabel(r.period_labels.current);
   let k = toCrore(r.unit);
   // A results filing reports the quarter that ended before it was filed; the model's own label is only logged.
   let cur = filedQ;
@@ -289,7 +304,10 @@ export async function results(pdfUrl: string, opts: ResultsOpts): Promise<Result
   const e = rows.find((x) => x.label === "EBITDA" && !x.mismatch);
   const marginNote =
     e && rev[0] && rev[2] && e.cur != null && e.yoyQ != null
-      ? `EBITDA margin ${((e.cur / rev[0]) * 100).toFixed(1)}% vs ${((e.yoyQ / rev[2]) * 100).toFixed(1)}% a year ago`
+      ? (() => {
+          const m0 = (e.cur / rev[0]) * 100, m2 = (e.yoyQ / rev[2]) * 100, d = Math.round((m0 - m2) * 10) / 10;
+          return `EBITDA margin ${m0.toFixed(1)}% vs ${m2.toFixed(1)}% a year ago (${d > 0 ? "+" : d < 0 ? "−" : "±"}${Math.abs(d).toFixed(1)} pp)`;
+        })()
       : undefined;
   const card: ResultsCard = {
     kind: "results", basis: r.basis, periods, financial, verified, rows, marginNote, notes,
@@ -363,27 +381,45 @@ export function guardWhy(w: string | null | undefined): string | null {
 
 const RESULTS_WHY = `You write the one line a portfolio manager reads under a holding's quarterly results card.
 You get the card's figures (computed and cross-checked against screener) and its notes.
-Say what this quarter changes about the earnings picture, and the evidence for it. Pick the single most decision-relevant finding:
-- profit growth very different from revenue growth, or net profit moving differently from EBITDA (say which way, and the gap);
+Pick the single most decision-relevant finding:
+- profit growth very different from revenue growth, or net profit moving differently from EBITDA (which way, and the gap);
 - a margin move of 2 percentage points or more;
 - a one-off (exceptional charge or gain) or a mechanical effect (such as excise duty) that distorts the comparison: say what the underlying trend is without it;
 - if nothing stands out: growth in line with the past year, and the number.
-Rules: max 24 words, plain words, varied wording. Every amount as ₹… cr. Every claim must follow from the figures given: never name a cause,
-segment, product or region they don't state, and don't call growth "broad-based" or "driven by" anything not shown. Don't mention company size,
-market value, valuation, dividends or "shareholders". Don't list every line. No advice.
+Then say, in a few words of your own, what it means for earnings power (for example whether growth is reaching profit, whether the fall is one-off or operating).
+Rules: max 26 words, plain words. Write numbers as digits, every amount as ₹… cr, and use only numbers that appear in the figures or notes; don't compute new ones.
+Never name a cause, segment, product or region the figures don't state, and don't call growth "broad-based" or "driven by" anything not shown.
+Don't mention company size, market value, valuation, dividends or "shareholders". Don't list every line. No advice.
 Never copy wording from these instructions.`;
 
 export async function resultsWhy(company: string, card: ResultsCard): Promise<string | null> {
-  const text = `${company}\n${describeResults(card)}`;
-  const r = await generate<{ why: string | null }>({
-    tier: "lite",
-    system: RESULTS_WHY,
-    parts: [{ text }],
-    schema: { type: "object", properties: { why: { type: "string", nullable: true } }, required: ["why"] },
-    cacheKey: `rwhy:v2:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
-    temperature: 0,
+  const facts = describeResults(card);
+  for (const attempt of [0, 1]) {
+    const text = `${company}\n${facts}${attempt ? "\n\nYour last line used a number that is not in these figures. Use only the numbers shown." : ""}`;
+    const r = await generate<{ why: string | null }>({
+      tier: "lite",
+      system: RESULTS_WHY,
+      parts: [{ text }],
+      schema: { type: "object", properties: { why: { type: "string", nullable: true } }, required: ["why"] },
+      cacheKey: `rwhy:v3:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
+      temperature: 0,
+    });
+    const w = guardWhy(r.why);
+    if (!w) return null;
+    if (unknownNumbers(w, facts).length === 0) return w;
+  }
+  return null;
+}
+
+/** Numbers in a sentence that don't appear (to rounding) in the facts it was written from. */
+export function unknownNumbers(sentence: string, facts: string): string[] {
+  const nums = (t: string) => (t.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).map((x) => Number(x.replace(/,/g, "")));
+  const known = nums(facts);
+  return (sentence.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).filter((raw) => {
+    const n = Number(raw.replace(/,/g, ""));
+    if (/^(19|20)\d\d$/.test(raw) || (Number.isInteger(n) && n <= 4)) return false; // years, "Q2", "4 quarters"
+    return !known.some((k) => Math.abs(k - n) <= 0.051 || (n >= 100 && Math.abs(k - n) / n <= 0.005) || Math.abs(Math.round(k) - n) < 0.5);
   });
-  return guardWhy(r.why);
 }
 
 /** The card's numbers as plain lines, for writing the why. */
