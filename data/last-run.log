@@ -22,7 +22,6 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -30,17 +29,18 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 triage: 98 headlines
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 enrich: 16 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 Warning: TT: undefined function: 21
 [gemini] smart tier 429 → using lite
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 [gemini] smart tier 429 → using lite
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 results cross-check against screener:
   BAJFINANCE Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
   COALINDIA  Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✗(4,724 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(4,545 vs 8,499)✓✓  | EBITDA 4545.39 vs screener OP 8499
@@ -55,8 +55,8 @@ results cross-check against screener:
   INFY       Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(8,144 vs 11,689)✗(8,212 vs 11,409)✗(7,638 vs 10,535)  | EBITDA 8144 vs screener OP 11689
            notes: EBITDA as derived here (₹8,144 cr for Q2 FY27) differs from screener's operating profit (₹11,689 cr): the two count some costs differently or a line was misread, so no margin is shown.
   ITC        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
-           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses incurred in relation to the acquisition of the pulp and paper business of Aditya Birla Real Estate Limited, and gain on remeasurement of existing interest in Sproutlife at fair value, alongside final settlement of insurance claims towards leaf tobacco stocks in the previous period.
-  KPITTECH   Q2 FY27 consolidated UNCHECKED [lite, model said Q2FY27] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
+           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses incurred in relation to the acquisition of the pulp and paper business of Aditya Birla Real Estate Limited, gain on remeasurement of existing interest in Sproutlife at fair value, and settlement of insurance claim towards leaf tobacco stocks.
+  KPITTECH   Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
            notes: EBITDA as derived here (₹283 cr for Q2 FY27) differs from screener's operating profit (₹267 cr): the two count some costs differently or a line was misread, so no margin is shown.
   LT         Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
            notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
@@ -67,7 +67,7 @@ results cross-check against screener:
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TCS        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
-           notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Settlement of legal claim relating to litigation with Computer Sciences Corporation.
+           notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Settlement of legal claim relating to litigation with Computer Sciences Corporation and re-structuring expenses.
 enrich: 10 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -100,7 +100,7 @@ Warning: TT: undefined function: 21
 
 ACT
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
-         why: EBITDA fell 15.7% YoY with margin down 6.5 pp to 27.9%, pulling PAT down 18.7% and hurting core earnings power.
+         why: EBITDA margin fell 6.5 pp to 27.9% and PAT dropped 18.7% YoY to ₹4,168 cr, showing weaker underlying earnings power.
   [90] RELIANCE   Results       2026-10-30 +5  Please find attached Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year e
          why: Revenue rose 29.8% YoY to ₹3,30,601 cr while PAT jumped 40.6% YoY to ₹25,548 cr, reflecting strong earnings power despite a minor margin dip.
   [90] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
@@ -130,7 +130,7 @@ ACT
   [90] DMART      Results       2026-10-10 +2  Financial Results for the quarter ended 30th September, 2026
          why: Revenue grew 17.8% YoY to ₹19,644 cr, while PAT rose 8.5% YoY to ₹744 cr, indicating profit growth lagged behind revenue expansion.
   [90] TCS        Results       2026-10-08 +5  Financial Results for the quarter and six-month period ended September 30, 2026 and declaration of second inte
-         why: PAT rose 15% YoY to ₹13,884 cr, outpacing EBITDA growth of 4.7% due to base effects from last year's ₹1,135 cr exceptional charge.
+         why: PAT rose 15% YoY to ₹13,884 cr, outpacing EBITDA growth of 4.7% due to lower exceptional charges, lifting underlying earnings power.
   [88] POLYCAB    Litigation    2026-10-30 +8  NCLAT set aside the NCLT Ahmedabad bench insolvency order dated October 07, 2026, allowing the company's appea
          why: Removes the insolvency threat and operational disruption risk, restoring business continuity and legal stability.
   [80] COALINDIA  M&A           2026-11-02  Wholly owned subsidiary South Eastern Coalfields Limited filed a DRHP on 01.11.2026 for an IPO via an offer fo
@@ -170,4 +170,4 @@ GLANCE
   [35] LT         Press release 2026-10-27  L&T secured major design and build orders valued between ₹5,000 crore and ₹10,000 crore for Dhaka Metro Line 1
          why: The contract additions support revenue growth within the transportation infrastructure segment.
 
-digest: 230 items {"act":20,"glance":14,"routine":196} · 20 quotes · 21 LLM calls (87 cached) · 271730 tokens · 637s
+digest: 230 items {"act":20,"glance":14,"routine":196} · 20 quotes · 16 LLM calls (92 cached) · 247274 tokens · 200s
