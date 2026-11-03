@@ -317,7 +317,7 @@ const ASSESS_SYSTEM = `You judge one Indian exchange filing for a long-only fund
 Return:
 - materiality 0-100, calibrated: results 80-95; insolvency admitted against the company, or its stay/reversal 85-95; hearing dates and adjournments 10-25; acquisitions/divestments 55-90 by size relative to the company, under 2% of revenue or market value 20-40; transactions inside the group (with its own wholly owned subsidiaries) 10-25; IPO/DRHP/listing of a major subsidiary 70-85; CEO/CFO/MD/chairman change 75-90; equity raises 65-85; routine debt 5-15; order wins scale with value vs annual revenue (under 3% is 20-40); penalties scale with amount vs size; clarifications on news reports 40-60.
 - summary: the concrete fact in one line (max 22 words): amounts in ₹ crore (₹130.8 crore, never "INR 130,75,56,871"), counterparties, dates. When there is history, say where the matter stands now.
-- why: the CONSEQUENCE for a shareholder in one sentence (max 20 words): what changes for earnings, growth, balance-sheet risk, governance, dilution or cash returns, and roughly how much it matters given the company's size.
+- why: the CONSEQUENCE for a shareholder in one sentence (max 20 words): what changes for earnings, growth, risk, governance, dilution or cash returns. Use the company's size to judge materiality, but don't mention size, market value or "large-cap" in the why.
 Rules for why:
 - Use only the facts given. Never name a segment, cause, customer or number that is not in them.
 - Never restate: "Provides an update", "Reports performance", "Alters the structure", "Establishes trends" are restatements.
@@ -344,7 +344,7 @@ export async function assess(f: Facts): Promise<{ materiality: number; summary: 
       required: ["materiality", "summary", "why"],
     },
     // keyed by content: a thread that grows, or numbers that change, are judged afresh
-    cacheKey: `assess:v1:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
+    cacheKey: `assess:v2:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
     temperature: 0,
   });
   return { materiality: r.materiality, summary: r.summary, why: guardWhy(r.why) };
@@ -362,12 +362,16 @@ export function guardWhy(w: string | null | undefined): string | null {
 }
 
 const RESULTS_WHY = `You write the one line a portfolio manager reads under a holding's quarterly results card.
-You get the card's figures (computed and cross-checked) and its notes. Say what this quarter changes about the earnings trajectory:
-accelerating, steady, slowing, reversing, or distorted by a one-off. Name the line that shows it, with its number. Add the caveat if one matters
-(a one-off charge or gain, a mechanical effect such as excise duty, profit and operating profit moving apart).
-Max 24 words. Plain words. Use only the figures and notes given; never name a cause, segment or product they don't state.
-Don't mention the company's size, market value, valuation, dividends or "shareholders". Don't restate every line. No advice.
-Good shape: "<what changed> <evidence with number>; <caveat or implication>."`;
+You get the card's figures (computed and cross-checked against screener) and its notes.
+Say what this quarter changes about the earnings picture, and the evidence for it. Pick the single most decision-relevant finding:
+- profit growth very different from revenue growth, or net profit moving differently from EBITDA (say which way, and the gap);
+- a margin move of 2 percentage points or more;
+- a one-off (exceptional charge or gain) or a mechanical effect (such as excise duty) that distorts the comparison: say what the underlying trend is without it;
+- if nothing stands out: growth in line with the past year, and the number.
+Rules: max 24 words, plain words, varied wording. Every amount as ₹… cr. Every claim must follow from the figures given: never name a cause,
+segment, product or region they don't state, and don't call growth "broad-based" or "driven by" anything not shown. Don't mention company size,
+market value, valuation, dividends or "shareholders". Don't list every line. No advice.
+Never copy wording from these instructions.`;
 
 export async function resultsWhy(company: string, card: ResultsCard): Promise<string | null> {
   const text = `${company}\n${describeResults(card)}`;
@@ -376,7 +380,7 @@ export async function resultsWhy(company: string, card: ResultsCard): Promise<st
     system: RESULTS_WHY,
     parts: [{ text }],
     schema: { type: "object", properties: { why: { type: "string", nullable: true } }, required: ["why"] },
-    cacheKey: `rwhy:v1:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
+    cacheKey: `rwhy:v2:${createHash("sha256").update(text).digest("hex").slice(0, 24)}`,
     temperature: 0,
   });
   return guardWhy(r.why);

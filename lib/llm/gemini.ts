@@ -29,7 +29,9 @@ function key() {
 }
 
 /** If a default model has been retired, pick the newest available one of the same class. */
-const overloaded = new Set<string>();
+/** Models that 404 (retired) are gone for the run; overloaded ones rest for five minutes. */
+const retired = new Set<string>();
+const resting = new Map<string, number>();
 async function discover(tier: Tier): Promise<string> {
   const res = await fetch(`${API}/models?pageSize=200&key=${key()}`);
   const j = await res.json();
@@ -37,7 +39,8 @@ async function discover(tier: Tier): Promise<string> {
     .filter((m: any) => m.supportedGenerationMethods?.includes("generateContent"))
     .map((m: any) => m.name.replace("models/", ""))
     .filter((n: string) => /^gemini-[\d.]+-flash/.test(n) && !/(image|tts|live|audio|thinking|exp)/.test(n));
-  const pool = names.filter((n) => (tier === "lite" ? /flash-lite/.test(n) : !/lite/.test(n)) && !overloaded.has(n));
+  const now = Date.now();
+  const pool = names.filter((n) => (tier === "lite" ? /flash-lite/.test(n) : !/lite/.test(n)) && !retired.has(n) && (resting.get(n) ?? 0) < now);
   const ver = (n: string) => parseFloat(n.match(/gemini-([\d.]+)/)?.[1] ?? "0");
   pool.sort((a, b) => ver(b) - ver(a) || Number(/preview/.test(a)) - Number(/preview/.test(b)));
   if (!pool.length) throw new Error(`No Gemini ${tier} model available`);
@@ -94,8 +97,14 @@ export async function generate<T = any>(o: Opts): Promise<T> {
       body: JSON.stringify(body),
     });
     if (res.status === 404 || res.status === 400 && (await res.clone().text()).includes("not found")) {
-      resolved[tier] = await discover(tier);
-      console.warn(`[gemini] ${model} unavailable → ${resolved[tier]}`);
+      retired.add(model);
+      const next = await discover(tier).catch(() => null);
+      if (!next) {
+        if (tier === "smart") { smartDown = true; tier = "lite"; attempt = -1; console.warn("[gemini] no smart model available → using lite"); continue; }
+        throw new Error(`Gemini: no ${tier} model available`);
+      }
+      resolved[tier] = next;
+      console.warn(`[gemini] ${model} unavailable → ${next}`);
       continue;
     }
     if (res.status === 429 || res.status >= 500) {
@@ -106,12 +115,13 @@ export async function generate<T = any>(o: Opts): Promise<T> {
       // rest of this run rather than stall. A 503 ("overloaded") gets three tries first: it usually passes.
       if (tier === "smart" && res.status !== 429 && ++smartFails >= 3) {
         // The newest model is often the busiest. Before giving up on the smart tier, try the next one.
-        overloaded.add(model);
+        resting.set(model, Date.now() + 5 * 60_000);
         const next = await discover("smart").catch(() => null);
         if (next && next !== model) { resolved.smart = next; smartFails = 0; console.warn(`[gemini] ${model} overloaded → ${next}`); continue; }
       }
-      if (tier === "smart" && (res.status === 429 || smartFails >= 3)) { smartDown = true; tier = "lite"; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
-      if (attempt < attempts - 1) await sleep(Math.min(60_000, Math.max(retry * 1000, 2000 * 2 ** attempt)));
+      // degrading gives the lite model a fresh set of attempts
+      if (tier === "smart" && (res.status === 429 || smartFails >= 3)) { smartDown = true; tier = "lite"; attempt = -1; console.warn(`[gemini] smart tier ${res.status} → using lite`); continue; }
+      if (attempt < attempts - 1) await sleep(tier === "smart" ? 3000 : Math.min(60_000, Math.max(retry * 1000, 2000 * 2 ** attempt)));
       continue;
     }
     if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);

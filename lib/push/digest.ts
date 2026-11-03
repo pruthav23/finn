@@ -158,7 +158,9 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
         const l = leads[i];
         if (!l) continue;
         // text-rule labels are guesses; let the model correct them (BSE's own subcategory wins otherwise)
-        if (!l.bySubcat && r.category && r.category !== l.category && (CATEGORIES as readonly string[]).includes(r.category)) { l.category = r.category as Category; l.prior = priorFor(l.category, l.text); }
+        // ...but never into "results": that label promises a results card, and only BSE's subcategory or the
+        // statement's own title can make it (a "Quarterly business update" is not a results statement)
+        if (!l.bySubcat && r.category && r.category !== l.category && r.category !== "results" && (CATEGORIES as readonly string[]).includes(r.category)) { l.category = r.category as Category; l.prior = priorFor(l.category, l.text); }
         l.score = Math.round(0.45 * l.prior + 0.55 * r.materiality) + (l.raw.critical ? 4 : 0);
         l.why = r.why;
       }
@@ -209,7 +211,12 @@ export async function buildDigest(opts: { windowDays?: number; holdings?: Holdin
           catch (e) { lastErr = e; }
         }
         if (!out && lastErr) throw lastErr;
-        if (!out) { audit.push(`${l.symbol.padEnd(10)} no quarterly table found in ${l.pdf}`); return; }
+        if (!out) {
+          audit.push(`${l.symbol.padEnd(10)} no quarterly table found in ${l.pdf}`);
+          // filed under results but not a results statement (an investor deck, a business update)
+          if (!isStatement(l)) { l.category = "press_release"; l.score = Math.min(l.score, 60); l.tier = tierOf(l.score); }
+          return;
+        }
         l.enrichment = out.card;
         const ev = out.ebitdaVsScreener;
         audit.push(
