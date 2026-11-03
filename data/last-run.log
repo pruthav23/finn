@@ -20,9 +20,9 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -32,45 +32,183 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 triage: 98 headlines
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-enrich: 16 results
+enrich: 17 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
-[gemini] smart tier 503 → using lite
+[gemini] gemini-3.8-flash overloaded → gemini-3.7-flash
+[gemini] gemini-3.7-flash overloaded → gemini-3.6-flash
+[gemini] gemini-3.6-flash overloaded → gemini-3.5-flash
+Warning: TT: undefined function: 21
+[gemini] gemini-3.5-flash overloaded → gemini-3-flash-preview
+[gemini] gemini-3.5-flash overloaded → gemini-3-flash-preview
+Warning: TT: undefined function: 21
+[gemini] gemini-3-flash-preview overloaded → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
 results cross-check against screener:
-  BAJFINANCE Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✗(13,335 vs 15,944)✗(12,571 vs 15,223)✗(10,785 vs 12,979)
-           notes: Screener has NII for Q2 FY27 at ₹15,944 cr; the filing as read gives ₹13,335 cr. / Screener has NII for Q1 FY27 at ₹15,223 cr; the filing as read gives ₹12,571 cr. / Screener has NII for Q2 FY26 at ₹12,979 cr; the filing as read gives ₹10,785 cr.
-  COALINDIA  Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✗(4,724 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(4,418 vs 8,499)✗(9,490 vs 12,069)✓  | EBITDA 4417.95 vs screener OP 8499
-           notes: Net profit (₹6,516 cr) is above PBT (₹4,724 cr) this quarter: a tax credit or a line read wrongly. / Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹4,724 cr. / Screener has EBITDA for Q2 FY27 at ₹8,499 cr; the filing as read gives ₹4,418 cr. / Screener has EBITDA for Q1 FY27 at ₹12,069 cr; the filing as read gives ₹9,490 cr.
-  DIXON      Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 599.63 vs screener OP 597
-  DMART      Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1392.96 vs screener OP 1393
-  ETERNAL    Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
-  HDFCBANK   Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
-           notes: Screener's net profit includes minority interests; the card shows profit attributable to owners.
-  ICICIBANK  Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
-           notes: Screener's net profit includes minority interests; the card shows profit attributable to owners.
-  INFY       Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(8,144 vs 11,689)✗(8,212 vs 11,409)✗(7,638 vs 10,535)  | EBITDA 8144 vs screener OP 11689
-           notes: Screener has EBITDA for Q2 FY27 at ₹11,689 cr; the filing as read gives ₹8,144 cr. / Screener has EBITDA for Q1 FY27 at ₹11,409 cr; the filing as read gives ₹8,212 cr. / Screener has EBITDA for Q2 FY26 at ₹10,535 cr; the filing as read gives ₹7,638 cr.
-  ITC        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
-           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items for the quarter ended 30th September, 2026 represent expenses incurred in relation to the acquisition of the pulp and paper business of Aditya Birla Real Estate Limited.
-  KPITTECH   Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
-           notes: Screener has EBITDA for Q2 FY27 at ₹267 cr; the filing as read gives ₹283 cr. / Screener has EBITDA for Q1 FY27 at ₹257 cr; the filing as read gives ₹272 cr. / Screener has EBITDA for Q2 FY26 at ₹298 cr; the filing as read gives ₹321 cr.
-  LT         Q2 FY27 consolidated UNCHECKED [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,811 vs 8,814)✗(6,111 vs 8,149)✗(6,815 vs 8,513)  | EBITDA 6810.65 vs screener OP 8814
-           notes: Screener has EBITDA for Q2 FY27 at ₹8,814 cr; the filing as read gives ₹6,811 cr. / Screener has EBITDA for Q1 FY27 at ₹8,149 cr; the filing as read gives ₹6,111 cr. / Screener has EBITDA for Q2 FY26 at ₹8,513 cr; the filing as read gives ₹6,815 cr.
-  MARUTI     Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4724 vs screener OP 4764
-  POLYCAB    Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1422.49 vs screener OP 1422
-  SUNPHARMA  Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4750.4 vs screener OP 4744
-           notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a gain of ₹104 cr a year ago, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition costs, New Labour Codes impact, and settlement agreements.
-  TCS        Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
-           notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Settlement of legal claim relating to litigation with Computer Sciences Corporation.
+  COALINDIA  Q2 FY27 consolidated VERIFIED  [smart, model said Q2 26-27] revenue ✓–✓  PBT ✓–✓  net profit ✓–✓  EBITDA ✓–✓  | EBITDA 8498 vs screener OP 8499
+  DIXON      Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
+  ITC        Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
+           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items for the quarter ended 30th September, 2026 represent expenses for the acquisition of 'Century Pulp and Paper', while for the quarter ended 30th June, 2026 they include a gain on remeasurement of existing interest in Sproutlife, and for the quarter ended 30th September, 2025 they represent an insurance claim settlement.
+  LT         Q2 FY27 consolidated UNCHECKED [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
+           notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
+  MARUTI     Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4715.6 vs screener OP 4764
+  RELIANCE   Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 56616 vs screener OP 56616
+           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹3,32,861 cr this quarter.
+  SUNPHARMA  Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
+           notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
 enrich: 9 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-bio lookup failed Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-bio lookup failed Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted
+bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+[gemini] gemini-2.5-flash unavailable → gemini-2.5-flash
+bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -87,18 +225,11 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-enrich: 11 one-liners
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+enrich: 7 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
@@ -108,116 +239,104 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 
 ACT
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
-         why: Profit fell 18.7% YoY due to a 6.4 percentage point drop in EBITDA margin, dampening earnings growth.
+         why: Earnings are reversing, shown by PAT down 18.7% YoY to 4,168; profit and operating profit moved apart as EBITDA fell 15.7% YoY.
   [90] RELIANCE   Results       2026-10-30 +5  Please find attached Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year e
-         why: Quarterly financial results determine business earnings and valuation benchmarks.
+         why: Earnings trajectory accelerating, shown by PAT at 25,548 crore up 40.6% YoY; EBITDA margin fell to 17.1% from 18.0% a year ago.
   [90] SUNPHARMA  Results       2026-10-30 +1  Unaudited Financial Results for the quarter and half year ended 30 September 2026
-         why: Profitability declined sharply as exceptional charges outweighed operational growth, introducing earnings volatility for shareholders.
+         why: Earnings trajectory is distorted by a one-off; PBT fell 24.2% YoY due to exceptional items charge of 1,269 cr.
   [90] INFY       Results       2026-10-23 +4  Results for the quarter and half year ended September 30, 2026 and declaration of interim dividend
-         why: Higher revenue and profit growth support cash returns via dividend, though compressed margins signal rising operating costs.
+         why: —
   [90] ETERNAL    Results       2026-10-21 +1  Eternal Limited has filed with exchange un-audited financial results (standalone & consolidated) for the quart
-         why: Rapid top-line expansion drove strong profit growth, boosting earnings and narrowing balance-sheet risk relative to company size.
+         why: —
   [90] BAJFINANCE Results       2026-10-19 +4  Unaudited standalone and consolidated financial results for the quarter and half year ended 30 September 2026
-         why: Profit growth outpaced revenue, boosting near-term earnings moderately given the large market capitalization.
+         why: —
   [90] ICICIBANK  Results       2026-10-17 +3  Unaudited financial results (standalone and consolidated) for the quarter and six months ended September 30, 2
-         why: Earnings grew due to higher net interest income, boosting overall profitability.
+         why: —
   [90] HDFCBANK   Results       2026-10-17 +1  Approval of unaudited standalone and consolidated financial results of the Bank for the quarter and half-year 
-         why: Higher net interest income and profit drive steady earnings growth for shareholders.
+         why: —
   [90] POLYCAB    Results       2026-10-15 +5  Unaudited Financial Results for the quarter and half year ended 30th September 2026
-         why: Rapid revenue and profit growth of over 40% expands scale significantly relative to the company's size.
+         why: —
   [90] DMART      Results       2026-10-10 +2  Financial Results for the quarter ended 30th September, 2026
-         why: Earnings growth slowed as profit growth lagged revenue expansion, compressing margins slightly against the large revenue base.
+         why: —
   [90] TCS        Results       2026-10-08 +5  Financial Results for the quarter and six-month period ended September 30, 2026 and declaration of second inte
-         why: Steady double-digit revenue growth and profit expansion increase cash returns to shareholders without balance-sheet strain.
-  [87] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
-         why: Profitability diverged from revenue growth as margins compressed, increasing near-term earnings risk for shareholders.
-  [87] COALINDIA  Results       2026-10-29 +4  Declared second interim dividend of Rs 10.25 per share with November 4, 2026 as the record date.
-         why: Higher other income or tax credits lifted net profit above PBT despite a sharp compression in operating margins.
-  [87] KPITTECH   Results       2026-10-28 +2  Financial Results for September 30, 2026
-         why: Profit fell 28.7% YoY while revenue rose, compressing margins and weighing on earnings despite steady top-line growth.
-  [87] LT         Results       2026-10-27 +2  Outcome of Board Meeting of Larsen & Toubro Limited held on October 27,2026
-         why: Profit growth outpaced revenue despite lower EBITDA margins, boosting earnings and supporting overall financial performance.
-  [87] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
-         why: Profit declined despite higher revenue as margins compressed, reducing near-term earnings quality and bottom-line growth.
-  [86] POLYCAB    Litigation    2026-10-30 +8  NCLAT set aside NCLT Ahmedabad bench order dated October 07, 2026, allowing the company's appeal in the insolv
+         why: —
+  [88] POLYCAB    Litigation    2026-10-30 +8  NCLAT set aside NCLT Ahmedabad bench order dated October 07, 2026, allowing the company's appeal in the insolv
          why: Removes insolvency risk and potential disruption to operations, protecting the balance sheet of the large-cap company.
-  [81] COALINDIA  M&A           2026-11-02  South Eastern Coalfields Limited, a wholly owned subsidiary of Coal India Limited, filed a DRHP with SEBI on 0
+  [87] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
+         why: Revenue growth is accelerating with revenue at 21,794, but profit and operating profit move apart as PAT fell to 344.
+  [87] COALINDIA  Results       2026-10-29 +4  Declared second interim dividend of Rs 10.25 per share with November 4, 2026 as the record date.
+         why: Earnings are accelerating, shown by PAT jumping 57.1% YoY to 6,547 crores, driven by higher revenue and margin expansion.
+  [87] KPITTECH   Results       2026-10-28 +2  Financial Results for September 30, 2026
+         why: —
+  [87] LT         Results       2026-10-27 +2  Outcome of Board Meeting of Larsen & Toubro Limited held on October 27,2026
+         why: Earnings trajectory is accelerating, shown by PAT jumping +32.5% YoY to 5,202; growth is broad-based with revenue up +15.8% YoY.
+  [87] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
+         why: Slowing as EBITDA fell to 4,716; profit and operating profit moved apart with PAT dropping 26.4% YoY.
+  [85] TITAN      Results       2026-10-06  Quarterly Update - Q2 of FY 2026-27
+         why: —
+  [80] COALINDIA  M&A           2026-11-02  South Eastern Coalfields Limited, a wholly owned subsidiary of Coal India Limited, filed a DRHP with SEBI on 0
          why: Unlocks value for shareholders through the subsidiary's public listing and subsequent cash inflows from the share sale.
-  [81] RELIANCE   M&A           2026-10-24  Jio Platforms finalised its IPO issue price at ₹1,119 per share, issuing up to 27 crore equity shares.
-         why: Unlocks subsidiary value and provides growth capital, impacting consolidated valuation and capital allocation for shareholders.
-  [81] RELIANCE   Routine       2026-10-17  Reliance Industries published a newspaper advertisement on October 17, 2026, regarding the proposed initial pu
-         why: Unlocks hidden value and creates potential direct share allocation benefits for existing shareholders from a major subsidiary listing.
-  [81] RELIANCE   Routine       2026-10-16  The company published newspaper advertisements regarding the proposed initial public offering of Jio Platforms
-         why: Unlocks value for shareholders through the listing of a major subsidiary.
-  [81] RELIANCE   Routine       2026-10-14  Jio Platforms Limited set an IPO price band of ₹1,065 to ₹1,119 per share with a minimum bid lot of 12 shares 
-         why: Unlocks value for the parent company and creates a publicly traded market price for the telecom subsidiary.
-  [81] RELIANCE   Routine       2026-10-14  Jio Platforms Limited filed its Red Herring Prospectus on October 14, 2026, for an IPO opening on October 21, 
-         why: Unlocks underlying value and provides separate public market pricing for the digital subsidiary.
+  [80] RELIANCE   M&A           2026-10-24 +4  Jio Platforms finalized its IPO issue price at ₹1,119 per equity share and filed its prospectus on October 24,
+         why: Unlocks subsidiary value and establishes a public market valuation for the digital services business.
   [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
          why: Leadership transition at the top executive post introduces strategic and operational shift risks for the bank.
 
 GLANCE
-  [66] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake, making HATSOFF Helicopter Training Pvt. Ltd. a wholly-owned subsidiary.
-         why: Increases control over the subsidiary, though the small scale limits impact on overall earnings and balance-sheet risk.
-  [66] DIXON      M&A           2026-10-07  On October 7, 2026, Dixon Technologies and Gemtek executed a joint venture agreement to dilute Dixon Electroco
-         why: Diversifies operations into optical transceivers and telecom products through a new partnership, though near-term financial impact remains small.
   [64] HDFCBANK   Management    2026-10-17  Mrs. Lily Vadera re-appointed as Independent Director for 3 years, and Deputy MD Kaizad Bharucha to cease serv
          why: The departure of a key executive alters top leadership oversight, posing potential transition risks for the bank's operations.
+  [60] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake, making HATSOFF Helicopter Training Pvt. Ltd. a wholly-owned subsidiary.
+         why: Increases control over the subsidiary, though the small scale limits impact on overall earnings and balance-sheet risk.
+  [60] DIXON      M&A           2026-10-07  On October 7, 2026, Dixon Technologies and Gemtek executed a joint venture agreement to dilute Dixon Electroco
+         why: Diversifies operations into optical transceivers and telecom products through a new partnership, though near-term financial impact remains small.
   [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
-         why: Leadership change brings new operational oversight to core manufacturing activities.
-  [51] TCS        M&A           2026-10-15  Tata Consultancy Services completed the acquisition of a 100% partnership interest in BBY Services India LLP o
          why: —
-  [47] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified on November 2 2026 that a news report regarding quality lapses at its Assam facility rela
-         why: Addresses market rumors regarding operations at the company's facility.
-  [47] ITC        M&A           2026-11-02  ITC approved the amalgamation of its wholly owned subsidiary Sproutlife Foods Private Limited into itself, eff
-         why: —
-  [47] ETERNAL    M&A           2026-10-21  Eternal approved a slump sale of its Going-out India business to its wholly-owned subsidiary ZEPL for ₹130.8 c
-         why: —
-  [47] M&M        M&A           2026-10-09  Embraer S.A. agreed on 9th October 2026 to acquire a 51% stake in Novavayu Aerospace Limited for ₹5,10,000.
-         why: —
-  [44] M&M        M&A           2026-10-17  Mahindra & Mahindra's aggregate stake in New Democratic Electoral Trust reduced from 72.07% to 49.63%, causing
-         why: —
-  [43] LT         Press release 2026-10-27  L&T Wins Orders (Major*) for Dhaka Metro
-         why: Large infrastructure order wins scale up the company's order book.
-  [43] LT         Press release 2026-10-21  On October 21, 2026, Larsen & Toubro secured large orders from CPWD in New Delhi and the Government of Andhra 
-         why: Large order wins expand the corporate order book and revenue visibility.
-  [42] BHARTIARTL Litigation    2026-10-14  Bharti Airtel received a penalty of Rs. 1,50,000 from the Department of Telecommunications for alleged subscri
-         why: Receives penalty notice for subscriber norms violation.
-  [41] LT         Press release 2026-11-02  L&T Wins Orders (Significant*) for Residential, Commercial Buildings & Factories Business
-         why: Securing new orders supports future construction revenue growth.
-  [41] TITAN      Press release 2026-10-06  Titan Company reported a consumer business growth of c.25% YoY for Q2FY27 and added 78 net stores, reaching 3,
+  [46] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a news report about halting eye-care drug production at its Assam facility relates t
          why: —
   [39] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
-         why: Adjourns competition commission appeal hearing.
+         why: Hearing adjournment delays resolution of the regulatory penalty matter.
   [39] LT         Press release 2026-10-07  L&T Energy CarbonLite Solutions secured a limited notice to proceed for a 1,600 MW thermal power plant main pa
          why: Adds a major order to the order book, supporting future revenue growth for a multi-lakh crore company.
   [39] LT         Press release 2026-10-05  L&T secured mega orders worth ₹10,000 to ₹15,000 crore for its Power Transmission & Distribution business dome
          why: The new orders add to the order book, supporting future revenue growth without materially moving the giant base.
+  [37] ITC        Insider trade 2026-10-07  The Exchange has received the disclosure under Regulation 29(2) of SEBI (Substantial Acquisition of Shares & T
+         why: Significant shareholder alters stake through equity acquisition.
   [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
          why: Facility expansion increases operational capacity in the region.
   [36] COALINDIA  Capex         2026-10-27  Coal India reported a capex of ₹7,966 crore for H1 FY27 on October 26, 2026, achieving 27% growth over H1 FY26
          why: Accelerated capital expenditure reflects progress on planned infrastructure investments.
-  [36] LT         Press release 2026-10-19  L&T commenced initial activities for the New Tashkent International Airport ultra-mega project after receiving
+  [36] TCS        M&A           2026-10-15  Tata Consultancy Services completed the acquisition of a 100% partnership interest in BBY Services India LLP o
          why: —
   [35] SUNPHARMA  Press release 2026-10-30  ILUMYA (tildrakizumab-asmm) approved in the U.S. for the treatment of adults with active Psoriatic Arthritis
          why: New product approval in a key market expands addressable revenue opportunities.
-  [35] ICICIBANK  Credit rating 2026-10-24  ICRA and CARE Ratings reaffirmed ICICI Bank's credit ratings on October 23, 2026, withdrawing ₹945 crore, ₹6,5
-         why: Credit rating updates confirm existing financial stability.
-  [35] RELIANCE   Credit rating 2026-10-21  On October 21, 2026, ICRA reaffirmed [ICRA]AAA (Stable) for ₹12,000 crore non-convertible debentures and [ICRA
-         why: Credit rating assignment reaffirms debt risk profile.
-  [35] SUNPHARMA  Credit rating 2026-10-13  On October 13, 2026, CRISIL assigned a Crisil AAA/Stable rating to Sun Pharmaceutical Industries Limited's ₹15
+  [35] LT         Press release 2026-10-27  L&T secured major design and build orders worth ₹5,000 to ₹10,000 crore for Dhaka Metro Line 1 systems package
          why: —
+  [35] ICICIBANK  Credit rating 2026-10-24  ICRA and CARE Ratings reaffirmed ICICI Bank's credit ratings on October 23, 2026, withdrawing ₹945 crore, ₹6,5
+         why: —
+  [35] RELIANCE   Credit rating 2026-10-21  On October 21, 2026, ICRA reaffirmed [ICRA]AAA (Stable) for ₹12,000 crore non-convertible debentures and [ICRA
+         why: —
+  [35] LT         Press release 2026-10-19  L&T commenced initial activities for the New Tashkent International Airport ultra-mega project after receiving
+         why: —
+  [35] SUNPHARMA  Credit rating 2026-10-13  On October 13, 2026, CRISIL assigned a Crisil AAA/Stable rating to Sun Pharmaceutical Industries Limited's ₹15
+         why: Credit rating update reflects the company's debt risk profile.
   [35] DMART      Credit rating 2026-10-09  On October 9, 2026, ICRA Limited reaffirmed the ICRA A1+ rating for Avenue Supermarts' enhanced commercial pap
-         why: Receives credit rating update.
+         why: Credit rating affirmation impacts debt borrowing costs.
 
-digest: 232 items {"act":24,"glance":26,"routine":182} · 20 quotes · 72 LLM calls (38 cached) · 326291 tokens · 754s
-errors (1):
-  results RELIANCE: TypeError: fetch failed
+digest: 228 items {"act":21,"glance":19,"routine":188} · 20 quotes · 20 LLM calls (69 cached) · 142658 tokens · 1411s
+errors (10):
+  results KPITTECH: Error: Gemini: retries exhausted
+  results INFY: Error: Gemini: retries exhausted
+  results ETERNAL: Error: Gemini: retries exhausted
+  results BAJFINANCE: Error: Gemini: retries exhausted
+  results ICICIBANK: Error: Gemini: retries exhausted
+  results HDFCBANK: Error: Gemini: retries exhausted
+  results DMART: Error: Gemini: retries exhausted
+  results POLYCAB: Error: Gemini: retries exhausted
+  results TITAN: Error: Gemini: retries exhausted
+  results TCS: Error: Gemini: retries exhausted
