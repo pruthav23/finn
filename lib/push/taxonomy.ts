@@ -31,7 +31,7 @@ export const LABEL: Record<Category, string> = {
 
 export const PRIOR: Record<Category, number> = {
   results: 90, "M&A": 80, management_change: 70, fund_raise: 72, litigation: 62, pledging: 70,
-  credit_rating: 50, capex: 62, insider_trading: 45, bonus_split: 50, dividend: 35,
+  credit_rating: 20, capex: 62, insider_trading: 45, bonus_split: 50, dividend: 35,
   press_release: 35, earnings_call: 25, investor_meetings: 8, agm_egm: 15, postal_ballot: 18, unclassified: 4,
 };
 
@@ -127,7 +127,11 @@ export function priorFor(category: Category, text: string): number {
   if (category === "M&A" && /incorporat(ion|ed)|letter of comfort|amalgamation of [^|]*(wholly|subsidiar)|wholly[- ]owned subsidiar|step-down subsidiar|business transfer agreement/.test(t) && !/\b(sale|sell|divest|acquire[sd]?|acquisition) of \d|stake (sale|in)|embraer|third party/.test(t)) return 28;
   if (/clarification|sought clarification|news (report|item|article)|media report/.test(t)) return 50;
   // A rating reaffirmed or assigned at the same level changes nothing; a downgrade or outlook change does.
-  if (category === "credit_rating" && /reaffirm|affirm|assign|intimation of credit rating|update on credit rating/.test(t) && !/downgrad|upgrad|outlook (revised|changed)|negative|watch/.test(t)) return 12;
+  // Most rating filings are reaffirmations, so the category starts low (20); a downgrade, a negative
+  // outlook or a watch is what moves a stock.
+  if (category === "credit_rating" && /downgrad|negative|watch|outlook (revised|changed)|suspend/.test(t)) return 70;
+  if (category === "credit_rating" && /upgrad/.test(t)) return 40;
+  if (category === "credit_rating" && /reaffirm|affirm/.test(t)) return 12;
   // A penalty or demand of under ₹1 crore is noise for any of these companies.
   if ((category === "litigation" || /penalt|fine|demand|disincentive/.test(t)) && (rupees(t) ?? Infinity) < 1e7) return 15;
   return PRIOR[category];

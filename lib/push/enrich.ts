@@ -24,7 +24,7 @@ Calibrate:
 - equity raises (QIP, preferential, rights) 65-85; buybacks 60-80
 - routine debt (NCD, bond or commercial-paper allotments or repayments, by anyone): 5-15
 - order wins: scale with value vs the company's size; "mega/ultra-mega" orders at large contractors 45-65; generic press releases 15-30
-- regulatory penalties scale with amount vs the company's size (a few lakh rupees is 5-10); credit downgrades 60+, reaffirmations 10-15
+- regulatory penalties scale with amount vs the company's size (a few lakh rupees is 5-10); credit downgrades or negative outlooks 60+, upgrades 30-45, reaffirmations and new ratings at the same level 5-15
 - the exchange asking for, or the company giving, a clarification on a news report: 40-60
 - schedules of investor meetings, intimations, compliance paperwork 0-10
 "why" = the CONSEQUENCE for a shareholder in one plain sentence (max 16 words): what changes for the business, the earnings or the risk.
