@@ -31,7 +31,7 @@ export const LABEL: Record<Category, string> = {
 
 export const PRIOR: Record<Category, number> = {
   results: 90, "M&A": 80, management_change: 70, fund_raise: 72, litigation: 62, pledging: 70,
-  credit_rating: 50, capex: 62, insider_trading: 45, bonus_split: 50, dividend: 35,
+  credit_rating: 20, capex: 62, insider_trading: 45, bonus_split: 50, dividend: 35,
   press_release: 35, earnings_call: 25, investor_meetings: 8, agm_egm: 15, postal_ballot: 18, unclassified: 4,
 };
 
@@ -98,3 +98,51 @@ export const opaque = (headline: string) =>
 
 /** Top-of-house roles that make a management change genuinely material. */
 export const KMP = /\b(ceo|cfo|coo|managing director|md\b|chief executive|chief financial|chief operating|whole[- ]time director|chairman|chairperson|president)\b/i;
+
+/**
+ * How senior a role is, for materiality. "top": the people who set strategy and sign the
+ * accounts (CEO, MD, CFO, chair). "second": deputy/joint MDs, whole-time and executive
+ * directors, COOs, PSU functional directors. Everything else (group heads, SVPs,
+ * independent or nominee directors, subsidiary roles) is "other".
+ */
+export function roleRank(role: string): "top" | "second" | "other" {
+  const r = role.toLowerCase();
+  if (/independent|nominee|\bhead\b|vice[- ]president|\bsvp\b|\bevp\b|senior management|subsidiary|security|information|compliance|company secretary|of [a-z][^,]* (limited|ltd)\b/.test(r)) return "other";
+  if (/deputy|joint|additional|alternate/.test(r) && /managing director|\bmd\b|chief/.test(r)) return "second";
+  if (/managing director|\bmd\b|chief executive|\bceo\b|chief financial|\bcfo\b|chair(man|person)|director \(finance\)|director - finance|director-finance/.test(r)) return "top";
+  if (/whole[- ]time director|executive director|chief operating|\bcoo\b|director \((operations|personnel|hr|human resources|technical|marketing|commercial|projects|production|engineering|r&d)\)|director - |director-|president/.test(r)) return "second";
+  return "other";
+}
+
+/**
+ * Category priors are averages; some kinds of filing inside a category sit far from them.
+ * Routine debt is not a fund raise in the sense that matters; a deal with your own wholly owned
+ * subsidiary moves nothing for a shareholder; listing a big subsidiary does.
+ */
+export function priorFor(category: Category, text: string): number {
+  const t = text.toLowerCase();
+  // A listed holding's own filings about an IPO, DRHP or prospectus concern a subsidiary going public.
+  if (/\bdrhp\b|\brhp\b|red herring|prospectus|initial public offer|\bipo\b|issue price|offer for sale/.test(t)) return 82;
+  if (category === "fund_raise" && /\bncds?\b|non-convertible|debentures?|commercial paper|\bbonds?\b/.test(t) && !/\bqip\b|preferential|rights issue|warrants|buy-?back/.test(t)) return 12;
+  if (category === "M&A" && /incorporat(ion|ed)|letter of comfort|amalgamation of [^|]*(wholly|subsidiar)|wholly[- ]owned subsidiar|step-down subsidiar|business transfer agreement/.test(t) && !/\b(sale|sell|divest|acquire[sd]?|acquisition) of \d|stake (sale|in)|embraer|third party/.test(t)) return 28;
+  if (/clarification|sought clarification|news (report|item|article)|media report/.test(t)) return 50;
+  // A rating reaffirmed or assigned at the same level changes nothing; a downgrade or outlook change does.
+  // Most rating filings are reaffirmations, so the category starts low (20); a downgrade, a negative
+  // outlook or a watch is what moves a stock.
+  if (category === "credit_rating" && /downgrad|negative|watch|outlook (revised|changed)|suspend/.test(t)) return 70;
+  if (category === "credit_rating" && /upgrad/.test(t)) return 40;
+  if (category === "credit_rating" && /reaffirm|affirm/.test(t)) return 12;
+  // A penalty or demand of under ₹1 crore is noise for any of these companies.
+  if ((category === "litigation" || /penalt|fine|demand|disincentive/.test(t)) && (rupees(t) ?? Infinity) < 1e7) return 15;
+  return PRIOR[category];
+}
+
+/** The first rupee amount in a text, in rupees: "Rs. 1,50,000", "INR 5.41 million", "Rs 6.95 Lakh", "₹2.79 crore". */
+export function rupees(text: string): number | null {
+  const m = text.toLowerCase().match(/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d+)?)\s*(crores?|cr\b|lakhs?|lacs?|million|mn\b|billion|bn\b)?/);
+  if (!m) return null;
+  const n = Number(m[1].replace(/,/g, ""));
+  if (!Number.isFinite(n)) return null;
+  const u = m[2] ?? "";
+  return n * (/^cr/.test(u) ? 1e7 : /^la/.test(u) ? 1e5 : /^(million|mn)/.test(u) ? 1e6 : /^(billion|bn)/.test(u) ? 1e9 : 1);
+}
