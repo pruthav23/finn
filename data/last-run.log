@@ -1,16 +1,15 @@
 prices: 20 stocks
 filings: 2026-10-05 → 2026-11-04
-filings: 305 raw
-opaque: 40 filings with uninformative titles
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+filings: 311 raw
+opaque: 42 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -32,43 +31,44 @@ Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-triage: 100 headlines
-enrich: 16 results
-[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+triage: 102 headlines
+enrich: 16 results
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 [gemini] gemini-3.8-flash overloaded → gemini-3.7-flash
 [gemini] gemini-3.7-flash overloaded → gemini-3.6-flash
-[gemini] gemini-3.6-flash overloaded → gemini-3.5-flash
-Warning: TT: undefined function: 21
-[gemini] gemini-3.5-flash overloaded → gemini-3-flash-preview
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 results cross-check against screener:
-  BAJFINANCE Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
-  COALINDIA  Q2 FY27 consolidated UNCHECKED [smart] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
+  BAJFINANCE Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
+  COALINDIA  Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
            notes: Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹7,728 cr. / EBITDA as derived here (₹7,422 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
   DIXON      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
-  DMART      Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1392.96 vs screener OP 1393
-  ETERNAL    Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
-  HDFCBANK   Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
-  ICICIBANK  Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
+  DMART      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1392.96 vs screener OP 1393
+  ETERNAL    Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
+  HDFCBANK   Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
+  ICICIBANK  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
            notes: Screener's net profit includes minority interests; the card shows profit attributable to owners.
-  ITC        Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
+  INFY       no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26c12463-d44e-4050-bd47-b53cc294b4e0.pdf
+  ITC        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
            notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses for acquisition of pulp and paper business of Aditya Birla Real Estate Limited, gain on remeasurement of existing interest in Sproutlife at fair value, and final settlement of insurance claim towards leaf tobacco stocks.
-  KPITTECH   Q2 FY27 consolidated UNCHECKED [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
+  KPITTECH   Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
            notes: EBITDA as derived here (₹283 cr for Q2 FY27) differs from screener's operating profit (₹267 cr): the two count some costs differently or a line was misread, so no margin is shown.
   LT         Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
            notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
   MARUTI     Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4715.6 vs screener OP 4764
-  POLYCAB    Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1422.49 vs screener OP 1422
+  POLYCAB    Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1422.49 vs screener OP 1422
   RELIANCE   Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 56616 vs screener OP 56616
            notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹3,32,861 cr this quarter.
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
-  TCS        Q2 FY27 consolidated VERIFIED  [smart] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
+  TCS        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
            notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Exceptional items include re-structuring expenses and settlement of legal claim relating to litigation with Computer Sciences Corporation.
-enrich: 10 management changes
+enrich: 9 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
@@ -81,7 +81,7 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-assess: 20 filings read before ranking
+assess: 17 filings read before ranking
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -91,13 +91,13 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+enrich: 3 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-enrich: 0 one-liners
 
 ACT
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
@@ -106,10 +106,8 @@ ACT
          why: Revenue rose 29.8% YoY to ₹3,30,601 cr while PAT jumped 40.6% YoY to ₹25,548 cr, reflecting strong earnings power despite a minor margin dip.
   [90] DIXON      Results       2026-10-30 +2  Results for the quarter and half year ended 30th September, 20206
          why: Revenue rose 46.7% YoY to ₹21,794 cr, but PAT fell 48.7% YoY to ₹344 cr, showing growth is not reaching profit.
-  [90] SUNPHARMA  Results       2026-10-30 +1  Unaudited Financial Results for the quarter and half year ended 30 September 2026
+  [90] SUNPHARMA  Results       2026-10-30 +2  Unaudited Financial Results for the quarter and half year ended 30 September 2026
          why: PAT fell 36.2% YoY to ₹1,989 cr due to a ₹1,269 cr exceptional charge, suppressing earnings power despite an 11.9% revenue rise.
-  [90] COALINDIA  Results       2026-10-29 +4  Declared second interim dividend of Rs 10.25 per share with November 4, 2026 as the record date.
-         why: PAT fell 26.4% QoQ despite a 4.5% revenue drop, showing earnings power is currently pressured by sequential margin contraction.
   [90] KPITTECH   Results       2026-10-28 +3  Financial Results for September 30, 2026
          why: YoY revenue up 6.5%, but PAT fell 28.7% to ₹121 cr, showing lower earnings power as profit growth lagged sales.
   [90] LT         Results       2026-10-27 +2  Outcome of Board Meeting of Larsen & Toubro Limited held on October 27,2026
@@ -134,18 +132,20 @@ ACT
          why: Revenue grew 11.2% YoY to ₹73,188 cr while EBITDA margin contracted 1.6 pp YoY to 25.7%, meaning operating gains lagged top-line expansion.
   [88] POLYCAB    Litigation    2026-10-30 +8  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, allowing the company appeal against Asi
          why: Removes insolvency risk and eliminates potential disruptions to business operations.
+  [87] COALINDIA  Results       2026-10-29 +4  Declared second interim dividend of Rs 10.25 per share with November 4, 2026 as the record date.
+         why: PAT fell 26.4% QoQ despite a 4.5% revenue drop, showing earnings power is currently pressured by sequential margin contraction.
   [80] COALINDIA  M&A           2026-11-02  Wholly owned subsidiary South Eastern Coalfields filed a DRHP on 01.11.2026 for an IPO comprising an offer for
          why: Unlocks subsidiary value and generates cash proceeds through the sale of shares.
-  [80] RELIANCE   M&A           2026-10-24 +4  Jio Platforms finalised its initial public offer issue price at ₹1,119 per share and filed its prospectus on O
-         why: Unlocks underlying digital business value and provides fresh capital for growth.
+  [80] RELIANCE   Press release 2026-10-24 +4  Jio Platforms finalized its IPO issue price at ₹1,119 per share and filed its prospectus on October 24, 2026.
+         why: Unlocks substantial subsidiary value and shapes future capital allocation for the parent entity.
   [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
          why: Leadership transition introduces strategic execution risks and alters the future direction of core banking operations.
 
 GLANCE
-  [64] HDFCBANK   Management    2026-10-17  Mrs. Lily Vadera re-appointed as Independent Director for 3 years, and Deputy MD Kaizad Bharucha to cease serv
-         why: Key leadership departures in top management introduce operational transition risks for the bank's core businesses.
   [64] DIXON      M&A           2026-10-07  On October 7, 2026, Dixon Technologies executed a joint venture agreement with Gemtek Technology to manufactur
          why: Diversification into optical networking and data center components creates a new revenue stream through a controlled subsidiary.
+  [62] HDFCBANK   Management    2026-10-17  Mrs. Lily Vadera re-appointed as Independent Director for 3 years, and Deputy MD Kaizad Bharucha to cease serv
+         why: Key leadership departures in top management introduce operational transition risks for the bank's core businesses.
   [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
          why: Leadership continuity is maintained with an internal candidate overseeing operational execution and strategic manufacturing initiatives.
   [48] HAL        M&A           2026-11-03  CAE Canada transferred its 50% stake in HATSOFF Helicopter Training to HAL, making it a wholly-owned subsidiar
@@ -154,19 +154,23 @@ GLANCE
          why: Production halts at the facility create regulatory risks that could impact future earnings and manufacturing growth.
   [39] LT         Press release 2026-10-19  L&T commenced initial activities for the ultra-mega New Tashkent International Airport project in Uzbekistan f
          why: This order expands international infrastructure backlog, supporting future revenue growth upon full contract execution.
-  [39] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
-         why: Adjournment of regulatory appeal extends ongoing legal uncertainty.
   [39] LT         Press release 2026-10-07  L&T Energy CarbonLite Solutions secured a limited notice to proceed for the 1,600 MW Chandrapura thermal power
          why: Secures revenue growth and expands the order book in the thermal power segment upon full project clearance.
   [39] LT         Press release 2026-10-05  L&T secured mega orders worth over ₹10,000 crore across India, Saudi Arabia, and the UAE for power transmissio
          why: Securing these major contracts strengthens the order backlog, supporting future revenue growth and long-term earnings visibility.
+  [37] ITC        Insider trade 2026-10-07  The Exchange has received the disclosure under Regulation 29(2) of SEBI (Substantial Acquisition of Shares & T
+         why: Significant investor stake acquisition changes major shareholding patterns.
+  [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
+         why: Facility expansion scales operational capacity in a regional hub.
+  [36] COALINDIA  Capex         2026-10-27  Coal India reported a capex of ₹7,966 crore for H1 FY27 on October 26, 2026, achieving 27% growth over H1 FY26
+         why: Higher capital expenditure outlay accelerates infrastructure deployment.
   [36] TCS        M&A           2026-10-15  Tata Consultancy Services completed the acquisition of a 100% partnership interest in BBY Services India LLP o
          why: This internal corporate restructuring with a fully owned entity leaves earnings, risk, and cash flows unchanged.
+  [36] MARUTI     Litigation    2026-10-12  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
+         why: Hearing adjournment delays legal resolution on competition matters.
   [35] LT         Press release 2026-10-27  L&T secured major orders valued between ₹5,000 crore to ₹10,000 crore for Dhaka Metro Line 1 track and electri
          why: Secures revenue growth and order backlog expansion in international urban transit infrastructure.
-  [35] TITAN      Press release 2026-10-06  Titan Company reported a provisional 25 percent year-on-year growth in consumer businesses for Q2 FY 2027, add
-         why: Robust segment expansion across jewelry, watches, and eyecare drives top-line revenue growth.
+  [35] TITAN      Press release 2026-10-06  Titan Company reported a consumer business growth of c.25% YoY for Q2FY27 and added 78 net stores, reaching 3,
+         why: Quarterly operational update indicates retail demand trends before results.
 
-digest: 235 items {"act":20,"glance":12,"routine":203} · 20 quotes · 43 LLM calls (64 cached) · 250449 tokens · 990s
-errors (1):
-  results INFY: TypeError: fetch failed
+digest: 241 items {"act":20,"glance":15,"routine":206} · 20 quotes · 6 LLM calls (100 cached) · 37835 tokens · 136s
