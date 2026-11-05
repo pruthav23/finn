@@ -1,7 +1,7 @@
 prices: 20 stocks
 filings: 2026-10-06 → 2026-11-05
-filings: 325 raw
-opaque: 48 filings with uninformative titles
+filings: 337 raw
+opaque: 51 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -17,16 +17,17 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
@@ -49,12 +50,11 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-triage: 103 headlines
+triage: 104 headlines
 enrich: 19 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 [gemini] gemini-3.8-flash overloaded → gemini-3.7-flash
-[gemini] smart tier 429 → using lite
+[gemini] gemini-3.7-flash overloaded → gemini-3.8-flash
 [gemini] smart tier 429 → using lite
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -63,8 +63,8 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 results cross-check against screener:
   BAJFINANCE Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
-  BHARTIARTL Q2 FY27 consolidated UNCHECKED [lite] revenue –✓✓  PBT –✓✓  net profit –✗(8,057 vs 10,012)✗(6,792 vs 8,651)  EBITDA –––  | EBITDA – vs screener OP –
-           notes: Screener has net profit for Q1 FY27 at ₹10,012 cr; the filing as read gives ₹8,057 cr. / Screener has net profit for Q2 FY26 at ₹8,651 cr; the filing as read gives ₹6,792 cr. / Revenue doesn't match screener's figure for any recent quarter, so these figures are as read from the filing, not cross-checked.
+  BHARTIARTL Q2 FY27 consolidated VERIFIED  [lite] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 34695.3 vs screener OP 34946
+           notes: PBT includes exceptional items: a gain of ₹353 cr last quarter. EBITDA excludes them. / An exceptional charge of 1,802 million has been recognised in respect of expenses incurred in connection with the listing of Airtel Mobile Commerce NV.
   COALINDIA  Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
            notes: Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹7,728 cr. / EBITDA as derived here (₹7,422 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
   DIXON      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
@@ -80,7 +80,8 @@ results cross-check against screener:
            notes: EBITDA as derived here (₹283 cr for Q2 FY27) differs from screener's operating profit (₹267 cr): the two count some costs differently or a line was misread, so no margin is shown.
   LT         Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
            notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
-  M&M        Q2 FY27 consolidated VERIFIED  [lite, re-read] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 10221.46 vs screener OP 10221
+  M&M        Q2 FY27 consolidated UNCHECKED [lite, model said Q2 F27] revenue ✓✓✓  PBT –––  net profit ✗(4,588 vs 5,167)✗(5,455 vs 5,998)✗(3,673 vs 3,964)  EBITDA –––  | EBITDA – vs screener OP 10221
+           notes: Screener has net profit for Q2 FY27 at ₹5,167 cr; the filing as read gives ₹4,588 cr. / Screener has net profit for Q1 FY27 at ₹5,998 cr; the filing as read gives ₹5,455 cr. / Screener has net profit for Q2 FY26 at ₹3,964 cr; the filing as read gives ₹3,673 cr.
   MARUTI     Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4715.6 vs screener OP 4764
   POLYCAB    Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1422.49 vs screener OP 1422
   RELIANCE   Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 56616 vs screener OP 56616
@@ -89,14 +90,12 @@ results cross-check against screener:
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TCS        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 18815 vs screener OP 18815
            notes: PBT includes exceptional items: a charge of ₹1,135 cr a year ago, a charge of ₹668 cr last quarter. EBITDA excludes them. / Exceptional items include re-structuring expenses and settlement of legal claim relating to litigation with Computer Sciences Corporation.
-  TITAN      Q2 FY27 consolidated UNCHECKED [lite] revenue –✓✓  PBT –✓✓  net profit –✓✓  EBITDA –✓✓  | EBITDA 3655 vs screener OP –
-           notes: Revenue doesn't match screener's figure for any recent quarter, so these figures are as read from the filing, not cross-checked.
-enrich: 10 management changes
+enrich: 11 management changes
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-Warning: TT: undefined function: 21
-bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -121,20 +120,20 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 enrich: 19 one-liners
 Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
@@ -160,12 +159,12 @@ Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 
 ACT
-  [90] TITAN      Results       2026-11-05 +1  Outcome of the Board Meeting
-         why: EBITDA margin rose 7.7 pp to 17.7% and PAT grew 113.7% to ₹2,393 cr, signaling a strong expansion in underlying earnings power.
+  [90] TITAN      Results       2026-11-05 +2  Outcome of the Board Meeting
+         why: —
   [90] BHARTIARTL Results       2026-11-05 +3  Financial Results for the second quarter and six months ended September 30, 2026
-         why: Revenue grew 16.7% YoY to ₹60,878 cr and PBT rose 26.7% YoY to ₹15,608 cr, lifting underlying earnings power.
-  [90] M&M        Results       2026-11-05 +2  Mahindra & Mahindra reported consolidated quarterly revenue of Rs. 57,514.98 crores and net profit of Rs. 5,16
-         why: Revenue rose 25.3% YoY to ₹57,515 cr while PAT grew 24.9% YoY to ₹4,588 cr, keeping earnings power steady despite a 1.7 pp drop in EBITDA margin.
+         why: PAT rose 30.9% YoY to ₹8,888 cr, outpacing revenue growth of 16.7% and boosting earnings power despite a 1.0 pp EBITDA margin dip.
+  [90] M&M        Results       2026-11-05 +3  Mahindra & Mahindra reported consolidated quarterly revenue of Rs. 57,514.98 crores and net profit of Rs. 5,16
+         why: Revenue rose 24.8% YoY to ₹57,553 cr, though down 1.1% QoQ, showing solid top-line expansion reaching overall earnings power.
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
          why: EBITDA margin dropped 6.5 pp YoY to 27.9%, pulling down PAT by 18.7% YoY to ₹4,168 cr as earnings power contracted.
   [90] RELIANCE   Results       2026-10-30 +5  Please find attached Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year e
@@ -277,6 +276,7 @@ GLANCE
   [35] TITAN      Press release 2026-10-06  Titan Company reported a consumer business growth of c.25% YoY for Q2FY27 and added 78 net stores, reaching 3,
          why: —
 
-digest: 247 items {"act":24,"glance":33,"routine":190} · 20 quotes · 49 LLM calls (91 cached) · 113878 tokens · 1160s
-errors (1):
+digest: 257 items {"act":24,"glance":33,"routine":200} · 20 quotes · 12 LLM calls (129 cached) · 40634 tokens · 1220s
+errors (2):
   triage: Error: Gemini: retries exhausted (last status 503)
+  results TITAN: TypeError: fetch failed
