@@ -1,7 +1,7 @@
 prices: 20 stocks
-filings: 2026-10-10 → 2026-11-09
-filings: 308 raw
-opaque: 49 filings with uninformative titles
+filings: 2026-10-11 → 2026-11-10
+filings: 300 raw
+opaque: 48 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -26,14 +26,13 @@ Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -62,7 +61,6 @@ results cross-check against screener:
   COALINDIA  Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
            notes: Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹7,728 cr. / EBITDA as derived here (₹7,422 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
   DIXON      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
-  DMART      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 1392.96 vs screener OP 1393
   ETERNAL    Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
   HDFCBANK   Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
   ICICIBANK  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  NII ✓✓✓
@@ -86,14 +84,15 @@ enrich: 8 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-[gemini] smart tier 429 → using lite
 bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+[gemini] smart tier 429 → using lite
+[gemini] smart tier 429 → using lite
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-assess: 13 filings read before ranking
+assess: 17 filings read before ranking
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -102,10 +101,9 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-enrich: 4 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+enrich: 0 one-liners
 
 ACT
   [90] TITAN      Results       2026-11-05 +2  Outcome of the Board Meeting
@@ -142,14 +140,16 @@ ACT
          why: PAT rose 7.6% QoQ to ₹20,700 cr with net interest income up 3.5%, showing earnings power improved over the previous quarter.
   [90] POLYCAB    Results       2026-10-15 +5  Unaudited Financial Results for the quarter and half year ended 30th September 2026
          why: Revenue rose 52.8% YoY to ₹9,899 cr with PAT up 42.6% YoY to ₹977 cr, though EBITDA margin eased by 1.4 pp YoY to 14.4%.
-  [90] DMART      Results       2026-10-10 +2  Financial Results for the quarter ended 30th September, 2026
-         why: Revenue grew 17.8% YoY to ₹19,644 cr, while PAT rose 8.5% YoY to ₹744 cr, indicating profit growth lagged behind revenue expansion.
   [88] POLYCAB    Litigation    2026-10-30 +4  NCLAT set aside the NCLT Ahmedabad bench order dated October 7, 2026, allowing the company appeal against Asie
          why: Removes the insolvency threat, clearing legal risks that could disrupt ongoing operations and stakeholder confidence.
+  [80] MARUTI     Results       2026-11-10  Reference to the Financial Results issued by Suzuki Motor Corporation
+         why: —
   [80] COALINDIA  M&A           2026-11-02  South Eastern Coalfields Limited filed a DRHP for an IPO via an offer for sale of 668,056,100 shares.
          why: Unlocks subsidiary value and generates cash proceeds through the divestment of shares held in the subsidiary.
-  [80] RELIANCE   Press release 2026-10-24 +4  Jio Platforms finalized its IPO issue price at ₹1,119 per share and filed its prospectus on October 24, 2026.
-         why: Unlocks underlying value and provides capital for digital expansion while retaining majority control of the subsidiary.
+  [80] RELIANCE   Fund raise    2026-10-24 +4  Jio Platforms finalised its IPO issue price at ₹1,119 per share and filed its prospectus on October 24, 2026.
+         why: Unlocks substantial value and provides growth capital through the public listing of a major subsidiary.
+  [78] BAJFINANCE Fund raise    2026-11-10  On 10 November 2026, the board approved issuing 5,74,25,740 warrants to promoter Bajaj Finserv Limited at ₹1,0
+         why: Capital raise through warrants increases equity and bolsters capital adequacy, resulting in future ownership dilution upon conversion.
   [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
          why: Leadership transition introduces strategic execution risks and alters governance oversight for the institution.
 
@@ -166,23 +166,17 @@ GLANCE
          why: Internal group restructuring simplifies the corporate structure without altering consolidated earnings, risk, or economic ownership.
   [42] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that news regarding a production halt at its Assam facility relates to August 2026.
          why: Regulatory action halting production at a manufacturing facility poses risks to regional product supply and earnings growth.
-  [39] COALINDIA  Capex         2026-10-27  Coal India reported a capex of ₹7,966 crore for H1 FY27 on October 26, 2026, achieving 27% growth over H1 FY26
-         why: Higher capital expenditure outlay indicates accelerating investment.
+  [39] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
+         why: Facility expansion increases operational capacity for future growth.
   [39] LT         Press release 2026-10-19  L&T commenced initial activities for the ultra-mega New Tashkent International Airport EPC project in Uzbekist
          why: This order adds to future international order inflow growth and expands overseas infrastructure execution.
   [36] BHARTIARTL Litigation    2026-11-06 +1  Bharti Airtel received a penalty notice of Rs. 1,60,000 from the Department of Telecommunications for alleged 
-         why: Regulatory penalty creates minor cash outflow risk.
-  [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
-         why: Facility expansion increases operational capacity.
+         why: Regulatory penalty creates minor financial outgo impacting earnings.
   [36] TCS        M&A           2026-10-15  Tata Consultancy Services completed the acquisition of a 100% partnership interest in BBY Services India LLP o
          why: —
   [36] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
-         why: —
-  [35] LT         Press release 2026-11-09  L&T bags (Significant*) order from Noida Metro for Aqua Line Extension
-         why: Secures a transit infrastructure contract expanding order book.
-  [35] LT         Press release 2026-11-02  L&T Wins Orders (Significant*) for Residential, Commercial Buildings & Factories Business
-         why: Secures construction orders expanding order book.
-  [35] SUNPHARMA  Press release 2026-10-30  ILUMYA (tildrakizumab-asmm) approved in the U.S. for the treatment of adults with active Psoriatic Arthritis
-         why: New product approval opens a revenue stream in a major market.
+         why: Hearing adjournment delays legal resolution.
 
-digest: 235 items {"act":22,"glance":15,"routine":198} · 20 quotes · 19 LLM calls (97 cached) · 49093 tokens · 354s
+digest: 229 items {"act":23,"glance":11,"routine":195} · 20 quotes · 7 LLM calls (106 cached) · 18649 tokens · 357s
+errors (1):
+  results MARUTI: TypeError: fetch failed
