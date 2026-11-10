@@ -28,11 +28,11 @@ Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -46,7 +46,6 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 triage: 95 headlines
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 enrich: 18 results
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 Warning: TT: undefined function: 21
@@ -82,15 +81,15 @@ results cross-check against screener:
   TITAN      no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=86009cba-ca03-4d35-bad8-b1988cfcff13.pdf
 enrich: 8 management changes
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 [gemini] smart tier 429 → using lite
-[gemini] smart tier 429 → using lite
+Warning: TT: undefined function: 21
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 assess: 17 filings read before ranking
 Warning: TT: undefined function: 21
@@ -177,6 +176,6 @@ GLANCE
   [36] MARUTI     Litigation    2026-10-12 +1  The NCLAT hearing scheduled for November 2, 2026, regarding the CCI matter has been adjourned, and a new date 
          why: Hearing adjournment delays legal resolution.
 
-digest: 229 items {"act":23,"glance":11,"routine":195} · 20 quotes · 7 LLM calls (106 cached) · 18649 tokens · 357s
+digest: 229 items {"act":23,"glance":11,"routine":195} · 20 quotes · 0 LLM calls (113 cached) · 0 tokens · 357s
 errors (1):
   results MARUTI: TypeError: fetch failed
