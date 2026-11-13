@@ -1,7 +1,7 @@
 prices: 20 stocks
 filings: 2026-10-14 → 2026-11-13
-filings: 304 raw
-opaque: 51 filings with uninformative titles
+filings: 306 raw
+opaque: 52 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -10,32 +10,6 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -46,19 +20,49 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 triage: 94 headlines
 enrich: 19 results
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+[gemini] gemini-3.8-flash overloaded → gemini-3.7-flash
+[gemini] gemini-3.7-flash overloaded → gemini-3.6-flash
 results cross-check against screener:
   BAJFINANCE Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
   BHARTIARTL Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 34805.1 vs screener OP 34946
@@ -74,7 +78,7 @@ results cross-check against screener:
   INFY       no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26c12463-d44e-4050-bd47-b53cc294b4e0.pdf
   ITC        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
            notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses for acquisition of pulp and paper business of Aditya Birla Real Estate Limited, gain on remeasurement of existing interest in Sproutlife at fair value, and final settlement of insurance claim towards leaf tobacco stocks.
-  KPITTECH   Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
+  KPITTECH   Q2 FY27 consolidated UNCHECKED [smart, model said Q2FY27] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
            notes: EBITDA as derived here (₹283 cr for Q2 FY27) differs from screener's operating profit (₹267 cr): the two count some costs differently or a line was misread, so no margin is shown.
   LT         Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(6,845 vs 8,814)✗(6,116 vs 8,149)✗(6,806 vs 8,513)  | EBITDA 6844.65 vs screener OP 8814
            notes: EBITDA as derived here (₹6,845 cr for Q2 FY27) differs from screener's operating profit (₹8,814 cr): the two count some costs differently or a line was misread, so no margin is shown.
@@ -87,23 +91,22 @@ results cross-check against screener:
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TITAN      no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=86009cba-ca03-4d35-bad8-b1988cfcff13.pdf
-enrich: 10 management changes
+enrich: 11 management changes
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
-[gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 [gemini] smart tier 429 → using lite
-Warning: TT: undefined function: 21
 bio lookup failed (smart) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
-Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+Warning: TT: undefined function: 21
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
-assess: 18 filings read before ranking
+assess: 15 filings read before ranking
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -113,9 +116,8 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+enrich: 2 one-liners
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-enrich: 3 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 
@@ -172,7 +174,7 @@ ACT
          why: Existing shareholdings will be diluted as new equity capital is raised from institutional investors.
 
 GLANCE
-  [64] HDFCBANK   Management    2026-10-17  Mrs. Lily Vadera re-appointed as Independent Director for 3 years, and Deputy MD Kaizad Bharucha to cease serv
+  [62] HDFCBANK   Management    2026-10-17  Mrs. Lily Vadera re-appointed as Independent Director for 3 years, and Deputy MD Kaizad Bharucha to cease serv
          why: Key executive leadership departs, altering governance oversight and strategic execution at the bank.
   [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
          why: Leadership changes at the senior executive level directly influence operational strategy, execution capability, and long-term governance standards.
@@ -184,17 +186,17 @@ GLANCE
          why: Allocates capital to fund the subsidiary's operations, reducing available cash for other uses.
   [46] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that news regarding the halt of eye-care drug production at its Assam facility relates to
          why: Regulatory action on eye-care drug production introduces operational risks and potential revenue loss.
+  [39] COALINDIA  Capex         2026-10-27  Coal India reported a capex of ₹7,966 crore for H1 FY27 on October 26, 2026, achieving 27% growth over H1 FY26
+         why: Higher capital expenditure growth accelerates mining infrastructure development.
   [39] LT         Press release 2026-10-19  Larsen & Toubro commenced initial pre-construction activities for the ultra-mega New Tashkent International Ai
          why: This order expansion supports international revenue growth upon full contract execution.
+  [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
+         why: Facility expansion enhances capacity for technology service delivery.
   [36] TCS        M&A           2026-10-15  Tata Consultancy Services completed the 100% acquisition of BBY Services India LLP, making it a wholly owned s
          why: —
-  [35] LT         Press release 2026-11-09  L&T bags (Significant*) order from Noida Metro for Aqua Line Extension
-         why: A significant infrastructure order win incrementally contributes to the company's order book.
-  [35] LT         Press release 2026-11-02  L&T Wins Orders (Significant*) for Residential, Commercial Buildings & Factories Business
-         why: Order wins add incremental backlog to the engineering and construction business.
   [35] SUNPHARMA  Press release 2026-10-30  ILUMYA (tildrakizumab-asmm) approved in the U.S. for the treatment of adults with active Psoriatic Arthritis
-         why: A regulatory product approval opens a new international market for the drug.
+         why: Drug approval in a major market opens a new revenue stream for the pharmaceutical portfolio.
   [35] LT         Press release 2026-10-27  Transportation Infrastructure vertical secured major design and build orders worth ₹5,000 to ₹10,000 crore for
          why: Secures revenue growth within the infrastructure segment through repeat international transit orders.
 
-digest: 231 items {"act":25,"glance":12,"routine":194} · 20 quotes · 28 LLM calls (97 cached) · 47779 tokens · 136s
+digest: 233 items {"act":25,"glance":12,"routine":196} · 20 quotes · 5 LLM calls (118 cached) · 50729 tokens · 165s
