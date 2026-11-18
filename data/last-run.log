@@ -1,6 +1,6 @@
 prices: 20 stocks
-filings: 2026-10-18 → 2026-11-17
-filings: 262 raw
+filings: 2026-10-19 → 2026-11-18
+filings: 279 raw
 opaque: 52 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -25,20 +25,17 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -50,15 +47,21 @@ Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-triage: 85 headlines
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+triage: 88 headlines
 [gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-enrich: 15 results
+enrich: 16 results
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 results cross-check against screener:
+  BAJFINANCE Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓
   BHARTIARTL Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 34805.1 vs screener OP 34946
            notes: PBT includes exceptional items: a charge of ₹353 cr last quarter. EBITDA excludes them. / An exceptional charge of ₹1,802 million has been recognised in respect of expenses incurred in connection with the listing.
   COALINDIA  Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
@@ -81,8 +84,7 @@ results cross-check against screener:
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TITAN      no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=86009cba-ca03-4d35-bad8-b1988cfcff13.pdf
-enrich: 9 management changes
-Warning: TT: undefined function: 21
+enrich: 10 management changes
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -95,8 +97,11 @@ Warning: TT: undefined function: 21
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
-assess: 12 filings read before ranking
+Warning: TT: undefined function: 21
+assess: 17 filings read before ranking
 Warning: TT: undefined function: 32
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -134,35 +139,39 @@ ACT
          why: —
   [90] ETERNAL    Results       2026-10-21 +1  Eternal Limited has filed with exchange un-audited financial results (standalone & consolidated) for the quart
          why: PAT rose 92.3% YoY to ₹125 cr, reflecting strong operational expansion as EBITDA grew faster than revenue to ₹752 cr.
-  [84] POLYCAB    Litigation    2026-10-30 +1  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, in the Asier Metals Private Limited ver
-         why: Removes the risk of corporate insolvency proceedings initiated by the creditor.
+  [90] BAJFINANCE Results       2026-10-19 +4  Unaudited standalone and consolidated financial results for the quarter and half year ended 30 September 2026
+         why: PAT rose 28.5% YoY to ₹6,266 cr, keeping pace with PBT growth as earnings power strengthens.
+  [84] POLYCAB    Litigation    2026-10-30 +1  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, in the matter of Asier Metals Private L
+         why: Removes the insolvency threat posed by the lower tribunal order, eliminating a major legal risk to the business.
+  [80] COALINDIA  Fund raise    2026-11-14 +1  Mahanadi Coalfields filed its Red Herring Prospectus for an initial public offering comprising an offer for sa
+         why: Unlocks subsidiary value and generates cash inflows through the share sale for the parent entity.
   [80] MARUTI     Results       2026-11-10  Reference to the Financial Results issued by Suzuki Motor Corporation
          why: —
-  [80] RELIANCE   Fund raise    2026-10-24  Jio Platforms finalised its IPO issue price at ₹1,119 per share and filed its prospectus on October 24, 2026.
-         why: Unlocks substantial subsidiary value and brings listed currency, enhancing financial flexibility and capital allocation transparency.
+  [80] RELIANCE   Fund raise    2026-10-24  Subsidiary Jio Platforms Limited finalised its IPO issue price at ₹1,119 per share and filed its prospectus on
+         why: Unlocks value and raises capital through the public listing of a major operating subsidiary.
+  [78] BAJFINANCE Fund raise    2026-11-17 +1  On November 17, 2026, the company allotted 114,146,341 equity shares via QIP at ₹1,025 per share, raising ₹11,
+         why: Existing shareholdings will be diluted as total equity capital increases to support future lending growth.
   [78] HAL        Management    2026-11-13  Shri Shrirang Anilrao Kothe is appointed as CEO of the Helicopter Complex effective November 13, 2026.
-         why: Leadership change in a core business segment introduces new operational execution risks.
+         why: New leadership for the helicopter division may alter strategic execution and operational focus in a key business segment.
   [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
-         why: Leadership transition introduces strategic execution risks and potential shifts in operational focus for the bank.
-  [76] COALINDIA  Fund raise    2026-11-14 +1  Mahanadi Coalfields Limited, a wholly owned subsidiary, filed its Red Herring Prospectus for an initial public
-         why: Unlocks substantial cash returns through the divestment of subsidiary shares.
+         why: Leadership transition introduces strategic execution risks as a new chief executive takes charge of banking operations.
+  [74] BAJFINANCE Fund raise    2026-11-11 +1  Bajaj Finance opened its qualified institutions placement on November 11, 2026, setting a floor price of ₹992.
+         why: Existing shareholdings will dilute upon the allotment of new equity shares to institutional buyers.
 
 GLANCE
-  [60] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake comprising 3.84 crore equity shares, making HATSOFF Helicopter Training a 
-         why: Consolidating ownership in the training venture increases future earnings capture from helicopter training services.
   [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
-         why: Leadership transition in operations introduces new management oversight for manufacturing and execution capabilities.
-  [46] M&M        Fund raise    2026-11-06  On 6th November 2026, Mahindra & Mahindra approved investing up to ₹1,450 crore in the rights issue of subsidi
-         why: Cash outflows increase by up to ₹1,450 crore to fund the subsidiary's rights issue.
-  [42] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a news report on an August 2026 halt in eye-care drug production at its Assam facili
-         why: Unverified production halts at manufacturing sites create regulatory uncertainty and potential risks to future segment revenues.
-  [39] LT         Press release 2026-10-19  L&T commenced initial activities for the New Tashkent International Airport ultra-mega project in Uzbekistan a
-         why: This ultra-mega international contract expands the infrastructure order backlog and supports future revenue growth upon full project clearance.
-  [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
-         why: Facility expansion increases operational capacity.
-  [35] LT         Press release 2026-10-27  L&T secured major design and build orders worth ₹5,000 to ₹10,000 crore for Dhaka Metro Line 1 systems package
-         why: Securing these major transit orders adds to the order book and supports future revenue growth.
+         why: Board leadership changes in operational oversight may influence execution strategy and long-term business performance.
+  [46] M&M        Fund raise    2026-11-06  Mahindra & Mahindra approved investing up to ₹1,450 crore in the rights issue of its listed subsidiary SML Mah
+         why: Capital allocation to the subsidiary increases cash outflow without altering the consolidated operational footprint.
+  [42] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a news report about halting eye-care drug production at its Assam facility relates t
+         why: Production halts at manufacturing facilities can impact revenue growth and increase regulatory scrutiny if operations remain restricted.
+  [40] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake in HATSOFF Helicopter Training, making it a wholly-owned subsidiary.
+         why: Increases ownership of a training joint venture to full control, with minimal financial impact on earnings.
+  [40] COALINDIA  Capex         2026-10-27  Coal India reported a 27% growth in capital expenditure to ₹7,966 crore for H1 FY27, achieving 109% of its pla
+         why: —
+  [39] LT         Press release 2026-10-19  Larsen & Toubro commenced initial activities for the New Tashkent International Airport ultra-mega project und
+         why: This order expansion supports international growth and adds to the infrastructure order book without altering near-term earnings materially.
 
-digest: 211 items {"act":20,"glance":7,"routine":184} · 20 quotes · 16 LLM calls (90 cached) · 29280 tokens · 96s
+digest: 221 items {"act":23,"glance":6,"routine":192} · 20 quotes · 22 LLM calls (93 cached) · 41721 tokens · 247s
 errors (1):
-  filings BAJFINANCE: Error: BSE 400 for 500034
+  filings TCS: Error: BSE 400 for 532540
