@@ -1,7 +1,13 @@
 prices: 20 stocks
-filings: 2026-10-21 → 2026-11-20
-filings: 252 raw
-opaque: 50 filings with uninformative titles
+filings: 2026-10-24 → 2026-11-23
+filings: 267 raw
+opaque: 51 filings with uninformative titles
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -26,33 +32,27 @@ Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-triage: 79 headlines
-[gemini] gemini-2.5-flash-lite unavailable → gemini-3.5-flash-lite
-enrich: 14 results
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+triage: 83 headlines
+enrich: 13 results
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 results cross-check against screener:
@@ -61,9 +61,7 @@ results cross-check against screener:
   COALINDIA  Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✗(7,728 vs 8,728)✓✓  net profit ✓✓✓  EBITDA ✗(7,422 vs 8,499)✓✓  | EBITDA 7422.01 vs screener OP 8499
            notes: Screener has PBT for Q2 FY27 at ₹8,728 cr; the filing as read gives ₹7,728 cr. / EBITDA as derived here (₹7,422 cr for Q2 FY27) differs from screener's operating profit (₹8,499 cr): the two count some costs differently or a line was misread, so no margin is shown.
   DIXON      Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 596.82 vs screener OP 597
-  ETERNAL    Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 752 vs screener OP 752
   HAL        no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=93bc4901-a0dd-4c78-894f-74203cfdc6ab.pdf
-  INFY       no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26c12463-d44e-4050-bd47-b53cc294b4e0.pdf
   ITC        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 5644.83 vs screener OP 5645
            notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹30,578 cr this quarter. / PBT includes exceptional items: a gain of ₹406 cr last quarter. EBITDA excludes them. / Exceptional items represent expenses for acquisition of pulp and paper business of Aditya Birla Real Estate Limited, gain on remeasurement of existing interest in Sproutlife at fair value, and final settlement of insurance claim towards leaf tobacco stocks.
   KPITTECH   Q2 FY27 consolidated UNCHECKED [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✗(283 vs 267)✗(272 vs 257)✗(321 vs 298)  | EBITDA 282.84 vs screener OP 267
@@ -73,20 +71,32 @@ results cross-check against screener:
   M&M        Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 10221.46 vs screener OP 10221
   MARUTI     Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4715.6 vs screener OP 4764
   MARUTI     no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2b74a7fe-194c-4a61-8cf6-dbba26573f57.pdf
+  RELIANCE   Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 56616 vs screener OP 56616
+           notes: Revenue is shown net of excise duty, as screener reports it; the statement's gross revenue is ₹3,32,861 cr this quarter.
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TITAN      no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=86009cba-ca03-4d35-bad8-b1988cfcff13.pdf
-enrich: 7 management changes
-Warning: TT: undefined function: 21
+enrich: 9 management changes
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 [gemini] smart tier 429 → using lite
-Warning: TT: undefined function: 21
+bio lookup failed (lite) Shri Debabrata Ghosh Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Shri Debabrata Ghosh Error: Gemini: retries exhausted (last status 429)
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+bio lookup failed (lite) Shri Rajesh V Nair Error: Gemini: retries exhausted (last status 429)
+Warning: TT: undefined function: 21
+bio lookup failed (smart) Shri Rajesh V Nair Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-assess: 12 filings read before ranking
+Warning: TT: undefined function: 21
+bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+assess: 18 filings read before ranking
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -95,21 +105,50 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-enrich: 1 one-liners
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+enrich: 19 one-liners
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 32
+Warning: TT: undefined function: 32
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
 
 ACT
   [90] HAL        Results       2026-11-12  Audited Financial Result (Standalone and Consolidated ) for the quarter and half year ended 30th September, 20
+         why: —
+  [90] MARUTI     Results       2026-11-10  Reference to the Financial Results issued by Suzuki Motor Corporation
          why: —
   [90] TITAN      Results       2026-11-05 +3  Outcome of the Board Meeting
          why: —
   [90] BHARTIARTL Results       2026-11-05 +5  Financial Results for the second quarter and six months ended September 30, 2026
          why: Revenue rose 16.7% YoY to ₹60,878 cr and PAT jumped 30.9% to ₹8,888 cr, expanding earnings power through steady margin execution.
-  [90] M&M        Results       2026-11-05 +3  Mahindra & Mahindra reported consolidated quarterly revenue of Rs. 57,514.98 crores and net profit of Rs. 5,16
+  [90] M&M        Results       2026-11-05 +4  Mahindra & Mahindra reported consolidated quarterly revenue of Rs. 57,514.98 crores and net profit of Rs. 5,16
          why: Revenue rose 25.3% YoY to ₹57,515 cr while PAT grew 24.9% YoY to ₹4,588 cr, keeping earnings power steady despite a 1.7 pp drop in EBITDA margin.
   [90] ITC        Results       2026-11-02 +2  Unaudited Financial Results of the Company for the Quarter and Six Months ended 30th September, 2026
          why: EBITDA margin dropped 6.5 pp YoY to 27.9%, pulling down PAT by 18.7% YoY to ₹4,168 cr as earnings power contracted.
+  [90] RELIANCE   Results       2026-10-30 +5  Please find attached Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year e
+         why: Revenue rose 29.8% YoY to ₹3,30,601 cr while PAT jumped 40.6% YoY to ₹25,548 cr, reflecting strong earnings power despite a minor margin dip.
   [90] DIXON      Results       2026-10-30 +3  Results for the quarter and half year ended 30th September, 20206
          why: Revenue rose 46.7% YoY to ₹21,794 cr, but PAT fell 48.7% YoY to ₹344 cr, showing growth is not reaching profit.
   [90] SUNPHARMA  Results       2026-10-30 +2  Unaudited Financial Results for the quarter and half year ended 30 September 2026
@@ -122,40 +161,83 @@ ACT
          why: PAT jumped 32.5% YoY to ₹5,202 cr, outpacing the 15.8% revenue growth and lifting earnings power.
   [90] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
          why: EBITDA margin fell by 3.1 pp to 8.8% as YoY revenue grew 26% while EBITDA dropped 7%, showing earnings power is constrained by margin compression.
-  [90] INFY       Results       2026-10-23 +4  Results for the quarter and half year ended September 30, 2026 and declaration of interim dividend
-         why: —
-  [90] ETERNAL    Results       2026-10-21 +1  Eternal Limited has filed with exchange un-audited financial results (standalone & consolidated) for the quart
-         why: PAT rose 92.3% YoY to ₹125 cr, reflecting strong operational expansion as EBITDA grew faster than revenue to ₹752 cr.
-  [83] POLYCAB    Litigation    2026-10-30 +1  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, in the insolvency appeal by Asier Metal
-         why: Removes the insolvency risk admitted against the company by overturning the lower tribunal ruling.
-  [80] COALINDIA  Fund raise    2026-11-14 +1  Subsidiary Mahanadi Coalfields filed an RHP for an IPO comprising an offer for sale of up to 661,836,300 share
-         why: Unlocks subsidiary value and generates cash inflow through the sale of equity shares.
-  [80] MARUTI     Results       2026-11-10  Reference to the Financial Results issued by Suzuki Motor Corporation
-         why: —
-  [78] BAJFINANCE Fund raise    2026-11-17 +1  Allotted 11,41,46,341 equity shares via qualified institutions placement at ₹1,025 per share, raising approxim
-         why: The equity base expands, diluting existing shareholdings while bolstering capital reserves for future lending operations.
+  [83] POLYCAB    Litigation    2026-10-30 +1  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, in the matter of Asier Metals Private L
+         why: Removes the risk of insolvency proceedings initiated by the NCLT order, clearing legal uncertainty for shareholders.
+  [80] COALINDIA  Fund raise    2026-11-14 +1  Mahanadi Coalfields filed its Red Herring Prospectus for an initial public offering involving an offer for sal
+         why: Unlocks subsidiary value and generates cash proceeds through the divestment of equity shares.
+  [80] RELIANCE   Press release 2026-10-24  Jio Platforms Limited finalised its IPO issue price at ₹1,119 per share and filed its prospectus on October 24
+         why: Unlocks subsidiary value and expands capital access to fund future growth initiatives.
+  [78] BAJFINANCE Fund raise    2026-11-17 +1  Allotted 11,41,46,341 equity shares at ₹1,025 each, aggregating ₹11,700 crore via qualified institutional plac
+         why: Increases equity capital and dilutes existing shareholdings while bolstering the balance sheet for future lending growth.
   [78] HAL        Management    2026-11-13  Shri Shrirang Anilrao Kothe is appointed as CEO of the Helicopter Complex effective November 13, 2026.
-         why: Leadership changes in key business complexes alter operational execution and strategic direction.
+         why: Leadership changes in key business complexes may alter operational execution and strategic direction.
+  [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
+         why: Leadership transition introduces strategic uncertainty and potential shifts in execution risk for the bank.
   [74] BAJFINANCE Fund raise    2026-11-11 +1  Bajaj Finance opened its qualified institutions placement on November 11, 2026, setting a floor price of ₹992.
-         why: Existing shareholders face potential equity dilution as the company raises capital through the qualified institutions placement.
+         why: Existing shareholders face potential equity dilution as the company raises capital through the issuance of new shares.
 
 GLANCE
-  [62] M&M        Fund raise    2026-11-06  Mahindra & Mahindra approved investing up to ₹1,450 crore in SML Mahindra's rights issue on 6th November 2026.
-         why: Capital allocation to the subsidiary changes cash reserves while supporting the commercial vehicles business growth.
-  [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
+  [60] HAL        M&A           2026-11-03  CAE Canada transferred its 50 percent stake in HATSOFF Helicopter Training to HAL, making it a wholly-owned su
+         why: Full ownership of the training venture increases control over operations and consolidates earnings under the company.
+  [55] COALINDIA  Management    2026-11-21 +1  Coal India promoted Debabrata Ghosh and Rajesh V Nair as Senior Management Personnel (Executive Directors).
          why: —
-  [48] HAL        M&A           2026-11-03  CAE Canada's 50% stake in HATSOFF Helicopter Training is transferred to HAL, making it a wholly-owned subsidia
-         why: Consolidating ownership in the training venture removes joint venture dependencies and brings full earnings capture.
-  [42] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a media report regarding an order to halt eye-care drug production at its Assam faci
-         why: Uncertainty regarding regulatory action at the manufacturing facility introduces potential operational risks for the pharmaceutical segment.
-  [36] INFY       Capex         2026-10-30  Infosys expanded its Hyderabad campus with a new 1.1 million sq. ft. facility adding 10,000 seats.
-         why: Facility expansion reflects routine capital expenditure without near-term earnings shock.
+  [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
+         why: Board leadership changes in core operations oversee strategic execution and manufacturing performance.
+  [50] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a news report about halting eye-care drug production at its Assam facility relates t
+         why: Uncertainty regarding production halts at the Assam facility creates potential risks for manufacturing output and revenue growth.
+  [44] INFY       M&A           2026-11-18  Subsidiary Infosys Singapore will acquire a 10.1% stake in NTT Docomo Playspace for JPY 1.59 billion to form a
+         why: The minor equity investment expands strategic partnerships in international markets without materially altering near-term earnings or cash flows.
+  [40] COALINDIA  Capex         2026-10-27  Coal India reported a 27% growth in capex to ₹7,966 crore for H1 FY27, achieving 109% of its planned outlay.
+         why: Accelerated infrastructure and equipment spending strengthens mining capacity and supports future production growth.
+  [39] LT         Press release 2026-11-23  Larsen & Toubro Secures (Large*) Order for Deploying AI Cluster
+         why: —
+  [35] MARUTI     Press release 2026-11-22  Maruti Suzuki increased prices on select models by a volume weighted average of 0.31% effective November 22, 2
+         why: —
+  [35] DIXON      Press release 2026-11-21  On 21st November 2026 Dixon Technologies consummated the acquisition of movable assets from Vimal Plast for ₹4
+         why: —
+  [35] RELIANCE   Press release 2026-11-19  This is further to the disclosure dated November 13, 2026 made by the Company. We wish to inform you that the 
+         why: —
+  [35] COALINDIA  Press release 2026-11-19  On November 19, 2026, the Ministry of Heavy Industries issued a Letter of Intent to Coal India for setting up 
+         why: —
+  [35] RELIANCE   Press release 2026-11-17  This is further to the disclosure dated November 12, 2026 made by the Company. We wish to inform you that the 
+         why: —
+  [35] INFY       Press release 2026-11-17  Infosys has been named a Leader in the Gartner Magic Quadrant for Public Cloud Optimization and Transformation
+         why: —
+  [35] TCS        Press release 2026-11-17  Press Release - HFS Research ranks TCS as a leader in agentic application management services
+         why: —
+  [35] RELIANCE   Press release 2026-11-16  This is further to the disclosure dated November 6, 2026 made by the Company. We wish to inform you that the C
+         why: —
+  [35] INFY       Press release 2026-11-12  Infosys Science Foundation announces winners of Infosys Prize 2026
+         why: —
+  [35] LT         Press release 2026-11-09  L&T bags (Significant*) order from Noida Metro for Aqua Line Extension
+         why: —
+  [35] TCS        Press release 2026-11-04  Press Release - TCS Enterprise AI Study: 84% say productivity is AI''s top benefit; just 10% let AI act withou
+         why: —
+  [35] LT         Press release 2026-11-02  L&T Wins Orders (Significant*) for Residential, Commercial Buildings & Factories Business
+         why: —
+  [35] COALINDIA  Press release 2026-11-01  CIL records all time high coal Supplies in Oct''26
+         why: —
+  [35] MARUTI     Press release 2026-11-01  Maruti Suzuki sales in October 2026
+         why: —
+  [35] COALINDIA  Press release 2026-11-01  Provisional Production and offtake for the month of october 26 and progressive from Apr26 to oct26
+         why: —
+  [35] M&M        Press release 2026-11-01  Mahindra & Mahindra reported total auto sales of 131109 vehicles in October 2026, including domestic SUV sales
+         why: —
   [35] SUNPHARMA  Press release 2026-10-30  ILUMYA (tildrakizumab-asmm) approved in the U.S. for the treatment of adults with active Psoriatic Arthritis
-         why: New product regulatory approval opens a new geographic revenue stream.
-  [35] LT         Press release 2026-10-27  L&T secured major orders valued between ₹5,000 crore and ₹10,000 crore for Dhaka Metro Line 1 track and electr
-         why: Securing these major transit orders supports future revenue growth and expands the order book.
+         why: —
+  [35] INFY       Press release 2026-10-29  Infosys Finacle and Qorus announced 37 financial institution winners for the 2026 Banking Innovation Awards.
+         why: —
+  [35] MARUTI     Press release 2026-10-29  Maruti Suzuki, India''s No. 1 Electric Vehicle exporter, crosses EV exports of 50,000 units
+         why: —
+  [35] INFY       Press release 2026-10-28  Canada’s UNI Financial Cooperation successfully deployed Infosys Finacle Universal Banker across all branches 
+         why: —
+  [35] INFY       Press release 2026-10-27  Infosys successfully implemented Syngentais global SAP S/4HANA transformation, establishing a unified digital 
+         why: —
+  [35] LT         Press release 2026-10-27  L&T Wins Orders (Major*) for Dhaka Metro
+         why: —
+  [35] MARUTI     Press release 2026-10-24  Maruti Suzuki VICTORIS AURUM Edition Launched to Celebrate 1 Year of Record Sales Success
+         why: —
 
-digest: 205 items {"act":19,"glance":7,"routine":179} · 20 quotes · 17 LLM calls (82 cached) · 40894 tokens · 64s
-errors (2):
-  filings HDFCBANK: Error: BSE 400 for 500180
-  filings RELIANCE: Error: BSE 400 for 500325
+digest: 218 items {"act":20,"glance":30,"routine":168} · 20 quotes · 35 LLM calls (92 cached) · 43687 tokens · 723s
+errors (1):
+  triage: Error: Gemini: retries exhausted (last status 503)
