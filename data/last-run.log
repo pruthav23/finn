@@ -1,10 +1,7 @@
 prices: 20 stocks
-filings: 2026-10-25 → 2026-11-24
-filings: 263 raw
-opaque: 53 filings with uninformative titles
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
+filings: 2026-10-26 → 2026-11-25
+filings: 264 raw
+opaque: 54 filings with uninformative titles
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -29,17 +26,6 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: undefined function: 21
-Warning: TT: invalid function id: 136
-Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -48,13 +34,28 @@ Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-triage: 82 headlines
+Warning: TT: undefined function: 21
+triage: 84 headlines
 enrich: 13 results
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -79,27 +80,28 @@ results cross-check against screener:
   SUNPHARMA  Q2 FY27 consolidated VERIFIED  [cache] revenue ✓✓✓  PBT ✓✓✓  net profit ✓✓✓  EBITDA ✓✓✓  | EBITDA 4743.89 vs screener OP 4744
            notes: PBT includes exceptional items: a charge of ₹1,269 cr this quarter, a charge of ₹204 cr last quarter. EBITDA excludes them. / Exceptional items include acquisition-related costs for Organon & Co., costs related to New Labour Codes framework, and a settlement agreement for antitrust litigation in the U.S.
   TITAN      no quarterly table found in https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=86009cba-ca03-4d35-bad8-b1988cfcff13.pdf
-enrich: 10 management changes
+enrich: 11 management changes
+Warning: TT: undefined function: 21
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (lite) Shri Debabrata Ghosh Error: Gemini: retries exhausted (last status 429)
 [gemini] gemini-2.5-flash unavailable → gemini-3.8-flash
 [gemini] smart tier 429 → using lite
+bio lookup failed (lite) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Shri Debabrata Ghosh Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Shri Rajesh V Nair Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 bio lookup failed (smart) Shri Rajesh V Nair Error: Gemini: retries exhausted (last status 429)
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-bio lookup failed (lite) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
-Warning: TT: undefined function: 21
-bio lookup failed (smart) Shri Shrirang Anilrao Kothe Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (lite) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
-Warning: TT: undefined function: 21
 bio lookup failed (lite) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
+bio lookup failed (smart) Shri P B Rangarao Error: Gemini: retries exhausted (last status 429)
 bio lookup failed (smart) Mr. Anup Bagchi Error: Gemini: retries exhausted (last status 429)
-assess: 18 filings read before ranking
+assess: 16 filings read before ranking
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -110,14 +112,19 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
+enrich: 19 one-liners
+Warning: TT: undefined function: 21
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-enrich: 16 one-liners
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 32
+Warning: TT: invalid function id: 136
+Warning: TT: invalid function id: 136
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
-Warning: TT: undefined function: 32
+Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
@@ -125,6 +132,7 @@ Warning: TT: undefined function: 21
 Warning: TT: undefined function: 21
 Warning: TT: invalid function id: 136
 Warning: TT: invalid function id: 136
+Warning: TT: undefined function: 32
 
 ACT
   [90] HAL        Results       2026-11-12  Audited Financial Result (Standalone and Consolidated ) for the quarter and half year ended 30th September, 20
@@ -153,31 +161,31 @@ ACT
          why: PAT jumped 32.5% YoY to ₹5,202 cr, outpacing the 15.8% revenue growth and lifting earnings power.
   [90] MARUTI     Results       2026-10-27 +5  Un-audited financial results for the quarter ended on 30th September 2026
          why: EBITDA margin fell by 3.1 pp to 8.8% as YoY revenue grew 26% while EBITDA dropped 7%, showing earnings power is constrained by margin compression.
-  [84] POLYCAB    Litigation    2026-10-30 +1  NCLAT set aside the NCLT Ahmedabad bench order dated October 07, 2026, in the matter of Asier Metals Private L
-         why: Removes the risk of insolvency proceedings initiated by the NCLT order, clearing legal uncertainty.
-  [79] COALINDIA  M&A           2026-11-24 +2  Subsidiary Mahanadi Coalfields filed its prospectus on November 23, 2026, for an initial public offering via o
-         why: Unlocks value through the public listing of a wholly owned subsidiary and creates potential divestment cash inflows.
-  [78] BAJFINANCE Fund raise    2026-11-17 +1  On November 17, 2026, the company allotted 114,146,341 equity shares at ₹1,025 each via QIP, raising ₹11,700 c
-         why: Existing shareholdings dilute by nearly two percent while net worth and book value expand significantly.
+  [84] POLYCAB    Litigation    2026-10-30 +1  NCLAT allowed the company's appeal on October 30, 2026, and set aside the NCLT Ahmedabad bench order dated Oct
+         why: Removes insolvency risk and potential operational disruption by reversing the adverse tribunal order.
+  [80] COALINDIA  M&A           2026-11-24 +2  Subsidiary Mahanadi Coalfield filed its prospectus on Nov 23, 2026 with RoC Odisha for an offer for sale of 66
+         why: Unlocks subsidiary value and generates cash flows through the public offer for sale without diluting existing equity.
   [78] HAL        Management    2026-11-13  Shri Shrirang Anilrao Kothe is appointed as CEO of the Helicopter Complex effective November 13, 2026.
-         why: Leadership changes at key segments alter operational execution and strategic direction.
+         why: New leadership for the helicopter division may alter strategic execution and operational focus in a key business segment.
   [78] HDFCBANK   Management    2026-10-27  Disclosure under Regulation 30 and other applicable regulations of the SEBI (Listing Obligations and Disclosur
-         why: Leadership transition alters strategic direction and execution risk at the top management level.
-  [74] BAJFINANCE Fund raise    2026-11-11 +1  Bajaj Finance opened its qualified institutional placement on November 11, 2026, setting a floor price of ₹992
-         why: This equity raise dilutes existing shareholders to fund growth and expand operations.
+         why: Leadership transition introduces strategic execution risks and potential shifts in operational priorities.
 
 GLANCE
-  [60] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake in HATSOFF Helicopter Training Pvt. Ltd., making it a wholly-owned subsidi
-         why: Full ownership of the training venture increases consolidation scope and secures sole control over earnings.
+  [60] HAL        M&A           2026-11-03  HAL acquired CAE Canada's 50% stake comprising 3,84,04,205 shares, making HATSOFF Helicopter Training Pvt. Ltd
+         why: Consolidating full ownership increases earnings capture from this training venture.
   [55] COALINDIA  Management    2026-11-21 +1  Coal India promoted Debabrata Ghosh and Rajesh V Nair as Senior Management Personnel (Executive Directors).
-         why: —
+         why: Senior leadership changes shape operational execution and workforce management strategy.
   [55] HAL        Management    2026-10-28  Shri P B Rangarao has been appointed as Director (Operations) for a five-year term starting October 28, 2026.
-         why: Leadership transition in key operations role ensures executive continuity and strategic direction.
-  [42] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that news regarding the halt of eye-care drug production at its Assam facility relates to
-         why: Regulatory action halting production at a facility poses risks to manufacturing output and product revenues.
-  [40] COALINDIA  Capex         2026-10-27  Coal India reported a 27% growth in capex to ₹7,966 crore for H1 FY27, achieving 109% of its planned outlay.
-         why: Accelerated infrastructure and equipment spending strengthens mining capacity and supports future production growth.
+         why: —
+  [46] M&M        Fund raise    2026-11-06  Mahindra and Mahindra approved investing up to ₹1,450 crore in the rights issue of its listed subsidiary, SML 
+         why: The cash outlay consumes capital to support the subsidiary's operations and expansion without altering consolidated control.
+  [46] SUNPHARMA  Press release 2026-11-02 +1  Sun Pharma clarified that a news report about halting eye-care drug production at its Assam facility relates t
+         why: Unverified production halts at the Assam plant create regulatory risks that could impact future earnings and operational growth.
+  [39] LT         Press release 2026-11-25  On November 25, 2026, Larsen & Toubro won a significant order to develop a battery energy storage system in Gu
+         why: —
   [39] LT         Press release 2026-11-23  Larsen & Toubro Secures (Large*) Order for Deploying AI Cluster
+         why: —
+  [35] INFY       Press release 2026-11-25  Infosys became the world's first organization to achieve CMMI AI Maturity Level 5, validating its responsible 
          why: —
   [35] MARUTI     Press release 2026-11-22  Maruti Suzuki increased prices on select models by a volume weighted average of 0.31% effective November 22, 2
          why: —
@@ -191,11 +199,15 @@ GLANCE
          why: —
   [35] INFY       Press release 2026-11-17  Infosys has been named a Leader in the Gartner Magic Quadrant for Public Cloud Optimization and Transformation
          why: —
+  [35] TCS        Press release 2026-11-17  Press Release - HFS Research ranks TCS as a leader in agentic application management services
+         why: —
   [35] RELIANCE   Press release 2026-11-16  This is further to the disclosure dated November 6, 2026 made by the Company. We wish to inform you that the C
          why: —
   [35] INFY       Press release 2026-11-12  Infosys Science Foundation announces winners of Infosys Prize 2026
          why: —
   [35] LT         Press release 2026-11-09  L&T bags (Significant*) order from Noida Metro for Aqua Line Extension
+         why: —
+  [35] TCS        Press release 2026-11-04  Press Release - TCS Enterprise AI Study: 84% say productivity is AI''s top benefit; just 10% let AI act withou
          why: —
   [35] LT         Press release 2026-11-02  L&T Wins Orders (Significant*) for Residential, Commercial Buildings & Factories Business
          why: —
@@ -220,7 +232,7 @@ GLANCE
   [35] LT         Press release 2026-10-27  L&T Wins Orders (Major*) for Dhaka Metro
          why: —
 
-digest: 213 items {"act":19,"glance":26,"routine":168} · 20 quotes · 23 LLM calls (104 cached) · 33483 tokens · 394s
+digest: 216 items {"act":17,"glance":30,"routine":169} · 20 quotes · 23 LLM calls (107 cached) · 30926 tokens · 472s
 errors (2):
-  filings TCS: Error: BSE 400 for 532540
+  filings BAJFINANCE: Error: BSE 400 for 500034
   triage: Error: Gemini: retries exhausted (last status 503)
